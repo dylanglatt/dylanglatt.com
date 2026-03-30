@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}About — Dylan Glatt{% endblock %}
+{% block description %}About Dylan Glatt — builder, operator, analytical thinker.{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container--narrow">
+    <h1 class="page-title">About</h1>
+  </div>
+</div>
+
+<div style="padding-bottom: var(--sp-20);">
+  <div class="container--narrow">
+
+    <div class="about-body">
+      <p>
+        I'm a builder and operator based in New York. I work on products and systems —
+        things with clear purposes, clean internals, and real uses. Most of what I build
+        starts from a problem I ran into myself.
+      </p>
+      <p>
+        Right now I'm focused on Riffd, a music analysis tool for musicians that I built
+        and run. Alongside that, I'm developing private analytical systems for market
+        research and prediction.
+      </p>
+      <p>
+        I think carefully about how things are structured — both products and the code
+        behind them. I'd rather build one thing that works well than five things that
+        kind of work. I care about deployment, reliability, and the experience of actually
+        using something, not just getting it to run once.
+      </p>
+      <p>
+        Outside of building, I'm interested in music, trading systems, and how information
+        moves through markets and products.
+      </p>
+    </div>
+
+    <div class="about-links">
+      <a href="https://github.com/djglatt" target="_blank" rel="noopener" class="btn btn-secondary">GitHub ↗</a>
+      <a href="https://linkedin.com/in/dylanglatt" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn ↗</a>
+      <a href="mailto:dylanglatt@gmail.com" class="btn btn-secondary">Email</a>
+      <a href="{{ url_for('static', filename='resume.pdf') }}" target="_blank" class="btn btn-secondary">Resume ↗</a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

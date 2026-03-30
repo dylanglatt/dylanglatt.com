@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Riffd — Dylan Glatt{% endblock %}
+{% block description %}Riffd is a music analysis tool for musicians. Stem separation, tab generation, chord detection, and production credits.{% endblock %}
+
+{% block content %}
+
+<div style="padding: var(--sp-12) 0 0;">
+  <div class="container--narrow">
+
+    <!-- Back -->
+    <a href="{{ url_for('work') }}" class="product-back">← Work</a>
+
+    <!-- Header -->
+    <h1 class="page-title">Riffd</h1>
+    <div class="product-meta">
+      <span class="badge badge--live"><span class="badge-dot"></span> Live</span>
+      <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="product-external">riffdlabs.com ↗</a>
+    </div>
+
+    <!-- Screenshot -->
+    <div class="product-screenshot">
+      <div class="product-screenshot-placeholder">
+        Add a screenshot at static/img/riffd-screenshot.png
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="product-body">
+      <p>
+        Riffd is a music analysis tool built for musicians who want to understand what's
+        happening inside a track — not just listen to it. Give it a YouTube URL or an
+        audio file and it returns separated stems, generated tabs, chord analysis,
+        and production credits.
+      </p>
+      <p>
+        The core use case is simple: you want to learn a song, figure out what key it's
+        in, understand what the bass is doing, or find out who produced it. Riffd handles
+        all of that in one place, without requiring any music theory background to use.
+      </p>
+
+      <h2>How it works</h2>
+      <p>
+        Audio separation runs on Demucs via Replicate's GPU API — offloading the heavy
+        ML workload rather than grinding on a shared CPU. Tab generation uses Basic Pitch
+        for pitch detection on each stem. Chord analysis and key detection run against
+        the separated harmonic content. Production credits come from MusicBrainz.
+      </p>
+      <p>
+        The backend is a Flask app deployed on Render, with a job queue that lets users
+        track long-running separations in real time. The full pipeline — download,
+        separate, analyze, credit — runs asynchronously and streams status back to the
+        frontend as it progresses.
+      </p>
+
+      <h2>Why I built it</h2>
+      <p>
+        I wanted a single tool that could do stem separation, tab output, and credits
+        lookup without switching between four different services. I also wanted to explore
+        building on top of modern audio ML — Demucs and Basic Pitch together produce
+        genuinely useful results that weren't accessible to regular musicians a few years ago.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="product-footer">
+      <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="btn btn-primary">Open Riffd ↗</a>
+      <a href="{{ url_for('work') }}" class="btn btn-secondary">← Back to work</a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

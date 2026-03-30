@@ -1,0 +1,47 @@
+{% extends "ops/base.html" %}
+{% block title %}Events{% endblock %}
+
+{% block content %}
+
+<h1 class="ops-page-title">Event log</h1>
+
+<div class="ops-panel">
+  <div class="ops-panel-header">All events — most recent first (200 max)</div>
+  {% if events %}
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Time (UTC)</th>
+          <th>Type</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for event in events %}
+        <tr>
+          <td>{{ event.ts[:19] | replace('T', ' ') }}</td>
+          <td>
+            <span class="ops-type ops-type--{{ 'pageview' if event.type == 'pageview' else ('contact' if event.type == 'contact_form' else 'other') }}">
+              {{ event.type }}
+            </span>
+          </td>
+          <td>
+            {% if event.type == 'pageview' %}
+              page={{ event.data.get('page', '—') }}  ip={{ event.data.get('ip', '—') }}
+            {% elif event.type == 'contact_form' %}
+              from={{ event.data.get('name', '—') }} &lt;{{ event.data.get('email', '') }}&gt;
+              — {{ event.data.get('message', '') | truncate(80) }}
+            {% else %}
+              {{ event.data | string | truncate(100) }}
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="ops-empty">No events logged yet.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

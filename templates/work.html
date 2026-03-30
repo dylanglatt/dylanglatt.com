@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Work — Dylan Glatt{% endblock %}
+{% block description %}Products and systems built by Dylan Glatt.{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">Work</h1>
+    <p class="page-subtitle">Products I've built, systems I'm developing, and things I'm exploring.</p>
+  </div>
+</div>
+
+<!-- ── Live ──────────────────────────────────────────────────────────────── -->
+<section class="section" style="border-top: none; padding-top: 0;">
+  <div class="container">
+    <p class="section-title" style="margin-bottom: var(--sp-5);">Live</p>
+
+    <div class="card card--featured">
+      <p class="card-eyebrow">Music analysis tool</p>
+      <div class="card-header">
+        <span class="card-name">Riffd</span>
+        <span class="badge badge--live"><span class="badge-dot"></span> Live</span>
+      </div>
+      <p class="card-description">
+        A music analysis tool for musicians who want to understand what's inside a track.
+        Separate audio stems with Demucs, generate tabs with Basic Pitch, explore chord
+        structures, and pull production credits via MusicBrainz — all from a YouTube URL
+        or file upload.
+      </p>
+      <div class="card-footer">
+        <a href="{{ url_for('work_riffd') }}" class="card-link-primary">Read more →</a>
+        <span class="card-sep">·</span>
+        <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="card-link-external">riffdlabs.com ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── In Development ────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <p class="section-title" style="margin-bottom: var(--sp-5);">In development</p>
+
+    <div class="work-grid">
+      <div class="card">
+        <div>
+          <div class="card-header">
+            <span class="card-name">Signal</span>
+            <span class="badge badge--private">Private</span>
+          </div>
+          <p class="card-description">
+            An internal system for automated market research and prediction. Not a product —
+            a personal analytical tool. Built for my own use.
+          </p>
+        </div>
+        <div class="card-footer">
+          <span class="badge badge--dev"><span class="badge-dot"></span> In development</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

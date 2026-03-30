@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Dylan Glatt{% endblock %}
+{% block description %}Dylan Glatt — builder and operator. I make products and systems that work.{% endblock %}
+
+{% block content %}
+
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Builder &amp; Operator</p>
+    <h1 class="hero-name">Dylan Glatt</h1>
+    <p class="hero-positioning">I build products and systems.<br>Based in New York.</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('work') }}" class="btn btn-primary">See my work</a>
+      <a href="{{ url_for('about') }}" class="btn btn-secondary">About me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Current focus ─────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-title">Currently</span>
+    </div>
+    <p class="focus-text">
+      Shipping <strong>Riffd</strong> — a music analysis tool for musicians who want to understand
+      what's happening inside a track. Alongside that, developing private analytical systems for
+      automated market research.
+    </p>
+  </div>
+</section>
+
+<!-- ── Featured product ──────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-title">Featured</span>
+      <a href="{{ url_for('work') }}" class="section-cta">All work →</a>
+    </div>
+
+    <div class="card card--featured">
+      <p class="card-eyebrow">Live product</p>
+      <div class="card-header">
+        <span class="card-name">Riffd</span>
+        <span class="badge badge--live"><span class="badge-dot"></span> Live</span>
+      </div>
+      <p class="card-description">
+        A music analysis tool for musicians. Separate audio stems, generate tabs,
+        explore chord structures, and get production credits — all from a song name or
+        file upload. Built on top of audio ML and the Demucs separation model.
+      </p>
+      <div class="card-footer">
+        <a href="{{ url_for('work_riffd') }}" class="card-link-primary">View details →</a>
+        <span class="card-sep">·</span>
+        <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="card-link-external">riffdlabs.com ↗</a>
+      </div>
+      <div class="card-screenshot">
+        <span class="card-screenshot-label">riffdlabs.com</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Work grid ─────────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-title">Work</span>
+      <a href="{{ url_for('work') }}" class="section-cta">See all →</a>
+    </div>
+
+    <div class="work-grid">
+      <!-- Riffd -->
+      <div class="card">
+        <div>
+          <div class="card-header">
+            <span class="card-name">Riffd</span>
+            <span class="badge badge--live"><span class="badge-dot"></span> Live</span>
+          </div>
+          <p class="card-description">Music analysis for musicians. Stems, tabs, chords, credits.</p>
+        </div>
+        <div class="card-footer">
+          <a href="{{ url_for('work_riffd') }}" class="card-link-primary">Details →</a>
+          <span class="card-sep">·</span>
+          <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="card-link-external">Live ↗</a>
+        </div>
+      </div>
+
+      <!-- Signal -->
+      <div class="card">
+        <div>
+          <div class="card-header">
+            <span class="card-name">Signal</span>
+            <span class="badge badge--private">Private</span>
+          </div>
+          <p class="card-description">Private system for automated market research and prediction. Internal use only.</p>
+        </div>
+        <div class="card-footer">
+          <span class="badge badge--dev"><span class="badge-dot"></span> In development</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About snippet ─────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container--narrow">
+    <div class="section-header">
+      <span class="section-title">About</span>
+    </div>
+    <p class="about-text" style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 560px; line-height: 1.72; margin-bottom: var(--sp-6);">
+      I care about building things that work well — products with clear purposes,
+      systems with clean internals, and tools that respect the user's time. Most of what
+      I build starts from a problem I hit myself.
+    </p>
+    <a href="{{ url_for('about') }}" class="btn btn-secondary">More about me →</a>
+  </div>
+</section>
+
+{% endblock %}

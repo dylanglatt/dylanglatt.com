@@ -1,0 +1,60 @@
+{% extends "ops/base.html" %}
+{% block title %}Site{% endblock %}
+
+{% block content %}
+
+<h1 class="ops-page-title">Site traffic</h1>
+
+<!-- Page breakdown -->
+<div class="ops-panel">
+  <div class="ops-panel-header">Page views by route</div>
+  {% if page_counts %}
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Total views</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for page, count in page_counts %}
+        <tr>
+          <td>{{ page }}</td>
+          <td>{{ count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="ops-empty">No pageviews recorded yet.</p>
+  {% endif %}
+</div>
+
+<!-- Recent pageviews -->
+<div class="ops-panel">
+  <div class="ops-panel-header">Recent pageviews</div>
+  {% if pageviews %}
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Time (UTC)</th>
+          <th>Page</th>
+          <th>IP</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pv in pageviews %}
+        <tr>
+          <td>{{ pv.ts[:19] | replace('T', ' ') }}</td>
+          <td>{{ pv.data.get('page', '—') }}</td>
+          <td>{{ pv.data.get('ip', '—') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="ops-empty">No pageviews recorded yet.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

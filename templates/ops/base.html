@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Ops{% endblock %} — dylanglatt.com</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="ops-body">
+
+  <nav class="ops-nav">
+    <div class="ops-nav-inner">
+      <div class="ops-brand">
+        <a href="{{ url_for('ops_dashboard') }}" class="ops-brand-name">dylanglatt.com</a>
+        <span class="ops-brand-tag">ops</span>
+      </div>
+      <div class="ops-nav-links">
+        <a href="{{ url_for('ops_dashboard') }}" class="ops-nav-link {% if request.endpoint == 'ops_dashboard' %}active{% endif %}">Overview</a>
+        <a href="{{ url_for('ops_site') }}"      class="ops-nav-link {% if request.endpoint == 'ops_site' %}active{% endif %}">Site</a>
+        <a href="{{ url_for('ops_events') }}"    class="ops-nav-link {% if request.endpoint == 'ops_events' %}active{% endif %}">Events</a>
+        <a href="{{ url_for('ops_logout') }}" class="ops-nav-exit">Exit</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="ops-main">
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+</html>

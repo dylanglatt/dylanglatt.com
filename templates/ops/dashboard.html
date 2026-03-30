@@ -1,0 +1,92 @@
+{% extends "ops/base.html" %}
+{% block title %}Overview{% endblock %}
+
+{% block content %}
+
+<h1 class="ops-page-title">Overview</h1>
+
+<!-- Stats -->
+<div class="ops-stats">
+  <div class="ops-stat">
+    <p class="ops-stat-label">Total pageviews</p>
+    <p class="ops-stat-value">{{ total_pageviews }}</p>
+  </div>
+  <div class="ops-stat">
+    <p class="ops-stat-label">Total events</p>
+    <p class="ops-stat-value">{{ total_events }}</p>
+  </div>
+  <div class="ops-stat">
+    <p class="ops-stat-label">Contact submissions</p>
+    <p class="ops-stat-value">{{ total_contacts }}</p>
+  </div>
+  <div class="ops-stat">
+    <p class="ops-stat-label">Pages tracked</p>
+    <p class="ops-stat-value">{{ page_counts | length }}</p>
+  </div>
+</div>
+
+<!-- Top pages -->
+<div class="ops-panel">
+  <div class="ops-panel-header">Top pages (all time)</div>
+  {% if page_counts %}
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Views</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for page, count in page_counts %}
+        <tr>
+          <td>{{ page }}</td>
+          <td>{{ count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="ops-empty">No pageviews logged yet.</p>
+  {% endif %}
+</div>
+
+<!-- Recent events -->
+<div class="ops-panel">
+  <div class="ops-panel-header">Recent events</div>
+  {% if recent_events %}
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Type</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for event in recent_events %}
+        <tr>
+          <td>{{ event.ts[:19] | replace('T', ' ') }}</td>
+          <td>
+            <span class="ops-type ops-type--{{ 'pageview' if event.type == 'pageview' else ('contact' if event.type == 'contact_form' else 'other') }}">
+              {{ event.type }}
+            </span>
+          </td>
+          <td>
+            {% if event.type == 'pageview' %}
+              {{ event.data.get('page', '—') }}
+            {% elif event.type == 'contact_form' %}
+              {{ event.data.get('name', '—') }} &lt;{{ event.data.get('email', '') }}&gt;
+            {% else %}
+              {{ event.data | string | truncate(60) }}
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="ops-empty">No events logged yet.</p>
+  {% endif %}
+</div>
+
+{% endblock %}
