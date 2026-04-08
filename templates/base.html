@@ -34,6 +34,7 @@
         <a href="{{ url_for('work') }}"  class="nav-link {% if request.endpoint in ('work','work_riffd') %}active{% endif %}">Work</a>
         <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
       </div>
+      <div class="nav-clock" id="hero-timestamp">New York · <span id="hero-clock"></span></div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
