@@ -17,22 +17,6 @@
   </div>
 </section>
 
-<!-- ── Current focus ─────────────────────────────────────────────────────── -->
-<section class="section">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-title" style="display: flex; align-items: center;">
-        <span class="pulse-dot"></span>Currently
-      </span>
-    </div>
-    <p class="focus-text fade-up">
-      Shipping updates to <strong>Riffd</strong>. Running <strong>Argus</strong> — a live
-      conflict event tracker on GDELT 2.0. Building a systematic futures trading platform
-      and maintaining some private tools for market intelligence.
-    </p>
-  </div>
-</section>
-
 <!-- ── Featured product ──────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
@@ -99,6 +83,8 @@
           <p class="card-description">OSINT dashboard tracking global conflict events in near-real time via GDELT 2.0 — severity-ranked, source-traceable, built for analyst speed.</p>
         </div>
         <div class="card-footer">
+          <a href="{{ url_for('work_argus') }}" class="card-link-primary">Details →</a>
+          <span class="card-sep">·</span>
           <span class="badge badge--dev"><span class="badge-dot"></span> In development</span>
         </div>
       </div>
@@ -142,10 +128,10 @@
       <span class="section-title">About</span>
     </div>
     <p class="about-text fade-up" style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 560px; line-height: 1.72; margin-bottom: var(--sp-6);">
-      I build products and analytical systems. I've worked in quantitative analytics —
-      modeling and optimizing multi-million dollar marketing budgets for companies like GM,
-      ExxonMobil, Fisher Investments, and Major League Soccer. That informs how I think
-      about building tools that have to work under real pressure.
+      Based in New York. My work has been in the operations and strategy side of
+      analytics — with companies like GM, ExxonMobil, Fisher Investments, and Major
+      League Soccer on how to model and optimize multi-million dollar marketing budgets.
+      Most of what I've built came from needing something that didn't exist.
     </p>
     <a href="{{ url_for('about') }}" class="btn btn-secondary fade-up">More about me →</a>
   </div>
