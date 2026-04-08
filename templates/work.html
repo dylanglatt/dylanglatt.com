@@ -24,10 +24,10 @@
         <span class="badge badge--live"><span class="badge-dot"></span> Live</span>
       </div>
       <p class="card-description">
-        A music analysis tool for musicians who want to understand what's inside a track.
-        Separate audio stems with Demucs, generate tabs with Basic Pitch, explore chord
-        structures, and pull production credits via MusicBrainz — all from a YouTube URL
-        or file upload.
+        Search any song. Riffd separates it into isolated stems, detects the key and tempo
+        from the audio signal, and surfaces the theory behind how it's built — diatonic chords,
+        progressions, smart recommendations based on musical DNA. Interactive browser mixer
+        with per-stem faders, solo, mute, and real-time pitch transposition. No plugins required.
       </p>
       <div class="card-footer">
         <a href="{{ url_for('work_riffd') }}" class="card-link-primary">Read more →</a>
@@ -43,20 +43,64 @@
   <div class="container">
     <p class="section-title" style="margin-bottom: var(--sp-5);">In development</p>
 
+    <div class="card card--dev">
+      <div>
+        <div class="card-header">
+          <span class="card-name">Argus</span>
+          <span class="badge badge--dev"><span class="badge-dot"></span> In development</span>
+        </div>
+        <p class="card-description">
+          OSINT dashboard tracking global conflict events in near-real time via the GDELT 2.0
+          Event Database. Pulls live exports every 15 minutes, normalizes events using the
+          Goldstein Scale and CAMEO codes, and surfaces them through a severity-ranked map,
+          trend charts, and a traceable event feed.
+        </p>
+      </div>
+      <div class="card-footer">
+        <a href="{{ url_for('work_argus') }}" class="card-link-primary">Read more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Personal Tools ─────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <p class="section-title" style="margin-bottom: var(--sp-5);">Personal tools</p>
+
     <div class="work-grid">
-      <div class="card">
+      <div class="card card--dev">
         <div>
           <div class="card-header">
-            <span class="card-name">Signal</span>
+            <span class="card-name">Job Scanner</span>
             <span class="badge badge--private">Private</span>
           </div>
           <p class="card-description">
-            An internal system for automated market research and prediction. Not a product —
-            a personal analytical tool. Built for my own use.
+            Got tired of manually reviewing 50+ company boards. Built a Python pipeline that
+            monitors Greenhouse, Lever, Ashby, Adzuna, YC, and others across ~50 target companies;
+            scores each role against a custom fit rubric using an LLM; and pushes qualifying
+            leads to Notion automatically. Runs hourly via GitHub Actions. Has surfaced roles
+            I wouldn't have found otherwise.
           </p>
         </div>
         <div class="card-footer">
-          <span class="badge badge--dev"><span class="badge-dot"></span> In development</span>
+        </div>
+      </div>
+
+      <div class="card card--dev">
+        <div>
+          <div class="card-header">
+            <span class="card-name">Trading Platform</span>
+            <span class="badge badge--private">Private</span>
+          </div>
+          <p class="card-description">
+            Systematic futures trading platform built from first principles — layered timeframe
+            logic, regime-aware signal generation, and a backtest engine designed to expose
+            weak edges rather than flatter them. Adversarial research standards throughout:
+            no future leakage, explicit transaction cost modeling, walk-forward validation.
+          </p>
+        </div>
+        <div class="card-footer">
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import os
-import json
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, Response
 
 from config import Config
 from auth import ops_required, check_ops_credentials
@@ -36,29 +35,46 @@ def work_riffd():
     return render_template('work_riffd.html')
 
 
+@app.route('/work/argus')
+def work_argus():
+    log_event('pageview', {'page': 'work_argus', 'ip': _client_ip()})
+    return render_template('work_argus.html')
+
+
 @app.route('/about')
 def about():
     log_event('pageview', {'page': 'about', 'ip': _client_ip()})
     return render_template('about.html')
 
 
-@app.route('/contact', methods=['GET', 'POST'])
+@app.route('/contact')
 def contact():
-    if request.method == 'POST':
-        name = request.form.get('name', '').strip()
-        email = request.form.get('email', '').strip()
-        message = request.form.get('message', '').strip()
-        if name and email and message:
-            log_event('contact_form', {
-                'name': name,
-                'email': email,
-                'message': message,
-                'ip': _client_ip()
-            })
-            return render_template('contact.html', submitted=True)
-        return render_template('contact.html', error=True,
-                               name=name, email=email, message=message)
-    return render_template('contact.html')
+    # Contact page removed — redirect to About which has email + LinkedIn.
+    return redirect(url_for('about'), 301)
+
+
+# ── Utility routes ─────────────────────────────────────────────────────────────
+
+@app.route('/robots.txt')
+def robots():
+    lines = [
+        'User-agent: *',
+        'Allow: /',
+        '',
+        'Sitemap: https://dylanglatt.com/sitemap.xml',
+    ]
+    return Response('\n'.join(lines), mimetype='text/plain')
+
+
+@app.route('/sitemap.xml')
+def sitemap():
+    pages = ['/', '/work', '/work/riffd', '/work/argus', '/about']
+    urls = ''.join(
+        f'  <url><loc>https://dylanglatt.com{p}</loc></url>\n'
+        for p in pages
+    )
+    xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>'
+    return Response(xml, mimetype='application/xml')
 
 
 # ── Ops routes ─────────────────────────────────────────────────────────────────
@@ -90,7 +106,7 @@ def ops_logout():
 def ops_dashboard():
     events = read_events(limit=500)
     pageviews = [e for e in events if e.get('type') == 'pageview']
-    contacts = [e for e in events if e.get('type') == 'contact_form']
+    contacts  = [e for e in events if e.get('type') == 'contact_form']
 
     page_counts = {}
     for e in pageviews:
@@ -112,7 +128,6 @@ def ops_site():
     events = read_events(limit=500)
     pageviews = [e for e in events if e.get('type') == 'pageview']
 
-    # Group by page
     page_counts = {}
     for e in pageviews:
         page = e.get('data', {}).get('page', 'unknown')
@@ -129,6 +144,17 @@ def ops_site():
 def ops_events():
     events = read_events(limit=200)
     return render_template('ops/events.html', events=events)
+
+
+# ── Error handlers ─────────────────────────────────────────────────────────────
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('404.html'), 500
 
 
 # ── Run ────────────────────────────────────────────────────────────────────────

@@ -20,46 +20,98 @@
 
     <!-- Screenshot -->
     <div class="product-screenshot">
-      <div class="product-screenshot-placeholder">
-        Add a screenshot at static/img/riffd-screenshot.png
-      </div>
+      <img src="{{ url_for('static', filename='img/riffd-key.png') }}" alt="Riffd key analysis — circle of fifths, diatonic chords, and common progressions">
     </div>
 
     <!-- Body -->
     <div class="product-body">
       <p>
-        Riffd is a music analysis tool built for musicians who want to understand what's
-        happening inside a track — not just listen to it. Give it a YouTube URL or an
-        audio file and it returns separated stems, generated tabs, chord analysis,
-        and production credits.
+        Search any song by name and Riffd finds it via Spotify, separates the audio into
+        individual stems, and gives you a full musical breakdown — key, harmony, chord
+        structure, and an interactive mixer so you can hear exactly what each instrument
+        is doing.
       </p>
       <p>
-        The core use case is simple: you want to learn a song, figure out what key it's
-        in, understand what the bass is doing, or find out who produced it. Riffd handles
-        all of that in one place, without requiring any music theory background to use.
+        The mixer gives you per-stem control over volume, solo, and mute. Strip out the
+        vocals, isolate the bass, or dial in any combination while you play along. The key
+        analysis shows you where the song sits on the circle of fifths, the diatonic chords
+        available in that key, common progressions, and how it relates to neighboring keys.
       </p>
+
+      <div class="product-screenshot">
+        <img src="{{ url_for('static', filename='img/riffd-mix.png') }}" alt="Riffd mixer — stem separation with per-track volume, mute, and solo controls">
+      </div>
 
       <h2>How it works</h2>
       <p>
-        Audio separation runs on Demucs via Replicate's GPU API — offloading the heavy
-        ML workload rather than grinding on a shared CPU. Tab generation uses Basic Pitch
-        for pitch detection on each stem. Chord analysis and key detection run against
-        the separated harmonic content. Production credits come from MusicBrainz.
+        Audio comes in via YouTube or file upload. Demucs runs stem separation on cloud GPU,
+        isolating up to six stems with a second melodic pass that splits guitar and piano into
+        lead and accompaniment. Basic Pitch converts each stem into note events; Essentia
+        detects key and BPM directly from the audio signal, surfacing results before separation
+        even finishes.
       </p>
       <p>
-        The backend is a Flask app deployed on Render, with a job queue that lets users
-        track long-running separations in real time. The full pipeline — download,
-        separate, analyze, credit — runs asynchronously and streams status back to the
-        frontend as it progresses.
+        Chord progressions are sourced from tab databases and scored against diatonic templates
+        to produce roman numeral analysis by section. The mixer — mute, solo, volume, loop,
+        pitch transposition — runs entirely in the browser via Web Audio API, with no server
+        roundtrips. The backend is Flask on Render, with a concurrent job queue so multiple
+        users can run analyses simultaneously.
       </p>
 
       <h2>Why I built it</h2>
       <p>
-        I wanted a single tool that could do stem separation, tab output, and credits
-        lookup without switching between four different services. I also wanted to explore
-        building on top of modern audio ML — Demucs and Basic Pitch together produce
-        genuinely useful results that weren't accessible to regular musicians a few years ago.
+        I play music, and I've never found a good way to learn from the songs I actually
+        listen to. Most theory tools teach abstract concepts in isolation — here's what
+        a major scale is, here's a ii-V-I — but nothing connects that to the real music
+        you care about. I wanted to pull up any song and immediately understand what key
+        it's in, what chords are in play, and why it sounds the way it does.
       </p>
+      <p>
+        The stem separation side came from a different frustration: I wanted to play along
+        to songs and actually hear each part on its own — not just see a waveform, but
+        genuinely isolate the bass or the guitar and sit with it. Riffd is what happens
+        when those two things live in the same place.
+      </p>
+
+      <h2>Stack</h2>
+      <div class="tech-stack">
+        <div class="tech-item">
+          <span class="tech-name">Demucs</span>
+          <span class="tech-desc">Stem separation — Meta's transformer model on cloud GPU, up to 6 stems with stereo field analysis and a second melodic separation pass</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Basic Pitch</span>
+          <span class="tech-desc">Note detection — Spotify's pitch detection model converts each stem into note events, separating lead guitar from rhythm chords</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Essentia</span>
+          <span class="tech-desc">Key + tempo detection directly from the audio signal, results available before stem separation finishes</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Web Audio API</span>
+          <span class="tech-desc">Browser mixing engine — mute, solo, volume, loop, and pitch transposition with no server roundtrips</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Diatonic Template Matching</span>
+          <span class="tech-desc">Chord progressions scored against diatonic templates to detect key and produce roman numeral analysis by section</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Claude API</span>
+          <span class="tech-desc">Generates progression names, key context, and theory-based recommendations from detected chords, tempo, and lyrics</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Multi-source Audio</span>
+          <span class="tech-desc">YouTube acquisition with automatic fallback across multiple extraction methods; file upload always available</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Concurrent Job Queue</span>
+          <span class="tech-desc">FIFO queue lets multiple users run analyses simultaneously — waitlisted users see live status and are promoted automatically</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Flask + Vanilla JS</span>
+          <span class="tech-desc">Lightweight Python backend, zero-dependency frontend. SQLite caching, filesystem job state, deployed on Render with Gunicorn</span>
+        </div>
+      </div>
     </div>
 
     <!-- Footer -->

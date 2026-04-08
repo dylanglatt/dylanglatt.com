@@ -7,13 +7,12 @@
 
 <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
 <section class="hero">
+  <div class="hero-timestamp" id="hero-timestamp">New York · <span id="hero-clock"></span></div>
   <div class="container">
-    <p class="hero-eyebrow">Builder &amp; Operator</p>
     <h1 class="hero-name">Dylan Glatt</h1>
-    <p class="hero-positioning">I build products and systems.<br>Based in New York.</p>
     <div class="hero-actions">
-      <a href="{{ url_for('work') }}" class="btn btn-primary">See my work</a>
-      <a href="{{ url_for('about') }}" class="btn btn-secondary">About me</a>
+      <a href="{{ url_for('work') }}" class="hero-link">See my work →</a>
+      <a href="{{ url_for('about') }}" class="hero-link">About me →</a>
     </div>
   </div>
 </section>
@@ -21,13 +20,15 @@
 <!-- ── Current focus ─────────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <div class="section-header">
-      <span class="section-title">Currently</span>
+    <div class="section-header fade-up">
+      <span class="section-title" style="display: flex; align-items: center;">
+        <span class="pulse-dot"></span>Currently
+      </span>
     </div>
-    <p class="focus-text">
-      Shipping <strong>Riffd</strong> — a music analysis tool for musicians who want to understand
-      what's happening inside a track. Alongside that, developing private analytical systems for
-      automated market research.
+    <p class="focus-text fade-up">
+      Shipping updates to <strong>Riffd</strong>. Running <strong>Argus</strong> — a live
+      conflict event tracker on GDELT 2.0. Building a systematic futures trading platform
+      and maintaining some private tools for market intelligence.
     </p>
   </div>
 </section>
@@ -35,21 +36,21 @@
 <!-- ── Featured product ──────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header fade-up">
       <span class="section-title">Featured</span>
       <a href="{{ url_for('work') }}" class="section-cta">All work →</a>
     </div>
 
-    <div class="card card--featured">
+    <div class="card card--featured fade-up">
       <p class="card-eyebrow">Live product</p>
       <div class="card-header">
         <span class="card-name">Riffd</span>
         <span class="badge badge--live"><span class="badge-dot"></span> Live</span>
       </div>
       <p class="card-description">
-        A music analysis tool for musicians. Separate audio stems, generate tabs,
-        explore chord structures, and get production credits — all from a song name or
-        file upload. Built on top of audio ML and the Demucs separation model.
+        Search any song, separate it into stems, and get a full breakdown of the key,
+        harmony, and chord structure. Interactive mixer lets you isolate or mute any
+        part and play along. Built for musicians who want to understand the songs they love.
       </p>
       <div class="card-footer">
         <a href="{{ url_for('work_riffd') }}" class="card-link-primary">View details →</a>
@@ -57,7 +58,7 @@
         <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="card-link-external">riffdlabs.com ↗</a>
       </div>
       <div class="card-screenshot">
-        <span class="card-screenshot-label">riffdlabs.com</span>
+        <img src="{{ url_for('static', filename='img/riffd-key.png') }}" alt="Riffd interface">
       </div>
     </div>
   </div>
@@ -66,20 +67,20 @@
 <!-- ── Work grid ─────────────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header fade-up">
       <span class="section-title">Work</span>
       <a href="{{ url_for('work') }}" class="section-cta">See all →</a>
     </div>
 
     <div class="work-grid">
       <!-- Riffd -->
-      <div class="card">
+      <div class="card card--live fade-up">
         <div>
+          <p class="card-eyebrow">Music analysis</p>
           <div class="card-header">
             <span class="card-name">Riffd</span>
-            <span class="badge badge--live"><span class="badge-dot"></span> Live</span>
           </div>
-          <p class="card-description">Music analysis for musicians. Stems, tabs, chords, credits.</p>
+          <p class="card-description">Search any song, split it into stems, explore the key and harmony, and play along with an interactive mixer.</p>
         </div>
         <div class="card-footer">
           <a href="{{ url_for('work_riffd') }}" class="card-link-primary">Details →</a>
@@ -88,19 +89,48 @@
         </div>
       </div>
 
-      <!-- Signal -->
-      <div class="card">
+      <!-- Argus -->
+      <div class="card card--dev fade-up">
         <div>
+          <p class="card-eyebrow">Conflict tracking</p>
           <div class="card-header">
-            <span class="card-name">Signal</span>
-            <span class="badge badge--private">Private</span>
+            <span class="card-name">Argus</span>
           </div>
-          <p class="card-description">Private system for automated market research and prediction. Internal use only.</p>
+          <p class="card-description">OSINT dashboard tracking global conflict events in near-real time via GDELT 2.0 — severity-ranked, source-traceable, built for analyst speed.</p>
         </div>
         <div class="card-footer">
           <span class="badge badge--dev"><span class="badge-dot"></span> In development</span>
         </div>
       </div>
+
+      <!-- Job Scanner -->
+      <div class="card card--dev fade-up">
+        <div>
+          <p class="card-eyebrow">Job intelligence</p>
+          <div class="card-header">
+            <span class="card-name">Job Scanner</span>
+          </div>
+          <p class="card-description">Personal job intelligence pipeline that monitors 6+ job boards across ~50 target companies, scores each role against a custom fit rubric using an LLM, and pushes qualifying leads to Notion. Runs hourly via GitHub Actions.</p>
+        </div>
+        <div class="card-footer">
+          <span class="badge badge--private">Private</span>
+        </div>
+      </div>
+
+      <!-- Trading Platform -->
+      <div class="card card--dev fade-up">
+        <div>
+          <p class="card-eyebrow">Systematic trading</p>
+          <div class="card-header">
+            <span class="card-name">Trading Platform</span>
+          </div>
+          <p class="card-description">Systematic futures trading platform built from first principles — layered timeframe logic, regime-aware signals, and a backtest engine designed to expose weak edges rather than flatter them.</p>
+        </div>
+        <div class="card-footer">
+          <span class="badge badge--private">Private</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -108,15 +138,16 @@
 <!-- ── About snippet ─────────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container--narrow">
-    <div class="section-header">
+    <div class="section-header fade-up">
       <span class="section-title">About</span>
     </div>
-    <p class="about-text" style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 560px; line-height: 1.72; margin-bottom: var(--sp-6);">
-      I care about building things that work well — products with clear purposes,
-      systems with clean internals, and tools that respect the user's time. Most of what
-      I build starts from a problem I hit myself.
+    <p class="about-text fade-up" style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 560px; line-height: 1.72; margin-bottom: var(--sp-6);">
+      I build products and analytical systems. I've worked in quantitative analytics —
+      modeling and optimizing multi-million dollar marketing budgets for companies like GM,
+      ExxonMobil, Fisher Investments, and Major League Soccer. That informs how I think
+      about building tools that have to work under real pressure.
     </p>
-    <a href="{{ url_for('about') }}" class="btn btn-secondary">More about me →</a>
+    <a href="{{ url_for('about') }}" class="btn btn-secondary fade-up">More about me →</a>
   </div>
 </section>
 

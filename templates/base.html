@@ -11,11 +11,16 @@
   <meta property="og:description" content="{% block og_description %}Builder. Products and systems.{% endblock %}">
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://dylanglatt.com{{ request.path }}">
+  <meta property="og:image"       content="https://dylanglatt.com{{ url_for('static', filename='img/og-image.png') }}">
+  <meta name="twitter:card"       content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   {% block head %}{% endblock %}
@@ -25,11 +30,13 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="{{ url_for('index') }}" class="nav-brand">Dylan Glatt</a>
-      <div class="nav-links">
-        <a href="{{ url_for('work') }}"    class="nav-link {% if request.endpoint in ('work','work_riffd') %}active{% endif %}">Work</a>
-        <a href="{{ url_for('about') }}"   class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
-        <a href="{{ url_for('contact') }}" class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a>
+      <div class="nav-links" id="nav-links">
+        <a href="{{ url_for('work') }}"  class="nav-link {% if request.endpoint in ('work','work_riffd') %}active{% endif %}">Work</a>
+        <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
       </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -41,10 +48,9 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-links">
-          <a href="https://github.com/djglatt"           target="_blank" rel="noopener">GitHub</a>
-          <a href="https://linkedin.com/in/dylanglatt"   target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/dylanglatt"              target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/dylanjglatt/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:dylanglatt@gmail.com">Email</a>
-          <a href="{{ url_for('static', filename='resume.pdf') }}" target="_blank">Resume</a>
         </div>
         <span class="footer-copy">© 2026 Dylan Glatt</span>
       </div>

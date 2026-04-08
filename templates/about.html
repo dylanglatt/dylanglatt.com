@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}About — Dylan Glatt{% endblock %}
-{% block description %}About Dylan Glatt — builder, operator, analytical thinker.{% endblock %}
+{% block description %}About Dylan Glatt — builder and operator based in New York.{% endblock %}
 
 {% block content %}
 
@@ -16,32 +16,39 @@
 
     <div class="about-body">
       <p>
-        I'm a builder and operator based in New York. I work on products and systems —
-        things with clear purposes, clean internals, and real uses. Most of what I build
-        starts from a problem I ran into myself.
+        I'm a builder and operator based in New York. I work on products and analytical
+        systems — things with clear purposes, clean internals, and real uses. Most of what
+        I build starts from a problem I ran into myself and couldn't find a good solution for.
       </p>
       <p>
-        Right now I'm focused on Riffd, a music analysis tool for musicians that I built
-        and run. Alongside that, I'm developing private analytical systems for market
-        research and prediction.
+        I've worked in quantitative analytics — with Fortune 500 companies like GM, ExxonMobil,
+        Fisher Investments, and Major League Soccer on how to model and optimize multi-million
+        dollar marketing budgets: building the models, surfacing where spend wasn't working,
+        and translating those findings into recommendations that had to hold up in front of
+        people making real decisions with real money on the line.
       </p>
       <p>
-        I think carefully about how things are structured — both products and the code
-        behind them. I'd rather build one thing that works well than five things that
-        kind of work. I care about deployment, reliability, and the experience of actually
-        using something, not just getting it to run once.
+        Right now I'm running <a href="https://riffdlabs.com" target="_blank" rel="noopener" style="color: var(--accent);">Riffd</a>,
+        a music analysis tool I built for musicians who want to understand what's inside a
+        track. Alongside that, I'm developing private systems for market research and
+        automated analysis.
       </p>
       <p>
-        Outside of building, I'm interested in music, trading systems, and how information
-        moves through markets and products.
+        I think carefully about how things are structured — both the product and the code
+        behind it. I'd rather build one thing that works well than five things that sort of
+        work. I care about reliability, deployment, and the experience of actually using
+        something day to day.
+      </p>
+      <p>
+        Outside of building: music, trading systems, and how information moves through
+        markets.
       </p>
     </div>
 
     <div class="about-links">
-      <a href="https://github.com/djglatt" target="_blank" rel="noopener" class="btn btn-secondary">GitHub ↗</a>
-      <a href="https://linkedin.com/in/dylanglatt" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn ↗</a>
+      <a href="https://github.com/dylanglatt"              target="_blank" rel="noopener" class="btn btn-secondary">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/dylanjglatt/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn ↗</a>
       <a href="mailto:dylanglatt@gmail.com" class="btn btn-secondary">Email</a>
-      <a href="{{ url_for('static', filename='resume.pdf') }}" target="_blank" class="btn btn-secondary">Resume ↗</a>
     </div>
 
   </div>

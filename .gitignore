@@ -19,6 +19,9 @@ env/
 
 # Data (keep structure, ignore content)
 data/events.jsonl
+data/events.db
+data/events.db-wal
+data/events.db-shm
 
 # Static uploads (if any)
 static/uploads/
