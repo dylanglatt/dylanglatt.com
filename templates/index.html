@@ -7,6 +7,7 @@
 
 <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
 <section class="hero">
+  <canvas id="hero-canvas" class="hero-canvas"></canvas>
   <div class="hero-timestamp" id="hero-timestamp">New York · <span id="hero-clock"></span></div>
   <div class="container">
     <h1 class="hero-name">Dylan Glatt</h1>
@@ -16,6 +17,13 @@
     </div>
   </div>
 </section>
+<script src="{{ url_for('static', filename='js/hero-city.js') }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var c = document.getElementById('hero-canvas');
+    if (c && window.HeroCity) HeroCity.init(c);
+  });
+</script>
 
 <!-- ── Featured product ──────────────────────────────────────────────────── -->
 <section class="section">

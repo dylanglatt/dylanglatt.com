@@ -274,6 +274,20 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
+/* Pixel cityscape canvas */
+.hero-canvas {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48%;
+  z-index: 1;
+  opacity: 0.9;
+  image-rendering: pixelated;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 35%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 35%);
+}
+
 /* Grain texture */
 .hero::after {
   content: '';
@@ -536,12 +550,8 @@ ul { list-style: none; }
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--bg-secondary);
-  aspect-ratio: 16/9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-.product-screenshot img { width: 100%; height: 100%; object-fit: cover; }
+.product-screenshot img { width: 100%; height: auto; display: block; }
 .product-screenshot-placeholder {
   font-size: var(--text-sm);
   color: var(--text-muted);
@@ -591,6 +601,43 @@ ul { list-style: none; }
 
 
 /* ── About page ────────────────────────────────────────────────────────────── */
+.about-intro {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-12);
+}
+
+.about-headshot {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 22%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.about-intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.about-name {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.about-location {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: 0;
+}
+
 .about-body {
   font-size: var(--text-base);
   color: var(--text-secondary);
