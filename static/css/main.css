@@ -236,7 +236,7 @@ ul { list-style: none; }
 
 /* ── Sections ──────────────────────────────────────────────────────────────── */
 .section {
-  padding: var(--sp-16) 0;
+  padding: var(--sp-10) 0;
   border-top: 1px solid var(--border);
 }
 
@@ -244,7 +244,7 @@ ul { list-style: none; }
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: var(--sp-10);
+  margin-bottom: var(--sp-6);
   gap: var(--sp-4);
 }
 
@@ -276,7 +276,7 @@ ul { list-style: none; }
 }
 
 .hero--compact {
-  min-height: 0;
+  min-height: 260px;
   height: auto;
   padding: 0;
 }
@@ -316,8 +316,8 @@ ul { list-style: none; }
 
 .hero--compact .container {
   margin-top: 0;
-  padding-top: calc(64px + var(--sp-4));
-  padding-bottom: var(--sp-4);
+  padding-top: calc(64px + var(--sp-10));
+  padding-bottom: var(--sp-10);
 }
 
 /* Hero summary text */
@@ -428,16 +428,16 @@ ul { list-style: none; }
 
 /* ── Case study cards ─────────────────────────────────────────────────────── */
 .case-studies {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-6);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
 }
 
 .case-card {
   display: block;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: var(--sp-8) var(--sp-10);
+  padding: var(--sp-6);
   background: var(--bg);
   transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
   text-decoration: none;
@@ -487,6 +487,13 @@ ul { list-style: none; }
   line-height: 1.7;
   margin-bottom: var(--sp-5);
   max-width: 640px;
+}
+
+.case-card-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: var(--sp-4);
 }
 
 .case-card-cta {
@@ -1420,6 +1427,8 @@ ul { list-style: none; }
   .hero--compact .container { padding-top: calc(64px + var(--sp-10)); padding-bottom: var(--sp-10); }
 
   .work-grid { grid-template-columns: 1fr; }
+
+  .case-studies { grid-template-columns: 1fr; }
 
   .case-card, .case-card--full { padding: var(--sp-6); }
 

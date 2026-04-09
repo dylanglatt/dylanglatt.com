@@ -20,29 +20,6 @@
   });
 </script>
 
-<!-- ── Skills bar ────────────────────────────────────────────────────────── -->
-<section class="skills-bar">
-  <div class="container">
-    <div class="skills-bar-inner">
-      <span class="skills-label">Skills</span>
-      <div class="skills-list">
-      <span class="skill-tag">Python</span>
-      <span class="skill-tag">SQL</span>
-      <span class="skill-tag">Pandas</span>
-      <span class="skill-tag">Econometric Modeling</span>
-      <span class="skill-tag">Marketing Mix Models</span>
-      <span class="skill-tag">Quantitative Analysis</span>
-      <span class="skill-tag">LLMs / AI Tools</span>
-      <span class="skill-tag">Data Pipelines</span>
-      <span class="skill-tag">API Integrations</span>
-      <span class="skill-tag">Automation</span>
-      <span class="skill-tag">Product Development</span>
-      <span class="skill-tag">GitHub Actions</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── Case studies ──────────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
@@ -55,28 +32,25 @@
 
       <!-- Riffd -->
       <a href="{{ url_for('work_riffd') }}" class="case-card fade-up">
-        <p class="case-card-label">Full-stack audio platform &middot; Live</p>
+        <p class="case-card-label">Audio platform &middot; Live</p>
         <h3 class="case-card-title">Riffd</h3>
-        <p class="case-card-problem">Musicians can&rsquo;t easily learn theory from songs they actually listen to. Existing tools teach abstract concepts in isolation&nbsp;&mdash; nothing connects theory to real music.</p>
-        <p class="case-card-action">I designed and deployed a platform that takes any song, splits it into its individual parts (vocals, bass, guitar, drums), identifies the musical theory behind it, and gives you an interactive mixer to hear each part on its own. Live at riffdlabs.com.</p>
+        <p class="case-card-desc">Upload a song, hear each instrument in isolation, and see the music theory behind it explained. Live at riffdlabs.com.</p>
         <span class="case-card-cta">Read more &rarr;</span>
       </a>
 
       <!-- Argus -->
       <a href="{{ url_for('work_argus') }}" class="case-card fade-up">
-        <p class="case-card-label">Real-time data pipeline &middot; In development</p>
+        <p class="case-card-label">Data pipeline &middot; In development</p>
         <h3 class="case-card-title">Argus</h3>
-        <p class="case-card-problem">Following geopolitical events through news is slow and editorially filtered. The most structurally significant signals get buried under alarming headlines.</p>
-        <p class="case-card-action">I designed and deployed a real-time dashboard that pulls from a public database of 100K+ global events per day, scores each by severity, and surfaces escalation patterns on a live map&nbsp;&mdash; so you can see what&rsquo;s developing before it reaches the news.</p>
+        <p class="case-card-desc">A live map that tracks global conflicts and political events as they happen — you see what&rsquo;s escalating before it makes the news.</p>
         <span class="case-card-cta">Read more &rarr;</span>
       </a>
 
       <!-- Job Scanner -->
       <a href="{{ url_for('work_job_scanner') }}" class="case-card fade-up">
-        <p class="case-card-label">LLM-powered automation &middot; Open source</p>
+        <p class="case-card-label">LLM automation &middot; Open source</p>
         <h3 class="case-card-title">Job Scanner</h3>
-        <p class="case-card-problem">Manually checking job boards doesn&rsquo;t scale. Listings are scattered across Greenhouse, Lever, Ashby, aggregators, and VC portfolios with no unified scoring.</p>
-        <p class="case-card-action">I designed and deployed an automated system that monitors hundreds of career pages every two hours, scores each role with an AI against a custom fit rubric, and pushes only the relevant leads into Notion&nbsp;&mdash; filtered, ranked, and ready to act on. Runs at zero cost.</p>
+        <p class="case-card-desc">Checks hundreds of job boards automatically, scores each role for fit, and delivers a ranked shortlist. No manual searching. Zero cost.</p>
         <span class="case-card-cta">Read more &rarr;</span>
       </a>
 
