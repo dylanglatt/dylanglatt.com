@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Dylan Glatt{% endblock %}
-{% block description %}Dylan Glatt — I design and ship data products end-to-end. Quantitative modeling, AI-assisted development, and full-stack systems.{% endblock %}
+{% block description %}Dylan Glatt — I design and deploy data products end-to-end. Quantitative modeling, AI-assisted development, and full-stack systems.{% endblock %}
 
 {% block content %}
 
@@ -10,15 +10,6 @@
   <canvas id="hero-canvas" class="hero-canvas"></canvas>
   <div class="container">
     <h1 class="hero-name">Dylan Glatt</h1>
-    <p class="hero-summary">
-      I design and ship data products from scratch&nbsp;&mdash; from identifying the problem to managing the
-      full build to production. I&rsquo;ve worked on quantitative modeling for clients like GM and
-      ExxonMobil, and I ship with Python, LLMs, data pipelines, and modern web stacks.
-    </p>
-    <div class="hero-actions">
-      <a href="{{ url_for('work') }}" class="btn btn-hero-primary">See my projects &rarr;</a>
-      <a href="{{ url_for('about') }}" class="btn btn-hero-primary">Background &amp; contact &rarr;</a>
-    </div>
   </div>
 </section>
 <script src="{{ url_for('static', filename='js/hero-city.js') }}"></script>
@@ -32,7 +23,9 @@
 <!-- ── Skills bar ────────────────────────────────────────────────────────── -->
 <section class="skills-bar">
   <div class="container">
-    <div class="skills-list">
+    <div class="skills-bar-inner">
+      <span class="skills-label">Skills</span>
+      <div class="skills-list">
       <span class="skill-tag">Python</span>
       <span class="skill-tag">SQL</span>
       <span class="skill-tag">Pandas</span>
@@ -45,6 +38,7 @@
       <span class="skill-tag">Automation</span>
       <span class="skill-tag">Product Development</span>
       <span class="skill-tag">GitHub Actions</span>
+      </div>
     </div>
   </div>
 </section>
@@ -64,7 +58,7 @@
         <p class="case-card-label">Full-stack audio platform &middot; Live</p>
         <h3 class="case-card-title">Riffd</h3>
         <p class="case-card-problem">Musicians can&rsquo;t easily learn theory from songs they actually listen to. Existing tools teach abstract concepts in isolation&nbsp;&mdash; nothing connects theory to real music.</p>
-        <p class="case-card-action">I designed and shipped a platform that takes any song, splits it into its individual parts (vocals, bass, guitar, drums), identifies the musical theory behind it, and gives you an interactive mixer to hear each part on its own. Live at riffdlabs.com.</p>
+        <p class="case-card-action">I designed and deployed a platform that takes any song, splits it into its individual parts (vocals, bass, guitar, drums), identifies the musical theory behind it, and gives you an interactive mixer to hear each part on its own. Live at riffdlabs.com.</p>
         <span class="case-card-cta">Read more &rarr;</span>
       </a>
 
@@ -73,7 +67,7 @@
         <p class="case-card-label">Real-time data pipeline &middot; In development</p>
         <h3 class="case-card-title">Argus</h3>
         <p class="case-card-problem">Following geopolitical events through news is slow and editorially filtered. The most structurally significant signals get buried under alarming headlines.</p>
-        <p class="case-card-action">I designed and shipped a real-time dashboard that pulls from a public database of 100K+ global events per day, scores each by severity, and surfaces escalation patterns on a live map&nbsp;&mdash; so you can see what&rsquo;s developing before it reaches the news.</p>
+        <p class="case-card-action">I designed and deployed a real-time dashboard that pulls from a public database of 100K+ global events per day, scores each by severity, and surfaces escalation patterns on a live map&nbsp;&mdash; so you can see what&rsquo;s developing before it reaches the news.</p>
         <span class="case-card-cta">Read more &rarr;</span>
       </a>
 
@@ -82,7 +76,7 @@
         <p class="case-card-label">LLM-powered automation &middot; Open source</p>
         <h3 class="case-card-title">Job Scanner</h3>
         <p class="case-card-problem">Manually checking job boards doesn&rsquo;t scale. Listings are scattered across Greenhouse, Lever, Ashby, aggregators, and VC portfolios with no unified scoring.</p>
-        <p class="case-card-action">I designed and shipped an automated system that monitors hundreds of career pages every two hours, scores each role with an AI against a custom fit rubric, and pushes only the relevant leads into Notion&nbsp;&mdash; filtered, ranked, and ready to act on. Runs at zero cost.</p>
+        <p class="case-card-action">I designed and deployed an automated system that monitors hundreds of career pages every two hours, scores each role with an AI against a custom fit rubric, and pushes only the relevant leads into Notion&nbsp;&mdash; filtered, ranked, and ready to act on. Runs at zero cost.</p>
         <span class="case-card-cta">Read more &rarr;</span>
       </a>
 
@@ -99,7 +93,7 @@
     <p class="about-text fade-up" style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 560px; line-height: 1.72; margin-bottom: var(--sp-6);">
       Before building products, I worked on quantitative modeling for clients like GM and ExxonMobil&nbsp;&mdash;
       operational and strategic problems where the job is finding signal in messy data and making it
-      actionable. Everything I ship follows the same approach: identify a real gap, scope it, manage the build, deliver it.
+      actionable. Everything I deploy follows the same approach: identify a real gap, scope it, manage the build, deliver it.
     </p>
     <a href="{{ url_for('about') }}" class="btn btn-secondary fade-up">More about me &rarr;</a>
   </div>
