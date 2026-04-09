@@ -434,7 +434,8 @@ ul { list-style: none; }
 }
 
 .case-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: var(--sp-6);
@@ -494,6 +495,7 @@ ul { list-style: none; }
   color: var(--text-secondary);
   line-height: 1.65;
   margin-bottom: var(--sp-4);
+  flex-grow: 1;
 }
 
 .case-card-cta {
@@ -510,7 +512,8 @@ ul { list-style: none; }
   gap: var(--sp-4);
   align-items: center;
   flex-wrap: wrap;
-  margin-top: var(--sp-6);
+  margin-top: auto;
+  padding-top: var(--sp-5);
 }
 
 

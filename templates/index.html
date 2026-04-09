@@ -31,28 +31,37 @@
     <div class="case-studies">
 
       <!-- Riffd -->
-      <a href="{{ url_for('work_riffd') }}" class="case-card fade-up">
+      <div class="case-card fade-up">
         <p class="case-card-label">Audio platform &middot; Live</p>
-        <h3 class="case-card-title">Riffd</h3>
+        <h3 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit; text-decoration: none;">Riffd</a></h3>
         <p class="case-card-desc">Upload a song, hear each instrument in isolation, and see the music theory behind it explained. Live at riffdlabs.com.</p>
-        <span class="case-card-cta">Read more &rarr;</span>
-      </a>
+        <div class="case-card-footer">
+          <a href="{{ url_for('work_riffd') }}" class="case-card-cta">Read more &rarr;</a>
+          <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-xs); padding: var(--sp-2) var(--sp-4);">Live site &nearr;</a>
+        </div>
+      </div>
 
       <!-- Argus -->
-      <a href="{{ url_for('work_argus') }}" class="case-card fade-up">
-        <p class="case-card-label">Data pipeline &middot; In development</p>
-        <h3 class="case-card-title">Argus</h3>
+      <div class="case-card fade-up">
+        <p class="case-card-label">Data pipeline &middot; Live</p>
+        <h3 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit; text-decoration: none;">Argus</a></h3>
         <p class="case-card-desc">A live map that tracks global conflicts and political events as they happen — you see what&rsquo;s escalating before it makes the news.</p>
-        <span class="case-card-cta">Read more &rarr;</span>
-      </a>
+        <div class="case-card-footer">
+          <a href="{{ url_for('work_argus') }}" class="case-card-cta">Read more &rarr;</a>
+          <a href="https://argusosint.vercel.app" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-xs); padding: var(--sp-2) var(--sp-4);">Live site &nearr;</a>
+        </div>
+      </div>
 
       <!-- Job Scanner -->
-      <a href="{{ url_for('work_job_scanner') }}" class="case-card fade-up">
+      <div class="case-card fade-up">
         <p class="case-card-label">LLM automation &middot; Open source</p>
-        <h3 class="case-card-title">Job Scanner</h3>
+        <h3 class="case-card-title"><a href="{{ url_for('work_job_scanner') }}" style="color: inherit; text-decoration: none;">Job Scanner</a></h3>
         <p class="case-card-desc">Checks hundreds of job boards automatically, scores each role for fit, and delivers a ranked shortlist. No manual searching. Zero cost.</p>
-        <span class="case-card-cta">Read more &rarr;</span>
-      </a>
+        <div class="case-card-footer">
+          <a href="{{ url_for('work_job_scanner') }}" class="case-card-cta">Read more &rarr;</a>
+          <a href="https://github.com/djglatt/job-scanner" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-xs); padding: var(--sp-2) var(--sp-4);">GitHub &nearr;</a>
+        </div>
+      </div>
 
     </div>
   </div>

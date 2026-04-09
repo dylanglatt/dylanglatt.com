@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NYC Skyline Mockups — dylanglatt.com</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0d1a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding: 48px 0 64px;
+    color: #fff;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  .page-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 48px;
+  }
+  .option { margin-bottom: 64px; }
+  .meta { margin-bottom: 14px; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  .option-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .option-desc { font-size: 13px; color: #666; line-height: 1.6; max-width: 640px; }
+  .hero-mock {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #1a1f33;
+  }
+  canvas { display: block; width: 100%; height: 260px; }
+  .hero-mock-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+  }
+  .landmark-key {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+  .landmark-key span {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 0.04em;
+  }
+  .landmark-key span b { color: #888; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-label">NYC Skyline Mockups — dylanglatt.com hero</div>
+
+  <!-- Option A -->
+  <div class="option">
+    <div class="meta">
+      <div class="badge">Option A</div>
+      <div class="option-title">Pixel art + amber windows — accurate landmark positions</div>
+      <div class="option-desc">Same look and feel as the current site — pixel grid, amber twinkling windows, stars, shooting stars — but buildings now reflect the actual NYC skyline: One WTC towers over downtown, Empire State anchors midtown, supertalls (432 Park, 111 W 57th, Central Park Tower) cluster near 57th St, and a visible gap separates the two clusters.</div>
+    </div>
+    <div class="hero-mock">
+      <canvas id="ca"></canvas>
+      <div class="hero-mock-name">Dylan Glatt</div>
+    </div>
+    <div class="landmark-key">
+      <span><b>Downtown:</b> One WTC · 3 WTC · 7 WTC</span>
+      <span><b>Midtown:</b> Empire State · Chrysler · Bank of America Tower</span>
+      <span><b>Billionaires' Row:</b> 432 Park · 111 W 57th · Central Park Tower</span>
+      <span><b>West Side:</b> 30 Hudson Yards</span>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="option">
+    <div class="meta">
+      <div class="badge">Option B</div>
+      <div class="option-title">Smooth silhouette — same positions, no pixel grid</div>
+      <div class="option-desc">Same building layout and landmark positions, but rendered as a smooth dark silhouette rather than a pixel grid. Cleaner and more minimal — the NYC profile reads clearly without the retro texture. Stars and shooting stars remain.</div>
+    </div>
+    <div class="hero-mock">
+      <canvas id="cb"></canvas>
+      <div class="hero-mock-name">Dylan Glatt</div>
+    </div>
+    <div class="landmark-key">
+      <span><b>Downtown:</b> One WTC · 3 WTC · 7 WTC</span>
+      <span><b>Midtown:</b> Empire State · Chrysler · Bank of America Tower</span>
+      <span><b>Billionaires' Row:</b> 432 Park · 111 W 57th · Central Park Tower</span>
+      <span><b>West Side:</b> 30 Hudson Yards</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // ── NYC Building Data ──────────────────────────────────────────────────────
+  // Units: grid columns/rows at SZ=5px each.
+  // Design canvas = 280 cols wide, 52 rows tall, building zone = 25 rows (bottom 48%).
+  // Heights scaled from real building feet: 1 row ≈ 71ft (One WTC = 1776ft ≈ 25 rows).
+  //
+  // type: 'antenna' | 'spire' | 'crown' | 'crystal'
+  //
+  const BUILDINGS = [
+    // ── Far left shore / NJ waterfront ─────
+    { x:1,  w:2, h:3 },
+    { x:4,  w:3, h:4 },
+    { x:8,  w:2, h:6 },
+    { x:11, w:3, h:7 },
+    { x:15, w:2, h:8 },
+
+    // ── Lower Manhattan / Financial District ─
+    { x:18, w:3, h:10 },
+    { x:22, w:4, h:11 },
+    { x:27, w:3, h:12 },
+    { x:31, w:2, h:10 },
+    // 40 Wall St / 70 Pine area
+    { x:34, w:2, h:14 },
+    { x:37, w:3, h:15 },
+    { x:41, w:2, h:13 },
+    { x:44, w:3, h:12 },
+    // 7 World Trade Center
+    { x:48, w:3, h:15, name:'7 WTC' },
+    { x:52, w:2, h:11 },
+    // ★ One World Trade Center — tallest in NYC (1776ft = 25 rows)
+    { x:55, w:3, h:23, type:'antenna', name:'One WTC' },
+    // 3 WTC (1079ft ≈ 15 rows)
+    { x:59, w:2, h:15, name:'3 WTC' },
+    // 4 WTC (977ft ≈ 14 rows)
+    { x:62, w:3, h:14, name:'4 WTC' },
+    { x:66, w:2, h:12 },
+    { x:69, w:3, h:13 },
+    { x:73, w:2, h:11 },
+    { x:76, w:3, h:10 },
+    { x:80, w:2, h:9 },
+    { x:83, w:3, h:8 },
+    { x:87, w:2, h:7 },
+
+    // ── Gap: Tribeca / SoHo / NoMad ─────────
+    { x:92,  w:3, h:5 },
+    { x:96,  w:2, h:5 },
+    { x:100, w:3, h:6 },
+    { x:104, w:2, h:6 },
+    { x:108, w:3, h:6 },
+    { x:112, w:2, h:5 },
+    { x:115, w:3, h:7 },
+    { x:119, w:2, h:8 },
+
+    // ── Approaching Midtown ──────────────────
+    { x:123, w:3, h:10 },
+    { x:127, w:2, h:11 },
+    { x:130, w:3, h:13 },
+    { x:134, w:3, h:14 },
+
+    // ── Midtown core ─────────────────────────
+    { x:138, w:3, h:15 },
+    { x:142, w:2, h:16 },
+    { x:145, w:3, h:14 },
+    // Bank of America Tower / One Bryant Park (1200ft ≈ 17 rows, crystal spire)
+    { x:149, w:3, h:17, type:'crystal', name:'BofA Tower' },
+    { x:153, w:2, h:15 },
+    { x:156, w:3, h:16 },
+    // ★ Empire State Building (1454ft tip ≈ 20 rows, stepped spire)
+    { x:160, w:4, h:20, type:'spire', name:'Empire State' },
+    // ★ Chrysler Building (1046ft ≈ 15 rows, art deco crown)
+    { x:165, w:3, h:15, type:'crown', name:'Chrysler' },
+    { x:169, w:2, h:13 },
+    { x:172, w:3, h:15 },
+    // One57 (1004ft ≈ 14 rows)
+    { x:176, w:3, h:14, name:'One57' },
+    { x:180, w:2, h:13 },
+    // ★ 432 Park Avenue (1396ft ≈ 20 rows — ultra-slim supertall)
+    { x:183, w:2, h:20, name:'432 Park' },
+    // ★ 111 West 57th / Steinway Tower (1428ft ≈ 20 rows — slim supertall)
+    { x:186, w:2, h:20, name:'111 W 57th' },
+    { x:189, w:2, h:14 },
+    // ★ Central Park Tower (1550ft ≈ 22 rows — tallest residential in NYC)
+    { x:192, w:3, h:22, type:'antenna', name:'Central Park Tower' },
+    { x:196, w:2, h:15 },
+    { x:199, w:3, h:16 },
+    // ★ 30 Hudson Yards (1268ft ≈ 18 rows, pointed top)
+    { x:203, w:3, h:18, type:'spire', name:'30 Hudson Yards' },
+    { x:207, w:2, h:13 },
+    { x:210, w:3, h:12 },
+
+    // ── Gradual decline: upper west side / UWS ─
+    { x:214, w:3, h:11 },
+    { x:218, w:2, h:10 },
+    { x:221, w:3, h:10 },
+    { x:225, w:2, h:9 },
+    { x:228, w:3, h:8 },
+    { x:232, w:2, h:7 },
+    { x:235, w:3, h:7 },
+    { x:239, w:2, h:6 },
+    { x:242, w:3, h:5 },
+    { x:246, w:2, h:5 },
+    { x:249, w:3, h:4 },
+    { x:253, w:2, h:4 },
+    { x:256, w:3, h:3 },
+    { x:260, w:2, h:3 },
+    { x:263, w:3, h:2 },
+    { x:267, w:2, h:2 },
+  ];
+
+  const SZ        = 5;
+  const DESIGN_W  = 270; // design columns
+  const DESIGN_BZ = 25;  // design building zone rows
+
+  const BLDG_SHADES = ['#0d0d0d', '#101010', '#141414', '#171717', '#1b1b1b'];
+  const WIN_LIT     = ['#f5c842', '#e8b428', '#fdd55a', '#d9a018'];
+  const WIN_OFF     = '#131109';
+
+  function makeStars(W, H) {
+    const rand = Math.random.bind(Math);
+    const count = Math.floor((W * H) / 500);
+    const arr = [];
+    for (let i = 0; i < count; i++) {
+      arr.push({
+        x: rand() * W,
+        y: rand() * H * 0.62,
+        sz: rand() > 0.85 ? 2 : 1,
+        phase: rand() * Math.PI * 2,
+        speed: 0.00025 + rand() * 0.0006,
+        alpha: 0.55 + rand() * 0.45,
+      });
+    }
+    return arr;
+  }
+
+  function scaleBldgs(W, H) {
+    const COLS = Math.ceil(W / SZ) + 2;
+    const ROWS = Math.ceil(H / SZ);
+    const BZ   = Math.floor(H * 0.48 / SZ);
+    const scX  = W / (DESIGN_W * SZ);
+    return BUILDINGS.map(b => ({
+      ...b,
+      sx: Math.round(b.x  * scX),
+      sw: Math.max(2, Math.round(b.w * scX)),
+      sh: Math.round(b.h  * (BZ / DESIGN_BZ)),
+      ROWS, BZ,
+    }));
+  }
+
+  // ── Seeded RNG for windows (deterministic) ────────────────────────────────
+  function makeWins(blds, ROWS) {
+    let _s = 99999;
+    const rng = () => {
+      _s = (Math.imul(_s, 1664525) + 1013904223) | 0;
+      return (_s >>> 0) / 0x100000000;
+    };
+    const wins = [];
+    for (const b of blds) {
+      const top = ROWS - b.sh;
+      for (let wy = top + 1; wy < ROWS - 1; wy += 2) {
+        for (let wx = b.sx + 1; wx < b.sx + b.sw - 1; wx += 2) {
+          wins.push({
+            x: wx, y: wy,
+            col: WIN_LIT[Math.floor(rng() * WIN_LIT.length)],
+            on:  rng() > 0.38,
+            phase: rng() * Math.PI * 2,
+            speed: 0.00012 + rng() * 0.00016,
+          });
+        }
+      }
+    }
+    return wins;
+  }
+
+  // ── Draw special building tops (pixel mode) ───────────────────────────────
+  function drawTops(ctx, blds, ROWS) {
+    for (const b of blds) {
+      if (!b.type) continue;
+      const bx  = b.sx * SZ;
+      const bTop = (ROWS - b.sh) * SZ;
+      const bw  = b.sw * SZ;
+      const cx  = bx + Math.floor(bw / 2) - SZ / 2;
+
+      if (b.type === 'antenna') {
+        // One WTC / Central Park Tower: thin vertical antenna
+        ctx.fillStyle = '#181818';
+        ctx.fillRect(cx, bTop - SZ * 3, SZ, SZ * 3);
+      } else if (b.type === 'spire') {
+        // Empire State / 30 Hudson: stepped spire
+        ctx.fillStyle = '#141414';
+        ctx.fillRect(cx - SZ, bTop - SZ,     SZ * 3, SZ);
+        ctx.fillRect(cx,      bTop - SZ * 2, SZ,     SZ);
+        ctx.fillRect(cx,      bTop - SZ * 3, SZ,     SZ);
+      } else if (b.type === 'crown') {
+        // Chrysler: stepped art-deco crown
+        ctx.fillStyle = '#1c1e24';
+        ctx.fillRect(cx - SZ * 1.5, bTop - SZ,     SZ * 4, SZ);
+        ctx.fillRect(cx - SZ,       bTop - SZ * 2, SZ * 3, SZ);
+        ctx.fillRect(cx,            bTop - SZ * 3, SZ,     SZ);
+      } else if (b.type === 'crystal') {
+        // Bank of America Tower: tapered crystal spire
+        ctx.fillStyle = '#141620';
+        ctx.fillRect(cx - SZ, bTop - SZ,     SZ * 3, SZ);
+        ctx.fillRect(cx,      bTop - SZ * 2, SZ,     SZ);
+      }
+    }
+  }
+
+  // ── Draw smooth building tops (silhouette mode) ───────────────────────────
+  function drawSilhouetteTops(ctx, blds, ROWS, H) {
+    ctx.fillStyle = '#0e1018';
+    for (const b of blds) {
+      if (!b.type) continue;
+      const bx   = b.sx * SZ;
+      const bTop = (ROWS - b.sh) * SZ;
+      const bw   = b.sw * SZ;
+      const cx   = bx + bw / 2;
+
+      if (b.type === 'antenna') {
+        ctx.fillRect(cx - 1, bTop - 14, 2, 14);
+      } else if (b.type === 'spire') {
+        ctx.beginPath();
+        ctx.moveTo(cx, bTop - 18);
+        ctx.lineTo(cx + 5, bTop);
+        ctx.lineTo(cx - 5, bTop);
+        ctx.closePath();
+        ctx.fill();
+      } else if (b.type === 'crown') {
+        // Chrysler-style: stepped semi-circles stacked
+        ctx.beginPath();
+        ctx.moveTo(bx, bTop);
+        ctx.lineTo(bx + bw * 0.2, bTop - 8);
+        ctx.lineTo(bx + bw * 0.35, bTop - 8);
+        ctx.lineTo(bx + bw * 0.35, bTop - 14);
+        ctx.lineTo(bx + bw * 0.45, bTop - 14);
+        ctx.lineTo(cx, bTop - 20);
+        ctx.lineTo(bx + bw * 0.55, bTop - 14);
+        ctx.lineTo(bx + bw * 0.65, bTop - 14);
+        ctx.lineTo(bx + bw * 0.65, bTop - 8);
+        ctx.lineTo(bx + bw * 0.8, bTop - 8);
+        ctx.lineTo(bx + bw, bTop);
+        ctx.closePath();
+        ctx.fill();
+      } else if (b.type === 'crystal') {
+        ctx.beginPath();
+        ctx.moveTo(bx, bTop);
+        ctx.lineTo(cx - 2, bTop - 12);
+        ctx.lineTo(cx, bTop - 16);
+        ctx.lineTo(cx + 2, bTop - 12);
+        ctx.lineTo(bx + bw, bTop);
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+  }
+
+  // ── Main draw function ─────────────────────────────────────────────────────
+  function startCanvas(id, mode) {
+    const canvas = document.getElementById(id);
+
+    function build() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+
+      const W    = canvas.width;
+      const H    = canvas.height;
+      const ctx  = canvas.getContext('2d');
+      const ROWS = Math.ceil(H / SZ);
+      const COLS = Math.ceil(W / SZ) + 2;
+
+      const blds = scaleBldgs(W, H);
+      const wins = mode === 'pixel' ? makeWins(blds, ROWS) : [];
+      const stars = makeStars(W, H);
+
+      // Build pixel grid for pixel mode
+      const grid = mode === 'pixel'
+        ? Array.from({ length: ROWS }, () => new Int8Array(COLS).fill(-1))
+        : null;
+
+      if (grid) {
+        for (const b of blds) {
+          const top = ROWS - b.sh;
+          for (let y = top; y < ROWS; y++) {
+            for (let x = b.sx; x < b.sx + b.sw && x < COLS; x++) {
+              grid[y][x] = (b.sx + b.sw) % BLDG_SHADES.length;
+            }
+          }
+        }
+      }
+
+      // Shooting star state
+      const rand = Math.random.bind(Math);
+      let shootingStar = null;
+      let nextShoot = 10000 + rand() * 18000;
+
+      function spawnShoot() {
+        shootingStar = {
+          x: rand() * W * 0.6, y: rand() * H * 0.35,
+          dx: 5.5 + rand() * 3.5, dy: 1.8 + rand() * 2.2,
+          trail: [], maxTrail: 18 + Math.floor(rand() * 14),
+        };
+      }
+
+      let lastT = 0;
+      let rafId;
+      if (canvas._raf) cancelAnimationFrame(canvas._raf);
+
+      (function frame(ts) {
+        const dt = ts - lastT;
+        lastT = ts;
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Sky
+        const sky = ctx.createLinearGradient(0, 0, 0, H);
+        sky.addColorStop(0, '#060a18');
+        sky.addColorStop(1, '#0c1424');
+        ctx.fillStyle = sky;
+        ctx.fillRect(0, 0, W, H);
+
+        // Stars
+        for (const s of stars) {
+          const a = s.alpha * (0.5 + 0.5 * Math.sin(ts * s.speed + s.phase));
+          ctx.globalAlpha = a;
+          ctx.fillStyle = '#dde8ff';
+          ctx.fillRect(s.x, s.y, s.sz, s.sz);
+        }
+        ctx.globalAlpha = 1;
+
+        if (mode === 'pixel') {
+          // Pixel buildings
+          for (let y = 0; y < ROWS; y++) {
+            for (let x = 0; x < COLS; x++) {
+              const s = grid[y][x];
+              if (s >= 0) {
+                ctx.fillStyle = BLDG_SHADES[s];
+                ctx.fillRect(x * SZ, y * SZ, SZ, SZ);
+              }
+            }
+          }
+          // Windows
+          for (const w of wins) {
+            const lit = w.on && Math.sin(ts * w.speed + w.phase) > -0.55;
+            ctx.fillStyle = lit ? w.col : WIN_OFF;
+            ctx.fillRect(w.x * SZ, w.y * SZ, SZ, SZ);
+          }
+          // Landmark tops
+          drawTops(ctx, blds, ROWS);
+
+        } else {
+          // Silhouette: smooth rects
+          ctx.fillStyle = '#0d1018';
+          for (const b of blds) {
+            const bx  = b.sx * SZ;
+            const bh  = b.sh * SZ;
+            const bw  = b.sw * SZ;
+            ctx.fillRect(bx, H - bh, bw, bh);
+          }
+          // Landmark decorative tops
+          drawSilhouetteTops(ctx, blds, ROWS, H);
+
+          // Ground glow
+          const glow = ctx.createLinearGradient(0, H - 4, 0, H);
+          glow.addColorStop(0, 'rgba(20,30,50,0)');
+          glow.addColorStop(1, 'rgba(20,30,50,0.6)');
+          ctx.fillStyle = glow;
+          ctx.fillRect(0, H - 20, W, 20);
+        }
+
+        // Shooting star
+        nextShoot -= dt;
+        if (nextShoot <= 0 && !shootingStar) {
+          spawnShoot();
+          nextShoot = 18000 + rand() * 22000;
+        }
+        if (shootingStar) {
+          const ss = shootingStar;
+          ss.trail.push({ x: ss.x, y: ss.y });
+          if (ss.trail.length > ss.maxTrail) ss.trail.shift();
+          ss.x += ss.dx; ss.y += ss.dy;
+          for (let i = 0; i < ss.trail.length; i++) {
+            ctx.globalAlpha = (i / ss.trail.length) * 0.75;
+            ctx.fillStyle = '#ffffff';
+            const sz = i > ss.trail.length - 3 ? 2 : 1;
+            ctx.fillRect(ss.trail[i].x, ss.trail[i].y, sz, sz);
+          }
+          ctx.globalAlpha = 0.9;
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(ss.x - 1, ss.y - 1, 3, 3);
+          ctx.globalAlpha = 1;
+          if (ss.x > W + 20 || ss.y > H) shootingStar = null;
+        }
+
+        canvas._raf = requestAnimationFrame(frame);
+      })(0);
+    }
+
+    build();
+    let timer;
+    window.addEventListener('resize', () => {
+      clearTimeout(timer);
+      timer = setTimeout(build, 150);
+    });
+  }
+
+  startCanvas('ca', 'pixel');
+  startCanvas('cb', 'silhouette');
+})();
+</script>
+</body>
+</html>
