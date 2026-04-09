@@ -130,16 +130,16 @@ ul { list-style: none; }
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 var(--sp-8);
-  height: 56px;
-  display: flex;
+  height: 64px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
 }
 
 .nav-brand {
   font-size: var(--text-sm);
   font-weight: 600;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.85);
   letter-spacing: -0.01em;
   transition: color var(--transition);
 }
@@ -157,7 +157,7 @@ ul { list-style: none; }
 .nav-link {
   font-size: var(--text-sm);
   font-weight: 450;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.6);
   transition: color var(--transition);
 }
 .nav-link:hover { color: rgba(255,255,255,0.9); }
@@ -270,7 +270,7 @@ ul { list-style: none; }
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-color: #0D0D0D;
+  background-color: #0c0a28;
   overflow: hidden;
 }
 
@@ -310,10 +310,11 @@ ul { list-style: none; }
 .nav-clock {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.38);
   letter-spacing: 0.06em;
   white-space: nowrap;
   transition: color var(--transition);
+  justify-self: end;
 }
 .nav.scrolled .nav-clock {
   color: var(--text-tertiary, #999);
@@ -372,9 +373,9 @@ ul { list-style: none; }
 .card:hover { border-color: var(--border-hover); }
 
 /* Left-border status accents */
-.card--live    { border-left: 3px solid #16a34a; }
-.card--dev     { border-left: 3px solid #d97706; }
-.card--private { border-left: 3px solid #d4d4d4; }
+.card--live    {}
+.card--dev     {}
+.card--private {}
 
 .card--featured {
   padding: var(--sp-10);
@@ -641,13 +642,19 @@ ul { list-style: none; }
 }
 
 .about-body {
-  font-size: var(--text-base);
+  font-size: 1.0625rem;
   color: var(--text-secondary);
-  line-height: 1.8;
+  line-height: 1.82;
   max-width: 580px;
 }
 .about-body p { margin-bottom: var(--sp-5); }
 .about-body p:last-child { margin-bottom: 0; }
+
+.about-contact {
+  margin-top: var(--sp-8) !important;
+  padding-top: var(--sp-8);
+  border-top: 1px solid var(--border);
+}
 
 .about-experience {
   margin-top: var(--sp-12);
