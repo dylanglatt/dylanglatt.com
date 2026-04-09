@@ -1,160 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hero Preview — Dylan Glatt</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #04061c; font-family: 'Inter', -apple-system, sans-serif; }
-
-    .hero {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-    }
-    #hero-canvas {
-      display: block;
-      width: 100%;
-      height: auto;
-      image-rendering: pixelated;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(4,6,28,0.0) 0%,
-        rgba(4,6,28,0.0) 55%,
-        rgba(4,6,28,0.7) 80%,
-        rgba(4,6,28,1.0) 100%
-      );
-    }
-    .hero-content {
-      position: absolute;
-      bottom: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: #fff;
-      width: 100%;
-      padding: 0 2rem;
-    }
-    .hero-name {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .hero-sub {
-      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 400;
-      margin-bottom: 2rem;
-    }
-    .hero-links {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-    }
-    .hero-links a {
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.02em;
-      transition: color 120ms ease;
-    }
-    .hero-links a:hover { color: #fff; }
-    .hero-links a::after { content: ' →'; }
-
-    /* Nav */
-    .nav {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2.5rem;
-      z-index: 10;
-    }
-    .nav-brand {
-      color: rgba(255,255,255,0.9);
-      font-size: 0.95rem;
-      font-weight: 500;
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      color: rgba(255,255,255,0.55);
-      text-decoration: none;
-      font-size: 0.875rem;
-      transition: color 120ms ease;
-    }
-    .nav-links a:hover { color: rgba(255,255,255,0.9); }
-
-    /* Body section (shows how the transition looks) */
-    .body-section {
-      background: #FAFAFA;
-      padding: 4rem 2rem;
-      text-align: center;
-      color: #111;
-    }
-    .body-section p {
-      max-width: 520px;
-      margin: 0 auto;
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.7;
-    }
-    .body-section .label {
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 0.75rem;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Direction Mocks</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; padding: 40px 32px; }
+  h1 { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 48px; }
+  .panel canvas { width: 100%; border-radius: 6px; display: block; }
+  .panel-label { font-size: 14px; font-weight: 600; color: #fff; margin-top: 10px; }
+  .panel-desc { font-size: 12px; color: #555; line-height: 1.55; margin-top: 4px; }
+  .panel-tag { display: inline-block; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; margin-bottom: 5px; }
+  .tag-current { background: #2a2a2a; color: #777; }
+  .tag-new { background: #1a2e1a; color: #4ade80; }
+  hr { border: none; border-top: 1px solid #222; margin: 8px 0 36px; }
+  h2 { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 24px; }
+  .bonus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .bonus-grid canvas { width: 100%; border-radius: 6px; display: block; }
+  .bonus-label { font-size: 14px; font-weight: 600; color: #fff; margin-top: 10px; }
+  .bonus-desc { font-size: 12px; color: #555; line-height: 1.55; margin-top: 4px; }
+</style>
 </head>
 <body>
 
-  <div class="hero">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-overlay"></div>
+<h1>Hero Direction Options</h1>
 
-    <nav class="nav">
-      <a href="#" class="nav-brand">Dylan Glatt</a>
-      <div class="nav-links">
-        <a href="#">Work</a>
-        <a href="#">About</a>
-      </div>
-    </nav>
-
-    <div class="hero-content">
-      <h1 class="hero-name">Dylan Glatt</h1>
-      <p class="hero-sub">Builder &amp; Operator</p>
-      <div class="hero-links">
-        <a href="#">See my work</a>
-        <a href="#">About me</a>
-      </div>
-    </div>
+<div class="grid">
+  <div class="panel">
+    <canvas id="c-night" height="260"></canvas>
+    <span class="panel-tag tag-current">Current</span>
+    <div class="panel-label">Night</div>
+    <div class="panel-desc">Dark sky, amber windows, stars. Name pops in white. Strong contrast, slightly clichéd.</div>
   </div>
-
-  <div class="body-section">
-    <p class="label">Currently</p>
-    <p>
-      Shipping Riffd — a music analysis tool for musicians. Also building a
-      conflict event tracker on ACLED data, and some private tools for market intelligence.
-    </p>
+  <div class="panel">
+    <canvas id="c-golden" height="260"></canvas>
+    <span class="panel-tag tag-new">Option</span>
+    <div class="panel-label">Golden Hour / Dusk</div>
+    <div class="panel-desc">Warm amber-to-deep-blue sky. Buildings as dark silhouettes. Windows still make sense. Distinctive.</div>
   </div>
+  <div class="panel">
+    <canvas id="c-day" height="260"></canvas>
+    <span class="panel-tag tag-new">Option</span>
+    <div class="panel-label">Daytime</div>
+    <div class="panel-desc">Blue sky gradient, warm gray buildings. Lighter and different, but loses contrast with the page below.</div>
+  </div>
+</div>
 
-  <script src="/static/js/hero-pixel.js"></script>
-  <script>
-    HeroPixel.init(document.getElementById('hero-canvas'));
-  </script>
+<hr>
+<h2>Bonus Concept — People in Windows</h2>
+<div class="bonus-grid">
+  <div>
+    <canvas id="c-people-night" height="220"></canvas>
+    <div class="bonus-label">People in Windows (Night)</div>
+    <div class="bonus-desc">Tiny 1–2px silhouettes occasionally visible in lit windows — sitting at desks, standing, moving. Subtle easter egg, any time of day.</div>
+  </div>
+  <div>
+    <canvas id="c-people-golden" height="220"></canvas>
+    <div class="bonus-label">People in Windows (Golden Hour)</div>
+    <div class="bonus-desc">Same concept on the golden hour palette. Dark figures against warm lit windows.</div>
+  </div>
+</div>
+
+<script>
+const SZ = 4;
+let _s = 58291;
+const rng = () => { _s=(Math.imul(_s,1664525)+1013904223)|0; return (_s>>>0)/0x100000000; };
+const rand = Math.random.bind(Math);
+
+function buildCity(COLS, ROWS) {
+  _s = 58291;
+  const BLDG_ROWS = Math.ceil(ROWS * 0.50);
+  const blds = [];
+  let cx = 0;
+  while (cx < COLS) {
+    const w = 3 + Math.floor(rng()*7);
+    const tall = rng() > 0.78;
+    const h = tall ? Math.floor(BLDG_ROWS*(0.55+rng()*0.38)) : Math.floor(BLDG_ROWS*(0.12+rng()*0.38));
+    blds.push({ x:cx, w, h });
+    cx += w + (rng()>0.72 ? 1 : 0);
+  }
+  const grid = Array.from({length:ROWS}, () => new Int8Array(COLS).fill(-1));
+  for (const b of blds) {
+    const top = ROWS - b.h;
+    for (let y=top; y<ROWS; y++)
+      for (let x=b.x; x<b.x+b.w && x<COLS; x++)
+        grid[y][x] = 1;
+  }
+  _s = 58291;
+  const wins = [];
+  for (const b of blds) {
+    if (b.w < 4) continue;
+    const top = ROWS - b.h;
+    for (let wy=top+1; wy<ROWS-1; wy+=2)
+      for (let wx=b.x+1; wx<b.x+b.w-1; wx+=2)
+        wins.push({ x:wx, y:wy, on:rng()>0.38, phase:rng()*Math.PI*2, speed:0.00012+rng()*0.00016 });
+  }
+  return { blds, grid, wins };
+}
+
+function makeScene(id, cfg, withPeople) {
+  const canvas = document.getElementById(id);
+  const W = canvas.parentElement.offsetWidth;
+  const H = parseInt(canvas.getAttribute('height'));
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  const COLS = Math.ceil(W/SZ)+2;
+  const ROWS = Math.ceil(H/SZ);
+  const { grid, wins } = buildCity(COLS, ROWS);
+
+  // Stars
+  const stars = [];
+  if (cfg.stars) {
+    const count = Math.floor(W*H*0.00045);
+    for (let i=0; i<count; i++)
+      stars.push({ x:rand()*W, y:rand()*H*0.65, sz:rand()>0.88?2:1, phase:rand()*Math.PI*2, spd:0.0003+rand()*0.0005, a:0.45+rand()*0.5 });
+  }
+
+  // People
+  const people = [];
+  if (withPeople) {
+    for (const w of wins) {
+      if (w.on && rand()>0.65) {
+        people.push({ wx:w.x, wy:w.y, type:rand()>0.5?'sit':'stand', phase:rand()*Math.PI*2, visible:true, next:2000+rand()*8000, last:0 });
+      }
+    }
+  }
+
+  (function frame(t) {
+    ctx.clearRect(0,0,W,H);
+
+    // Sky
+    if (cfg.sky) {
+      ctx.fillStyle = cfg.sky; ctx.fillRect(0,0,W,H);
+    } else {
+      const g = ctx.createLinearGradient(0,0,0,H);
+      cfg.skyStops.forEach(([s,c]) => g.addColorStop(s,c));
+      ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+    }
+
+    // Stars
+    for (const s of stars) {
+      ctx.globalAlpha = s.a*(0.45+0.55*Math.sin(t*s.spd+s.phase));
+      ctx.fillStyle = '#dde8ff'; ctx.fillRect(s.x,s.y,s.sz,s.sz);
+    }
+    ctx.globalAlpha = 1;
+
+    // Moon (night) — crescent via two overlapping circles
+    if (cfg.moon) {
+      const mx = W*0.78, my = H*0.14, mr = W*0.045;
+      ctx.save();
+      ctx.shadowColor = 'rgba(220,230,255,0.35)';
+      ctx.shadowBlur = 18;
+      ctx.beginPath(); ctx.arc(mx, my, mr, 0, Math.PI*2);
+      ctx.fillStyle = '#f0ead8'; ctx.fill();
+      // Crescent cutout
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath(); ctx.arc(mx+mr*0.42, my-mr*0.08, mr*0.82, 0, Math.PI*2);
+      ctx.fill();
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.restore();
+    }
+
+    // Sun (golden hour) — large near horizon with intense glow
+    if (cfg.sunHorizon) {
+      const bldgTop = H * 0.52;
+      const sy = bldgTop + H*0.04; // peeking just above skyline
+      const sr = W * 0.055;
+      ctx.save();
+      // Outer glow
+      const g1 = ctx.createRadialGradient(W*0.62, sy, 0, W*0.62, sy, sr*4);
+      g1.addColorStop(0,  'rgba(255,180,30,0.45)');
+      g1.addColorStop(0.4,'rgba(255,100,10,0.22)');
+      g1.addColorStop(1,  'rgba(255,80,0,0)');
+      ctx.fillStyle = g1; ctx.beginPath();
+      ctx.arc(W*0.62, sy, sr*4, 0, Math.PI*2); ctx.fill();
+      // Sun body
+      ctx.shadowColor = '#ffb820'; ctx.shadowBlur = 28;
+      const g2 = ctx.createRadialGradient(W*0.62, sy, 0, W*0.62, sy, sr);
+      g2.addColorStop(0, '#fff5a0'); g2.addColorStop(0.5,'#ffcc30'); g2.addColorStop(1,'#ff8c00');
+      ctx.fillStyle = g2; ctx.beginPath();
+      ctx.arc(W*0.62, sy, sr, 0, Math.PI*2); ctx.fill();
+      ctx.restore();
+    }
+
+    // Sun (daytime) — high in sky, crisp with soft glow
+    if (cfg.sunDay) {
+      const sx = W*0.75, sy = H*0.12, sr = W*0.038;
+      ctx.save();
+      // Outer halo
+      const g1 = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr*3.5);
+      g1.addColorStop(0,  'rgba(255,240,160,0.5)');
+      g1.addColorStop(0.5,'rgba(255,220,80,0.18)');
+      g1.addColorStop(1,  'rgba(255,200,0,0)');
+      ctx.fillStyle = g1; ctx.beginPath();
+      ctx.arc(sx, sy, sr*3.5, 0, Math.PI*2); ctx.fill();
+      // Sun body
+      ctx.shadowColor = '#ffe680'; ctx.shadowBlur = 20;
+      const g2 = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr);
+      g2.addColorStop(0,'#ffffff'); g2.addColorStop(0.4,'#fff5a0'); g2.addColorStop(1,'#ffd020');
+      ctx.fillStyle = g2; ctx.beginPath();
+      ctx.arc(sx, sy, sr, 0, Math.PI*2); ctx.fill();
+      ctx.restore();
+    }
+
+    // Buildings
+    const bc = cfg.bldg;
+    for (let y=0; y<ROWS; y++)
+      for (let x=0; x<COLS; x++)
+        if (grid[y][x]===1) { ctx.fillStyle = bc[(x+y*3)%bc.length]; ctx.fillRect(x*SZ,y*SZ,SZ,SZ); }
+
+    // Windows
+    for (const w of wins) {
+      const flicker = Math.sin(t*w.speed+w.phase)>-0.55;
+      ctx.fillStyle = (w.on&&flicker) ? cfg.winLit : cfg.winOff;
+      ctx.fillRect(w.x*SZ,w.y*SZ,SZ,SZ);
+    }
+
+    // People
+    for (const p of people) {
+      if (t-p.last > p.next) { p.visible=!p.visible; p.last=t; p.next=2000+rand()*7000; }
+      if (!p.visible) continue;
+      ctx.fillStyle = cfg.person;
+      const px=p.wx*SZ, py=p.wy*SZ;
+      if (p.type==='sit') {
+        ctx.fillRect(px+1,py+1,2,1); // head
+        ctx.fillRect(px+1,py+2,2,1); // body
+      } else {
+        ctx.fillRect(px+1,py+1,1,1); // head
+        ctx.fillRect(px+1,py+2,1,2); // body
+      }
+    }
+
+    // Name
+    ctx.font = `bold ${Math.floor(W*0.082)}px Georgia, 'Playfair Display', serif`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = cfg.name;
+    ctx.fillText('Dylan Glatt', W/2, H*0.40);
+
+    requestAnimationFrame(frame);
+  })(0);
+}
+
+const night = {
+  stars: true, moon: true,
+  sky: '#0D0D0D',
+  bldg: ['#0d0d0d','#101010','#141414','#171717','#1b1b1b'],
+  winLit: '#f5c842', winOff: '#131109',
+  name: '#ffffff', person: '#1a0e00',
+};
+
+const golden = {
+  stars: false, sunHorizon: true,
+  skyStops: [[0,'#0c0a28'],[0.30,'#2e1a52'],[0.60,'#a03810'],[0.80,'#e86e00'],[1.0,'#f5a020']],
+  bldg: ['#120d04','#1a1207','#0e0902','#1f1508'],
+  winLit: '#ffe066', winOff: '#2a1504',
+  name: '#ffffff', person: '#2a1200',
+};
+
+const day = {
+  stars: false, sunDay: true,
+  skyStops: [[0,'#1b3d6e'],[0.45,'#3a7bd5'],[0.80,'#72b4e8'],[1.0,'#aad6f0']],
+  bldg: ['#636363','#6f6f6f','#5a5a5a','#777777','#696969'],
+  winLit: '#c4e2f7', winOff: '#4b4b4b',
+  name: '#0c1e3c', person: '#1a1a1a',
+};
+
+window.addEventListener('load', () => {
+  makeScene('c-night',        night,  false);
+  makeScene('c-golden',       golden, false);
+  makeScene('c-day',          day,    false);
+  makeScene('c-people-night', night,  true);
+  makeScene('c-people-golden',golden, true);
+});
+</script>
 </body>
 </html>

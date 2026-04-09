@@ -1,18 +1,23 @@
 {% extends "base.html" %}
 
 {% block title %}Dylan Glatt{% endblock %}
-{% block description %}Dylan Glatt — builder and operator. I make products and systems that work.{% endblock %}
+{% block description %}Dylan Glatt — I design and ship data products end-to-end. Quantitative modeling, AI-assisted development, and full-stack systems.{% endblock %}
 
 {% block content %}
 
 <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
-<section class="hero">
+<section class="hero hero--compact">
   <canvas id="hero-canvas" class="hero-canvas"></canvas>
   <div class="container">
     <h1 class="hero-name">Dylan Glatt</h1>
+    <p class="hero-summary">
+      I design and ship data products from scratch&nbsp;&mdash; from identifying the problem to managing the
+      full build to production. I&rsquo;ve worked on quantitative modeling for clients like GM and
+      ExxonMobil, and I ship with Python, LLMs, data pipelines, and modern web stacks.
+    </p>
     <div class="hero-actions">
-      <a href="{{ url_for('work') }}" class="hero-link">See my work →</a>
-      <a href="{{ url_for('about') }}" class="hero-link">About me →</a>
+      <a href="{{ url_for('work') }}" class="btn btn-hero-primary">See my projects &rarr;</a>
+      <a href="{{ url_for('about') }}" class="btn btn-hero-primary">Background &amp; contact &rarr;</a>
     </div>
   </div>
 </section>
@@ -24,93 +29,62 @@
   });
 </script>
 
-<!-- ── Featured product ──────────────────────────────────────────────────── -->
-<section class="section">
+<!-- ── Skills bar ────────────────────────────────────────────────────────── -->
+<section class="skills-bar">
   <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-title">Featured</span>
-      <a href="{{ url_for('work') }}" class="section-cta">All work →</a>
-    </div>
-
-    <div class="card card--featured fade-up">
-      <p class="card-eyebrow">Live product</p>
-      <div class="card-header">
-        <span class="card-name">Riffd</span>
-        <span class="badge badge--live"><span class="badge-dot"></span> Live</span>
-      </div>
-      <p class="card-description">
-        Search any song, separate it into stems, and get a full breakdown of the key,
-        harmony, and chord structure. Interactive mixer lets you isolate or mute any
-        part and play along. Built for musicians who want to understand the songs they love.
-      </p>
-      <div class="card-footer">
-        <a href="{{ url_for('work_riffd') }}" class="card-link-primary">View details →</a>
-        <span class="card-sep">·</span>
-        <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="card-link-external">riffdlabs.com ↗</a>
-      </div>
-      <div class="card-screenshot">
-        <img src="{{ url_for('static', filename='img/riffd-key.png') }}" alt="Riffd interface">
-      </div>
+    <div class="skills-list">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">Pandas</span>
+      <span class="skill-tag">Econometric Modeling</span>
+      <span class="skill-tag">Marketing Mix Models</span>
+      <span class="skill-tag">Quantitative Analysis</span>
+      <span class="skill-tag">LLMs / AI Tools</span>
+      <span class="skill-tag">Data Pipelines</span>
+      <span class="skill-tag">API Integrations</span>
+      <span class="skill-tag">Automation</span>
+      <span class="skill-tag">Product Development</span>
+      <span class="skill-tag">GitHub Actions</span>
     </div>
   </div>
 </section>
 
-<!-- ── Work grid ─────────────────────────────────────────────────────────── -->
+<!-- ── Case studies ──────────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
     <div class="section-header fade-up">
-      <span class="section-title">Work</span>
-      <a href="{{ url_for('work') }}" class="section-cta">See all →</a>
+      <span class="section-title">Projects</span>
+      <a href="{{ url_for('work') }}" class="section-cta">View all &rarr;</a>
     </div>
 
-    <div class="work-grid">
+    <div class="case-studies">
+
       <!-- Riffd -->
-      <div class="card card--live fade-up">
-        <div>
-          <p class="card-eyebrow">Music analysis</p>
-          <div class="card-header">
-            <span class="card-name">Riffd</span>
-          </div>
-          <p class="card-description">Search any song, split it into stems, explore the key and harmony, and play along with an interactive mixer.</p>
-        </div>
-        <div class="card-footer">
-          <a href="{{ url_for('work_riffd') }}" class="card-link-primary">Details →</a>
-          <span class="card-sep">·</span>
-          <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="card-link-external">Live ↗</a>
-        </div>
-      </div>
+      <a href="{{ url_for('work_riffd') }}" class="case-card fade-up">
+        <p class="case-card-label">Full-stack audio platform &middot; Live</p>
+        <h3 class="case-card-title">Riffd</h3>
+        <p class="case-card-problem">Musicians can&rsquo;t easily learn theory from songs they actually listen to. Existing tools teach abstract concepts in isolation&nbsp;&mdash; nothing connects theory to real music.</p>
+        <p class="case-card-action">I designed and shipped a platform that takes any song, splits it into its individual parts (vocals, bass, guitar, drums), identifies the musical theory behind it, and gives you an interactive mixer to hear each part on its own. Live at riffdlabs.com.</p>
+        <span class="case-card-cta">Read more &rarr;</span>
+      </a>
 
       <!-- Argus -->
-      <div class="card card--dev fade-up">
-        <div>
-          <p class="card-eyebrow">Conflict tracking</p>
-          <div class="card-header">
-            <span class="card-name">Argus</span>
-          </div>
-          <p class="card-description">OSINT dashboard tracking global conflict events in near-real time via GDELT 2.0 — severity-ranked, source-traceable, built for analyst speed.</p>
-        </div>
-        <div class="card-footer">
-          <a href="{{ url_for('work_argus') }}" class="card-link-primary">Details →</a>
-          <span class="card-sep">·</span>
-          <span class="badge badge--dev"><span class="badge-dot"></span> In development</span>
-        </div>
-      </div>
+      <a href="{{ url_for('work_argus') }}" class="case-card fade-up">
+        <p class="case-card-label">Real-time data pipeline &middot; In development</p>
+        <h3 class="case-card-title">Argus</h3>
+        <p class="case-card-problem">Following geopolitical events through news is slow and editorially filtered. The most structurally significant signals get buried under alarming headlines.</p>
+        <p class="case-card-action">I designed and shipped a real-time dashboard that pulls from a public database of 100K+ global events per day, scores each by severity, and surfaces escalation patterns on a live map&nbsp;&mdash; so you can see what&rsquo;s developing before it reaches the news.</p>
+        <span class="case-card-cta">Read more &rarr;</span>
+      </a>
 
       <!-- Job Scanner -->
-      <div class="card card--dev fade-up">
-        <div>
-          <p class="card-eyebrow">Job intelligence</p>
-          <div class="card-header">
-            <span class="card-name">Job Scanner</span>
-          </div>
-          <p class="card-description">Automated job scanner that monitors company career pages and surfaces relevant roles into Notion — scored, filtered, and ready to act on. Covers Greenhouse, Lever, Ashby, VC portfolio discovery, aggregators, and YC. Runs every 2 hours via GitHub Actions.</p>
-        </div>
-        <div class="card-footer">
-          <a href="{{ url_for('work_job_scanner') }}" class="card-link-primary">Read more →</a>
-          <span class="card-sep">·</span>
-          <a href="https://github.com/djglatt/job-scanner" target="_blank" rel="noopener" class="card-link-external">GitHub ↗</a>
-        </div>
-      </div>
+      <a href="{{ url_for('work_job_scanner') }}" class="case-card fade-up">
+        <p class="case-card-label">LLM-powered automation &middot; Open source</p>
+        <h3 class="case-card-title">Job Scanner</h3>
+        <p class="case-card-problem">Manually checking job boards doesn&rsquo;t scale. Listings are scattered across Greenhouse, Lever, Ashby, aggregators, and VC portfolios with no unified scoring.</p>
+        <p class="case-card-action">I designed and shipped an automated system that monitors hundreds of career pages every two hours, scores each role with an AI against a custom fit rubric, and pushes only the relevant leads into Notion&nbsp;&mdash; filtered, ranked, and ready to act on. Runs at zero cost.</p>
+        <span class="case-card-cta">Read more &rarr;</span>
+      </a>
 
     </div>
   </div>
@@ -120,15 +94,25 @@
 <section class="section">
   <div class="container--narrow">
     <div class="section-header fade-up">
-      <span class="section-title">About</span>
+      <span class="section-title">Background</span>
     </div>
     <p class="about-text fade-up" style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 560px; line-height: 1.72; margin-bottom: var(--sp-6);">
-      Both Riffd and Argus started the same way&nbsp;&mdash; I needed something that didn't exist.
-      <a href="https://riffdlabs.com" target="_blank" rel="noopener" style="color: var(--accent);">Riffd</a>
-      helps musicians understand what's actually happening inside a track. Argus tracks global conflict
-      events in near&#8209;real time using raw GDELT data&nbsp;&mdash; before any editorial layer.
+      Before building products, I worked on quantitative modeling for clients like GM and ExxonMobil&nbsp;&mdash;
+      operational and strategic problems where the job is finding signal in messy data and making it
+      actionable. Everything I ship follows the same approach: identify a real gap, scope it, manage the build, deliver it.
     </p>
-    <a href="{{ url_for('about') }}" class="btn btn-secondary fade-up">More about me →</a>
+    <a href="{{ url_for('about') }}" class="btn btn-secondary fade-up">More about me &rarr;</a>
+  </div>
+</section>
+
+<!-- ── Contact bar ───────────────────────────────────────────────────────── -->
+<section class="contact-bar">
+  <div class="container">
+    <p class="contact-bar-text">Get in touch</p>
+    <div class="contact-bar-links">
+      <a href="mailto:dylanglatt@gmail.com" class="btn btn-primary">dylanglatt@gmail.com</a>
+      <a href="https://www.linkedin.com/in/dylanjglatt/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn &rarr;</a>
+    </div>
   </div>
 </section>
 

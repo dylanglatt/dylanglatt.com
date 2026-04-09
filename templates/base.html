@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Dylan Glatt{% endblock %}</title>
-  <meta name="description" content="{% block description %}Dylan Glatt — builder and operator. Products, systems, and work.{% endblock %}">
+  <meta name="description" content="{% block description %}Dylan Glatt — I design and ship data products end-to-end. Quantitative modeling, AI-assisted development, and full-stack systems.{% endblock %}">
 
   <!-- Open Graph -->
   <meta property="og:title"       content="{% block og_title %}Dylan Glatt{% endblock %}">
-  <meta property="og:description" content="{% block og_description %}Builder. Products and systems.{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}I design and ship data products end-to-end. Quantitative modeling, AI-assisted development, and full-stack systems.{% endblock %}">
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://dylanglatt.com{{ request.path }}">
   <meta property="og:image"       content="https://dylanglatt.com{{ url_for('static', filename='img/og-image.png') }}">
@@ -31,7 +31,7 @@
     <div class="nav-inner">
       <a href="{{ url_for('index') }}" class="nav-brand">Dylan Glatt</a>
       <div class="nav-links" id="nav-links">
-        <a href="{{ url_for('work') }}"  class="nav-link {% if request.endpoint in ('work','work_riffd') %}active{% endif %}">Work</a>
+        <a href="{{ url_for('work') }}"  class="nav-link {% if request.endpoint in ('work','work_riffd','work_argus','work_job_scanner') %}active{% endif %}">Projects</a>
         <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
       </div>
       <div class="nav-clock" id="hero-timestamp">New York · <span id="hero-clock"></span></div>
@@ -53,7 +53,7 @@
           <a href="https://www.linkedin.com/in/dylanjglatt/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:dylanglatt@gmail.com">Email</a>
         </div>
-        <span class="footer-copy">© 2026 Dylan Glatt</span>
+        <span class="footer-copy">&copy; 2026 Dylan Glatt</span>
       </div>
     </div>
   </footer>

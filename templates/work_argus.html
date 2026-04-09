@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Argus — Dylan Glatt{% endblock %}
-{% block description %}Argus is an OSINT dashboard tracking global conflict events in near-real time via the GDELT 2.0 Event Database.{% endblock %}
+{% block description %}I designed and shipped a real-time dashboard that tracks global conflict events as they happen — before they reach the news.{% endblock %}
 
 {% block content %}
 
@@ -9,7 +9,7 @@
   <div class="container--narrow">
 
     <!-- Back -->
-    <a href="{{ url_for('work') }}" class="product-back">← Work</a>
+    <a href="{{ url_for('work') }}" class="product-back">&larr; Projects</a>
 
     <!-- Header -->
     <h1 class="page-title">Argus</h1>
@@ -17,68 +17,64 @@
       <span class="badge badge--dev"><span class="badge-dot"></span> In development</span>
     </div>
 
-    <!-- Screenshot -->
-    <div class="product-screenshot">
-      <img src="{{ url_for('static', filename='img/argus-map.png') }}" alt="Argus — live global conflict event map with severity clustering and real-time GDELT data">
-    </div>
-
-    <!-- Body -->
+    <!-- STAR Body -->
     <div class="product-body">
+
+      <h2>The Problem</h2>
       <p>
-        Argus is an OSINT dashboard built to track global conflict events in near-real time.
-        It ingests from GDELT 2.0 — an open event database covering hundreds of thousands of
-        events per day across 100+ countries, updated every 15 minutes — and surfaces escalation
-        patterns as they develop in the data, before they've been filtered through editorial
-        judgment and into headlines.
-      </p>
-      <p>
-        The core interface is a severity-ranked event feed with a live map overlay, backed by
-        Goldstein Scale scoring and CAMEO event codes to normalize events across actors, regions,
-        and conflict types. Trend charts show escalation and de-escalation patterns over time
-        by geography and category.
+        Following geopolitical events through the news is slow and noisy. By the time something shows
+        up in a headline, it&rsquo;s already been filtered through editorial judgment&nbsp;&mdash; shaped by
+        what&rsquo;s alarming, not what&rsquo;s structurally significant. I wanted to see raw event data
+        before any of that filtering, organized in a way that makes patterns visible.
       </p>
 
-      <h2>Why I built it</h2>
+      <h2>What I Set Out to Build</h2>
       <p>
-        Following geopolitical events through news alone is slow and noisy — it rewards the most
-        alarming headlines, not the most structurally significant signals. I wanted a tool that
-        pulls raw event data before it's been filtered through editorial judgment, normalizes it
-        against a consistent scoring system, and lets me build my own read of what's happening
-        and where.
-      </p>
-      <p>
-        GDELT makes this tractable. The dataset covers hundreds of thousands of events per day,
-        encoded against a rigorous ontology. Argus is essentially a layer on top of that — an
-        analytical interface tuned to the questions I actually want to answer.
+        A real-time dashboard that pulls from a massive public database of global events, scores each
+        one by severity, and surfaces escalation patterns as they develop&nbsp;&mdash; not after they&rsquo;ve
+        been packaged into headlines. It needed to handle hundreds of thousands of events per day,
+        show them on a map, and make it easy to spot when a situation is moving fast.
       </p>
 
-      <h2>How it works</h2>
+      <h2>How It Works</h2>
       <p>
-        A scheduled job pulls GDELT 2.0 exports every 15 minutes, parses and normalizes the TSV
-        data, and writes structured event records to a local database. Each event is tagged with
-        its CAMEO action code, actors, country codes, and Goldstein Scale score — a continuous
-        measure of conflict intensity ranging from −10 (most conflictual) to +10 (most cooperative).
+        Every 15 minutes, the system pulls from GDELT 2.0&nbsp;&mdash; an open public database that
+        catalogues hundreds of thousands of real-world events per day across 100+ countries, sourced
+        from news and media worldwide. Each event gets a severity score, is tagged by type and location,
+        and is written to a local database.
       </p>
       <p>
-        The dashboard aggregates these records into a severity-ranked feed filtered by recency,
-        geography, and event type. The map view plots events geospatially with intensity encoding.
-        Trend views surface rolling escalation curves at the country and region level, making it
-        easy to spot when a situation is moving fast.
+        The dashboard presents these as a live, severity-ranked feed. A map view plots events
+        geographically, with size and color reflecting how serious each cluster of activity is.
+        Trend charts show whether a country or region is escalating or de-escalating over time&nbsp;&mdash;
+        giving you a data-driven read on where things are moving before it becomes obvious in the news.
       </p>
 
-      <h2>Data &amp; Analytical Framework</h2>
+      <h2>The Result</h2>
+      <p>
+        Argus processes 100K+ events per day into a clean, ranked interface. The map view shows global
+        conflict patterns at a glance, and the trend charts surface meaningful developments before they
+        reach mainstream coverage&nbsp;&mdash; exactly what the news cycle fails to do.
+      </p>
+
+      <!-- Screenshot at the bottom as proof -->
+      <div class="product-screenshot" style="margin-top: var(--sp-10);">
+        <img src="{{ url_for('static', filename='img/argus-map.png') }}" alt="Argus — live global conflict event map with severity clustering and real-time data">
+      </div>
+
+      <h2>Data Sources</h2>
       <div class="tech-stack">
         <div class="tech-item">
           <span class="tech-name">GDELT 2.0</span>
-          <span class="tech-desc">Open event database updated every 15 minutes, covering hundreds of thousands of events per day encoded against a standardized ontology of actors, actions, and locations</span>
+          <span class="tech-desc">Open public event database updated every 15 minutes &mdash; hundreds of thousands of events/day across 100+ countries</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">CAMEO Codes</span>
-          <span class="tech-desc">Conflict and Mediation Event Observations ontology — standardized classification of events across actor types and action categories, enabling cross-region normalization</span>
+          <span class="tech-desc">Standardized event classification system &mdash; enables consistent comparison of event types across regions and actors</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Goldstein Scale</span>
-          <span class="tech-desc">Continuous conflict severity score from −10 (most conflictual) to +10 (most cooperative), applied per event for severity ranking and trend detection</span>
+          <span class="tech-desc">Academic conflict severity score from &minus;10 (most hostile) to +10 (most cooperative) &mdash; applied per event for ranking</span>
         </div>
       </div>
 
@@ -86,22 +82,22 @@
       <div class="tech-stack">
         <div class="tech-item">
           <span class="tech-name">Python + Pandas</span>
-          <span class="tech-desc">Scheduled ingestion pipeline — TSV parsing, normalization, deduplication, and aggregation on every 15-minute GDELT export</span>
+          <span class="tech-desc">Scheduled ingestion pipeline &mdash; parses, normalizes, deduplicates, and stores each GDELT export</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Mapbox</span>
-          <span class="tech-desc">Geospatial event map with intensity encoding — cluster size and color reflect Goldstein scores and event density per region, with live refresh</span>
+          <span class="tech-desc">Interactive geospatial map with event clustering and severity-encoded visual encoding</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Flask + SQLite</span>
-          <span class="tech-desc">Python backend with Jinja2 templates and vanilla JS — structured event storage, query layer, and dashboard UI served from a single lightweight app</span>
+          <span class="tech-desc">Python backend with structured event storage, query layer, and dashboard UI</span>
         </div>
       </div>
     </div>
 
     <!-- Footer -->
     <div class="product-footer">
-      <a href="{{ url_for('work') }}" class="btn btn-secondary">← Back to work</a>
+      <a href="{{ url_for('work') }}" class="btn btn-secondary">&larr; All projects</a>
     </div>
 
   </div>

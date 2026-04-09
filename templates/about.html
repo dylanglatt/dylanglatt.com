@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}About — Dylan Glatt{% endblock %}
-{% block description %}About Dylan Glatt — builder and operator based in New York.{% endblock %}
+{% block description %}About Dylan Glatt — quantitative modeling, data products, and full-stack systems. Based in New York.{% endblock %}
 
 {% block content %}
 
@@ -24,13 +24,26 @@
 
     <div class="about-body">
       <p>
-        Both Riffd and Argus started the same way&nbsp;&mdash; I needed something that didn't exist.
-        <a href="https://riffdlabs.com" target="_blank" rel="noopener" style="color: var(--accent);">Riffd</a>
-        helps musicians understand what's actually happening inside a track. Argus tracks global conflict
-        events in near&#8209;real time using raw GDELT data&nbsp;&mdash; before any editorial layer.
+        I've worked on quantitative modeling for clients like GM and ExxonMobil. That ranged from building
+        and managing 48 nameplate econometric models and condensing them into a single executive summary,
+        to measuring and optimizing media effectiveness across 13 global CPG markets.
       </p>
       <p>
-        I did quantitative modeling work for companies like GM and ExxonMobil&nbsp;&mdash; operational and strategic problems where the job is finding signal in messy data and making it actionable.
+        That experience shaped how I work now. Every project I ship follows the same approach: identify
+        a real gap, scope the solution, pick the right tools, and manage the build to production. I&rsquo;m
+        most effective when I can take an idea from nothing to a working system&nbsp;&mdash; and I&rsquo;ve done
+        that multiple times with
+        <a href="{{ url_for('work_riffd') }}" style="color: var(--accent);">Riffd</a> (a full-stack audio
+        analysis platform),
+        <a href="{{ url_for('work_argus') }}" style="color: var(--accent);">Argus</a> (a real-time OSINT
+        pipeline), and
+        <a href="{{ url_for('work_job_scanner') }}" style="color: var(--accent);">Job Scanner</a>
+        (an LLM-powered job automation tool).
+      </p>
+      <p>
+        I scope the architecture, manage the build, and own the product decisions. I work across
+        the full stack&nbsp;&mdash; from data pipelines and model integration to frontend interfaces
+        and deployment&nbsp;&mdash; and I ship fast.
       </p>
       <p class="about-contact">
         Get in touch at <a href="mailto:dylanglatt@gmail.com" style="color: var(--accent);">dylanglatt@gmail.com</a>

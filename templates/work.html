@@ -1,93 +1,80 @@
 {% extends "base.html" %}
 
-{% block title %}Work — Dylan Glatt{% endblock %}
-{% block description %}Products and systems built by Dylan Glatt.{% endblock %}
+{% block title %}Projects — Dylan Glatt{% endblock %}
+{% block description %}Projects: how I identify problems, scope solutions, and ship working systems.{% endblock %}
 
 {% block content %}
 
 <div class="page-header">
   <div class="container">
-    <h1 class="page-title">Work</h1>
-    <p class="page-subtitle">Products I've built, systems I'm developing, and things I'm exploring.</p>
+    <h1 class="page-title">Projects</h1>
+    <p class="page-subtitle">Each project started with a problem I found and took from nothing to a working system. Here&rsquo;s how.</p>
   </div>
 </div>
 
-<!-- ── Live ──────────────────────────────────────────────────────────────── -->
+<!-- ── Riffd ─────────────────────────────────────────────────────────────── -->
 <section class="section" style="border-top: none; padding-top: 0;">
   <div class="container">
-    <p class="section-title" style="margin-bottom: var(--sp-5);">Live</p>
-
-    <div class="card card--featured">
-      <p class="card-eyebrow">Music analysis tool</p>
-      <div class="card-header">
-        <span class="card-name">Riffd</span>
-        <span class="badge badge--live"><span class="badge-dot"></span> Live</span>
-      </div>
-      <p class="card-description">
-        Search any song. Riffd separates it into isolated stems, detects the key and tempo
-        from the audio signal, and surfaces the theory behind how it's built — diatonic chords,
-        progressions, smart recommendations based on musical DNA. Interactive browser mixer
-        with per-stem faders, solo, mute, and real-time pitch transposition. No plugins required.
+    <div class="case-card case-card--full">
+      <p class="case-card-label">Full-stack audio platform &middot; Live at riffdlabs.com</p>
+      <h2 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit;">Riffd</a></h2>
+      <p class="case-card-problem">
+        Musicians can&rsquo;t easily learn theory from songs they actually listen to. I needed a tool
+        that didn&rsquo;t exist&nbsp;&mdash; one that connects real music to real theory.
       </p>
-      <div class="card-footer">
-        <a href="{{ url_for('work_riffd') }}" class="card-link-primary">Read more →</a>
-        <span class="card-sep">·</span>
-        <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="card-link-external">riffdlabs.com ↗</a>
-        <span class="card-sep">·</span>
-        <a href="https://github.com/dylanglatt/riffd" target="_blank" rel="noopener" class="card-link-external">GitHub ↗</a>
+      <p class="case-card-action">
+        I designed and shipped a platform that takes any song, splits it into its individual parts
+        (vocals, bass, guitar, drums), figures out the musical theory behind how it&rsquo;s built, and gives
+        you an interactive mixer to hear each part on its own&nbsp;&mdash; all in the browser, no downloads required.
+      </p>
+      <div class="case-card-footer">
+        <a href="{{ url_for('work_riffd') }}" class="btn btn-primary">Read more &rarr;</a>
+        <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="btn btn-secondary">riffdlabs.com &nearr;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── In Development ────────────────────────────────────────────────────── -->
+<!-- ── Argus ──────────────────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <p class="section-title" style="margin-bottom: var(--sp-5);">In development</p>
-
-    <div class="card card--dev">
-      <div>
-        <div class="card-header">
-          <span class="card-name">Argus</span>
-          <span class="badge badge--dev"><span class="badge-dot"></span> In development</span>
-        </div>
-        <p class="card-description">
-          OSINT dashboard tracking global conflict events in near-real time via the GDELT 2.0
-          Event Database. Pulls live exports every 15 minutes, normalizes events using the
-          Goldstein Scale and CAMEO codes, and surfaces them through a severity-ranked map,
-          trend charts, and a traceable event feed.
-        </p>
-      </div>
-      <div class="card-footer">
-        <a href="{{ url_for('work_argus') }}" class="card-link-primary">Read more →</a>
+    <div class="case-card case-card--full">
+      <p class="case-card-label">Real-time data pipeline &middot; In development</p>
+      <h2 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit;">Argus</a></h2>
+      <p class="case-card-problem">
+        Following geopolitical events through news is slow and editorially filtered. The most structurally
+        significant signals get buried under alarming headlines.
+      </p>
+      <p class="case-card-action">
+        I designed and shipped a real-time dashboard that pulls from a public database of 100K+
+        global events per day, scores each one by severity, and surfaces escalation patterns on a live
+        map&nbsp;&mdash; so you can see what&rsquo;s developing before it reaches the news.
+      </p>
+      <div class="case-card-footer">
+        <a href="{{ url_for('work_argus') }}" class="btn btn-primary">Read more &rarr;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Personal Tools ─────────────────────────────────────────────────────── -->
+<!-- ── Job Scanner ────────────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <p class="section-title" style="margin-bottom: var(--sp-5);">Personal tools</p>
-
-    <div class="work-grid">
-      <div class="card card--dev">
-        <div>
-          <div class="card-header">
-            <span class="card-name">Job Scanner</span>
-            <span class="badge badge--github">Open source</span>
-          </div>
-          <p class="card-description">
-            Automated job scanner that monitors company career pages and surfaces relevant roles
-            into Notion — scored, filtered, and ready to act on. Covers Greenhouse, Lever, Ashby,
-            VC portfolio discovery, aggregators, and YC. Runs every 2 hours via GitHub Actions.
-          </p>
-        </div>
-        <div class="card-footer">
-          <a href="{{ url_for('work_job_scanner') }}" class="card-link-primary">Read more →</a>
-          <span class="card-sep">·</span>
-          <a href="https://github.com/djglatt/job-scanner" target="_blank" rel="noopener" class="card-link-external">GitHub ↗</a>
-        </div>
+    <div class="case-card case-card--full">
+      <p class="case-card-label">LLM-powered automation &middot; Open source</p>
+      <h2 class="case-card-title"><a href="{{ url_for('work_job_scanner') }}" style="color: inherit;">Job Scanner</a></h2>
+      <p class="case-card-problem">
+        Manually checking job boards doesn&rsquo;t scale. Listings are scattered across multiple platforms
+        with no unified scoring.
+      </p>
+      <p class="case-card-action">
+        I designed and shipped an automated system that monitors hundreds of career pages every two hours,
+        scores each role with an AI against a custom fit rubric, and pushes only the relevant leads
+        directly into Notion&nbsp;&mdash; filtered, ranked, and ready to act on. Runs at zero cost.
+      </p>
+      <div class="case-card-footer">
+        <a href="{{ url_for('work_job_scanner') }}" class="btn btn-primary">Read more &rarr;</a>
+        <a href="https://github.com/djglatt/job-scanner" target="_blank" rel="noopener" class="btn btn-secondary">GitHub &nearr;</a>
       </div>
     </div>
   </div>

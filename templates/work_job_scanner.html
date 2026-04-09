@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Job Scanner — Dylan Glatt{% endblock %}
-{% block description %}Automated job scanner that monitors company career pages and surfaces relevant roles into Notion — scored, filtered, and ready to act on.{% endblock %}
+{% block description %}I designed and shipped an automated pipeline that monitors career pages, scores roles with an AI, and pushes qualified leads to Notion.{% endblock %}
 
 {% block content %}
 
@@ -9,114 +9,85 @@
   <div class="container--narrow">
 
     <!-- Back -->
-    <a href="{{ url_for('work') }}" class="product-back">← Work</a>
+    <a href="{{ url_for('work') }}" class="product-back">&larr; Projects</a>
 
     <!-- Header -->
     <h1 class="page-title">Job Scanner</h1>
     <div class="product-meta">
-      <a href="https://github.com/djglatt/job-scanner" target="_blank" rel="noopener" class="badge badge--github">GitHub ↗</a>
+      <a href="https://github.com/djglatt/job-scanner" target="_blank" rel="noopener" class="product-external">GitHub &nearr;</a>
     </div>
 
-    <!-- Body -->
+    <!-- STAR Body -->
     <div class="product-body">
+
+      <h2>The Problem</h2>
       <p>
-        Job Scanner is a personal automation that monitors company career pages across four source
-        types, scores every role against a custom fit rubric using an LLM, and pushes anything
-        qualifying directly into a Notion database — filtered, ranked, and ready to act on. It runs
-        every 2 hours via GitHub Actions at no cost.
-      </p>
-      <p>
-        The goal was to stop manually checking job boards and instead have a pipeline that does the
-        work continuously: ingest roles, apply consistent scoring criteria, and surface only the
-        leads worth looking at.
+        Manually checking job boards doesn&rsquo;t scale. Listings are scattered across company career
+        pages, aggregator sites, VC portfolio pages, and startup platforms&nbsp;&mdash; each in a different
+        format, with no consistent way to evaluate fit. The time spent searching and reading listings
+        was disproportionate to the signal they actually provided.
       </p>
 
-      <h2>Source coverage</h2>
+      <h2>What I Set Out to Build</h2>
       <p>
-        The scanner pulls from four distinct source types to maximize coverage without relying on
-        any single aggregator:
-      </p>
-      <div class="tech-stack">
-        <div class="tech-item">
-          <span class="tech-name">Company boards</span>
-          <span class="tech-desc">Explicit Greenhouse, Lever, and Ashby slugs defined in a private config — monitors specific companies directly at the source, bypassing aggregator lag</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-name">VC portfolio discovery</span>
-          <span class="tech-desc">Probes job boards for companies sourced from top VC portfolio pages without needing slugs in advance — the scanner derives and tests slug candidates automatically</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-name">Aggregators</span>
-          <span class="tech-desc">Broad searches via Adzuna and The Muse across all companies, catching roles that don't appear on direct boards or portfolio pages</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-name">YC Work at a Startup</span>
-          <span class="tech-desc">Dedicated scan of YC-backed companies for matching roles, covering a large slice of early-stage companies in a single pass</span>
-        </div>
-      </div>
-
-      <h2>How it works</h2>
-      <p>
-        On each run the scanner fetches open roles from all four source types, filters for
-        NYC / hybrid / remote-friendly positions above a salary floor, scores each role 1–10,
-        and pushes anything at or above the threshold into Notion automatically.
-      </p>
-      <p>
-        Scoring runs across several independent signals: title match against tiered keyword lists,
-        description keywords that signal the kind of work environment I want, company signals like
-        stage and known investors, and penalties for corporate language, quota-carrying sales roles,
-        experience requirements above a threshold, or off-target locations. Roles below 6.0 are
-        dropped entirely. Roles between 6.0 and 6.4 land in Notion flagged for manual review.
-        Roles at 6.5 and above are pushed as qualified leads.
+        A fully automated system that continuously monitors career pages across multiple sources,
+        scores every role against a consistent set of criteria, and delivers only the relevant leads
+        directly into a Notion database&nbsp;&mdash; filtered, ranked, and ready to act on. It needed
+        to run automatically at no cost and require no manual intervention.
       </p>
 
-      <h2>Configuration</h2>
+      <h2>How It Works</h2>
       <p>
-        The targeting logic lives in two gitignored config files — <code>companies.py</code> and
-        <code>config.py</code> — so the public repo contains the full pipeline without exposing
-        the specific companies or scoring weights I use. The main levers are keyword tiers for
-        title matching, role DNA keywords that signal the right kind of work, penalty terms that
-        disqualify poor fits, and VC portfolio company lists the scanner uses to find boards
-        automatically.
+        Every two hours, the system checks hundreds of career pages across four source types: direct
+        company job boards (the platforms most companies use to post roles, like Greenhouse, Lever,
+        and Ashby), VC-backed company portfolios, broad job aggregators, and YC&rsquo;s startup platform.
+        It finds new listings automatically without needing to be configured for each company individually.
+      </p>
+      <p>
+        Each role gets scored 1&ndash;10. The scoring looks at job title relevance, the language used in
+        the description, company signals like funding stage and investors, and flags roles that are
+        a poor fit&nbsp;&mdash; overly corporate, sales-heavy, or the wrong location. An AI model handles
+        the judgment calls where simple rules fall short. Anything below a 6.0 is dropped. Anything
+        above 6.5 goes straight into Notion as a qualified lead.
       </p>
 
-      <h2>Deployment</h2>
-      <div class="tech-stack">
-        <div class="tech-item">
-          <span class="tech-name">GitHub Actions</span>
-          <span class="tech-desc">Recommended deployment — runs every 2 hours automatically on the free tier. Config and company lists are injected as repo secrets, keeping targeting private</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-name">Render</span>
-          <span class="tech-desc">Alternative deployment for ~$1–3/month if you prefer a persistent service; the repo includes a render.yaml that deploys automatically on push</span>
-        </div>
-      </div>
+      <h2>The Result</h2>
+      <p>
+        Job Scanner runs continuously at zero cost, scanning hundreds of career pages every two hours
+        and surfacing a clean, scored feed of relevant roles into Notion&nbsp;&mdash; ready to act on
+        with no manual searching. The open-source repo lets anyone configure their own targeting
+        and deploy it in minutes.
+      </p>
 
       <h2>Stack</h2>
       <div class="tech-stack">
         <div class="tech-item">
           <span class="tech-name">Python</span>
-          <span class="tech-desc">Core scanner — fetches, filters, scores, and pushes roles in a single script with no framework overhead</span>
+          <span class="tech-desc">Core scanner &mdash; fetches, filters, scores, and pushes roles with no framework overhead</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">LLM Scoring</span>
+          <span class="tech-desc">AI-based role evaluation for nuanced fit assessment beyond keyword matching</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Notion API</span>
-          <span class="tech-desc">Output layer — qualified roles are written directly to a Roles database with structured properties for score, source, location, and review flag</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-name">Adzuna + The Muse</span>
-          <span class="tech-desc">Aggregator sources — free API keys cover broad company searches that complement the direct board monitoring</span>
+          <span class="tech-desc">Output layer &mdash; qualified roles written to a structured database with score, source, location, and review flag</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">GitHub Actions</span>
-          <span class="tech-desc">Scheduled execution — cron job runs every 2 hours with secrets injected at runtime; no server required</span>
+          <span class="tech-desc">Runs every 2 hours automatically on the free tier &mdash; no server required</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Adzuna + The Muse</span>
+          <span class="tech-desc">Aggregator sources for broad coverage beyond direct company boards</span>
         </div>
       </div>
     </div>
 
     <!-- Footer -->
     <div class="product-footer">
-      <a href="{{ url_for('work') }}" class="btn btn-secondary">← Back to work</a>
-      <a href="https://github.com/djglatt/job-scanner" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub ↗</a>
+      <a href="https://github.com/djglatt/job-scanner" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub &nearr;</a>
+      <a href="{{ url_for('work') }}" class="btn btn-secondary">&larr; All projects</a>
     </div>
 
   </div>
