@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Something went wrong — Dylan Glatt{% endblock %}
+{% block description %}A server error occurred.{% endblock %}
+
+{% block content %}
+<div style="padding: var(--sp-24) 0 var(--sp-20);">
+  <div class="container--narrow">
+    <p style="font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: var(--sp-5);">500</p>
+    <h1 style="font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl)); font-weight: 700; letter-spacing: -0.03em; color: var(--text); margin-bottom: var(--sp-4); line-height: 1.15;">Something went wrong.</h1>
+    <p style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 440px; line-height: 1.6; margin-bottom: var(--sp-10);">
+      A server error occurred. Try again in a moment.
+    </p>
+    <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap;">
+      <a href="{{ url_for('index') }}" class="btn btn-primary">Go home</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

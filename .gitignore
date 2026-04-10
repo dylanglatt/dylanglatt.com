@@ -22,6 +22,7 @@ data/events.jsonl
 data/events.db
 data/events.db-wal
 data/events.db-shm
+data/.fuse_hidden*
 
 # Static uploads (if any)
 static/uploads/
