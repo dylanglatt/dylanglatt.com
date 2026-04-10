@@ -74,11 +74,13 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   font-family: var(--font);
   font-size: var(--text-base);
+  overflow-x: hidden;
   line-height: 1.6;
   color: var(--text);
   background: var(--bg);
@@ -431,6 +433,21 @@ ul { list-style: none; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-5);
+}
+
+/* Tablet: 2-up */
+@media (max-width: 900px) {
+  .case-studies {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Phone: single column */
+@media (max-width: 600px) {
+  .case-studies {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
 }
 
 .case-card {
@@ -823,6 +840,11 @@ ul { list-style: none; }
   color: var(--text);
   min-width: 200px;
   flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .tech-item { flex-direction: column; gap: var(--sp-1); }
+  .tech-name { min-width: unset; }
 }
 .tech-desc {
   font-size: var(--text-sm);
@@ -1534,6 +1556,14 @@ ul { list-style: none; }
   /* Keep nav fixed so it's always accessible while scrolling */
   .nav { position: fixed; }
 
+  /* Collapse to 2-column grid: brand left, hamburger right */
+  .nav-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  /* Hide the clock — no room at narrow widths */
+  .nav-clock { display: none; }
+
   .nav-links {
     display: none;
     position: fixed;
@@ -1570,4 +1600,46 @@ ul { list-style: none; }
 
   /* Hide timestamp — it overlaps the fixed nav at top: 32px */
   .hero-timestamp { display: none; }
+}
+
+
+/* ── Tablet / iPad (601px – 900px) ────────────────────────────────────────── */
+@media (min-width: 601px) and (max-width: 900px) {
+  /* Work grid: proper 2-column layout instead of horizontal scroll carousel */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: unset;
+    scroll-snap-type: unset;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+  .work-grid .card {
+    min-width: unset;
+    max-width: unset;
+    scroll-snap-align: unset;
+    flex-shrink: unset;
+  }
+
+  .work-grid .card-description {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  /* Contact bar: stack on tablet */
+  .contact-bar .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Hero slightly shorter on tablet */
+  .hero { min-height: 65vh; }
+
+  /* Ops stats: 2 columns fine on tablet */
+  .ops-stats { grid-template-columns: repeat(2, 1fr); }
 }
