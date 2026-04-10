@@ -41,7 +41,7 @@ def work_argus():
     return render_template('work_argus.html')
 
 
-@app.route('/work/job-scanner')
+@app.route('/work/job-scraper')
 def work_job_scanner():
     log_event('pageview', {'page': 'work_job_scanner', 'ip': _client_ip()})
     return render_template('work_job_scanner.html')
