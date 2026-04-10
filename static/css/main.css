@@ -1426,18 +1426,46 @@ ul { list-style: none; }
 
   .nav-inner { padding: 0 var(--sp-5); }
 
-  /* Tighten section padding on tablet/mobile */
   .section { padding: var(--sp-10) 0; }
 
-  /* Keep hero but reduce min-height slightly on tablet */
   .hero { min-height: 80vh; }
 
-  /* Keep 2-column work grid — projects stay side by side */
-  .work-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
+  /* Swipeable horizontal card row — bleed edge to edge */
+  .work-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: var(--sp-3);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Negative margin trick so cards reach screen edges */
+    margin-left: calc(-1 * var(--sp-5));
+    margin-right: calc(-1 * var(--sp-5));
+    padding-left: var(--sp-5);
+    padding-right: var(--sp-5);
+    padding-bottom: var(--sp-2);
+  }
+  .work-grid::-webkit-scrollbar { display: none; }
 
-  /* Reduce card padding so 2-col fits comfortably */
-  .card { padding: var(--sp-5); }
-  .card--featured { padding: var(--sp-6); }
+  .work-grid .card {
+    min-width: 68vw;
+    max-width: 280px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Clamp long descriptions inside scroll cards */
+  .work-grid .card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
   .section-header { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
 
@@ -1449,23 +1477,13 @@ ul { list-style: none; }
 }
 
 @media (max-width: 480px) {
-  /* Tighten hero text on very small screens */
   .hero-name { font-size: clamp(2.75rem, 13vw, 4.5rem); }
   .hero-actions { gap: var(--sp-4); flex-wrap: wrap; }
 
-  /* 2-column grid with compact cards */
-  .work-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); }
-  .card { padding: var(--sp-4); }
-  .card-name { font-size: var(--text-base); }
-  .card-description {
-    font-size: var(--text-xs);
-    line-height: 1.55;
-    margin-bottom: var(--sp-3);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+  /* Slightly narrower cards on small phones so 2 fit as a peek */
+  .work-grid .card { min-width: 72vw; }
+
+  /* Hide screenshot in featured card on small phones */
   .card-screenshot { display: none; }
 
   .product-meta { flex-direction: column; align-items: flex-start; }
@@ -1536,7 +1554,6 @@ ul { list-style: none; }
 
   .nav-links.open { display: flex; }
 
-  /* Force nav link text visible inside the light dropdown */
   .nav-links .nav-link {
     width: 100%;
     padding: var(--sp-3) var(--sp-5);
@@ -1548,6 +1565,9 @@ ul { list-style: none; }
     color: var(--text) !important;
   }
 
-  /* Offset hero so it doesn't hide under the fixed nav */
+  /* Offset hero content below the fixed nav */
   .hero { padding-top: 56px; }
+
+  /* Hide timestamp — it overlaps the fixed nav at top: 32px */
+  .hero-timestamp { display: none; }
 }
