@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Argus — Dylan Glatt{% endblock %}
-{% block description %}I designed and deployed a real-time dashboard that tracks global conflict events as they happen — before they reach the news.{% endblock %}
+{% block description %}A real-time OSINT platform that ingests GDELT 2.0, filters noise with Claude Haiku, corroborates events via NASA satellite data, and surfaces armed conflict escalation before it reaches the news.{% endblock %}
 
 {% block content %}
 
@@ -23,75 +23,114 @@
 
       <h2>The Problem</h2>
       <p>
-        Following geopolitical events through the news is slow and noisy. By the time something shows
-        up in a headline, it&rsquo;s already been filtered through editorial judgment&nbsp;&mdash; shaped by
-        what&rsquo;s alarming, not what&rsquo;s structurally significant. I wanted to see raw event data
-        before any of that filtering, organized in a way that makes patterns visible.
+        Open-source conflict data is abundant but nearly unusable raw. GDELT ingests hundreds of
+        thousands of events per day&nbsp;&mdash; and most of them are noise: agricultural burns, local crime,
+        diplomatic statements, and protest coverage all land in the same stream as actual armed conflict.
+        By the time genuine escalation is visible in the news, it&rsquo;s already been packaged into narrative.
+        I wanted a system that could cut to signal before any of that happened.
       </p>
 
       <h2>What I Set Out to Build</h2>
       <p>
-        A real-time dashboard that pulls from a massive public database of global events, scores each
-        one by severity, and surfaces escalation patterns as they develop&nbsp;&mdash; not after they&rsquo;ve
-        been packaged into headlines. It needed to handle hundreds of thousands of events per day,
-        show them on a map, and make it easy to spot when a situation is moving fast.
+        A full OSINT pipeline modeled after how defense and intelligence analysts actually work&nbsp;&mdash;
+        not a dashboard with a map pasted on top, but a system with real noise filtering, satellite
+        corroboration, escalation detection, and a dense operational interface designed for pattern
+        recognition across multiple simultaneous theaters.
       </p>
 
       <h2>How It Works</h2>
       <p>
-        Every 15 minutes, the system pulls from GDELT 2.0&nbsp;&mdash; an open public database that
-        catalogues hundreds of thousands of real-world events per day across 100+ countries, sourced
-        from news and media worldwide. Each event gets a severity score, is tagged by type and location,
-        and is written to a local database.
+        The pipeline starts with live GDELT 2.0 ingestion every 15 minutes: downloading and parsing
+        conflict event exports, normalizing CAMEO codes into actionable categories (battles, explosions,
+        violence against civilians, riots, strategic developments), and scoring each event by impact
+        using an inverted Goldstein scale.
       </p>
       <p>
-        The dashboard presents these as a live, severity-ranked feed. A map view plots events
-        geographically, with size and color reflecting how serious each cluster of activity is.
-        Trend charts show whether a country or region is escalating or de-escalating over time&nbsp;&mdash;
-        giving you a data-driven read on where things are moving before it becomes obvious in the news.
+        A two-tier noise filter follows. High-confidence kinetic events&nbsp;&mdash; armed actor types, extreme
+        Goldstein scores, multi-outlet coverage&nbsp;&mdash; auto-pass. Everything else is routed to Claude
+        Haiku, which fetches the underlying article and evaluates it against strict criteria: confirmed
+        weapons use, casualties, or territorial effect. Crime, diplomacy, protests, and opinion pieces
+        are rejected.
+      </p>
+      <p>
+        For battles and explosions, satellite corroboration is available via NASA FIRMS VIIRS thermal
+        anomaly data. Events are spatially matched against a historical conflict zone index built from
+        POLECAT&nbsp;&mdash; a CIA/DARPA-funded dataset&nbsp;&mdash; to suppress false positives from agricultural burns
+        and gas flares. Corroborated events display a &ldquo;SAT&rdquo; badge and fire radiative power readings
+        in the detail panel.
+      </p>
+      <p>
+        The frontend is a Blueprint-dark analyst workstation: a Mapbox GL map with clustered markers
+        sized by media coverage volume; a scrollable event feed sortable by impact score; a 6-hour UTC
+        time-series chart of event frequency by type; and an escalation detection system that surfaces
+        regions with &ge;30% 24-hour event increases. A Country Brief panel pulls live UN OCHA/ReliefWeb
+        humanitarian reports for any selected region. Analysts can confirm or dismiss events, with
+        feedback persisted to Vercel Blob.
+      </p>
+      <p>
+        A separate Python backtesting pipeline cross-references GDELT against POLECAT across 2023&ndash;2024,
+        measuring hotspot agreement, intensity correlation, and source divergence&nbsp;&mdash; providing
+        empirical grounding for the system&rsquo;s signal quality claims.
       </p>
 
       <h2>The Result</h2>
       <p>
-        Argus processes 100K+ events per day into a clean, ranked interface. The map view shows global
-        conflict patterns at a glance, and the trend charts surface meaningful developments before they
-        reach mainstream coverage&nbsp;&mdash; exactly what the news cycle fails to do.
+        Argus filters a raw 100K+ event/day stream down to a clean, high-confidence conflict feed,
+        corroborated where possible by satellite imagery and validated against a decade of historical
+        conflict data. The operational interface surfaces what&rsquo;s actually escalating&nbsp;&mdash; with the
+        sourcing and corroboration to back it up&nbsp;&mdash; before it becomes a headline.
       </p>
 
       <!-- Screenshot at the bottom as proof -->
       <div class="product-screenshot" style="margin-top: var(--sp-10);">
-        <img src="{{ url_for('static', filename='img/argus-map.png') }}" alt="Argus — live global conflict event map with severity clustering and real-time data">
+        <img src="{{ url_for('static', filename='img/argus-map.jpg') }}" alt="Argus — live global conflict event map with severity clustering and real-time data">
       </div>
 
       <h2>Data Sources</h2>
       <div class="tech-stack">
         <div class="tech-item">
           <span class="tech-name">GDELT 2.0</span>
-          <span class="tech-desc">Open public event database updated every 15 minutes &mdash; hundreds of thousands of events/day across 100+ countries</span>
+          <span class="tech-desc">Open public event database updated every 15 minutes &mdash; hundreds of thousands of events/day across 100+ countries, sourced from global media</span>
         </div>
         <div class="tech-item">
-          <span class="tech-name">CAMEO Codes</span>
-          <span class="tech-desc">Standardized event classification system &mdash; enables consistent comparison of event types across regions and actors</span>
+          <span class="tech-name">POLECAT</span>
+          <span class="tech-desc">CIA/DARPA-funded political event dataset &mdash; used to build the historical conflict zone index for satellite corroboration and false positive suppression</span>
         </div>
         <div class="tech-item">
-          <span class="tech-name">Goldstein Scale</span>
-          <span class="tech-desc">Academic conflict severity score from &minus;10 (most hostile) to +10 (most cooperative) &mdash; applied per event for ranking</span>
+          <span class="tech-name">NASA FIRMS VIIRS</span>
+          <span class="tech-desc">Near-real-time satellite thermal anomaly data &mdash; spatially matched to battle and explosion events for independent corroboration</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">UN OCHA / ReliefWeb</span>
+          <span class="tech-desc">Live humanitarian situation reports pulled per country &mdash; surfaced in the Country Brief panel for selected regions</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">CAMEO + Goldstein Scale</span>
+          <span class="tech-desc">Standardized event classification and severity scoring &mdash; CAMEO codes normalized into actionable categories, Goldstein inverted for impact ranking</span>
         </div>
       </div>
 
       <h2>Stack</h2>
       <div class="tech-stack">
         <div class="tech-item">
-          <span class="tech-name">Python + Pandas</span>
-          <span class="tech-desc">Scheduled ingestion pipeline &mdash; parses, normalizes, deduplicates, and stores each GDELT export</span>
+          <span class="tech-name">React 19 + Mapbox GL JS</span>
+          <span class="tech-desc">Frontend analyst workstation &mdash; clustered event map, sortable feed, 6-hour time-series chart, and escalation detection UI</span>
         </div>
         <div class="tech-item">
-          <span class="tech-name">Mapbox</span>
-          <span class="tech-desc">Interactive geospatial map with event clustering and severity-encoded visual encoding</span>
+          <span class="tech-name">Express.js</span>
+          <span class="tech-desc">API layer serving ingested events, corroboration data, and analyst feedback endpoints</span>
         </div>
         <div class="tech-item">
-          <span class="tech-name">Flask + SQLite</span>
-          <span class="tech-desc">Python backend with structured event storage, query layer, and dashboard UI</span>
+          <span class="tech-name">Claude Haiku (Anthropic API)</span>
+          <span class="tech-desc">Second-tier noise filter &mdash; evaluates fetched article excerpts against strict kinetic event criteria, rejecting crime, diplomacy, and non-conflict content</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Python data pipeline</span>
+          <span class="tech-desc">Scheduled GDELT ingestion, normalization, satellite matching, and 2023&ndash;2024 backtesting against POLECAT</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Vercel + Vercel Blob</span>
+          <span class="tech-desc">Deployment and analyst feedback persistence</span>
         </div>
       </div>
     </div>
