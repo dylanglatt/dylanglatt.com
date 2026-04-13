@@ -431,16 +431,11 @@ ul { list-style: none; }
 /* ── Case study cards ─────────────────────────────────────────────────────── */
 .case-studies {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--sp-5);
 }
 
-/* Tablet: 2-up */
-@media (max-width: 900px) {
-  .case-studies {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+/* Tablet: keep 2-up (matches default) — collapse to 1 on narrow */
 
 /* Phone: single column */
 @media (max-width: 600px) {
