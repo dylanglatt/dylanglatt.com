@@ -78,4 +78,11 @@
     card.setAttribute('data-delay', i);
   });
 
+  // ── Email obfuscation ────────────────────────────────────────────────────────
+  document.querySelectorAll('.email-link').forEach(function (el) {
+    var email = el.getAttribute('data-u') + '@' + el.getAttribute('data-d');
+    el.href = 'mailto:' + email;
+    if (el.hasAttribute('data-show')) el.textContent = email;
+  });
+
 })();

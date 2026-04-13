@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}About — Dylan Glatt{% endblock %}
-{% block description %}About Dylan Glatt — quantitative modeling, data products, and full-stack systems. Based in New York.{% endblock %}
+{% block title %}About Me — Dylan Glatt{% endblock %}
+{% block description %}Dylan Glatt — quantitative modeling background, enterprise clients, and a track record of building and shipping full-stack AI systems from zero to production. Based in New York.{% endblock %}
 
 {% block content %}
 
 <div class="page-header">
   <div class="container--narrow">
-    <h1 class="page-title">About</h1>
+    <h1 class="page-title">About Me</h1>
   </div>
 </div>
 
@@ -24,29 +24,26 @@
 
     <div class="about-body">
       <p>
-        I've worked on quantitative modeling for clients like GM and ExxonMobil. That ranged from building
-        and managing 48 nameplate econometric models and condensing them into a single executive summary,
-        to measuring and optimizing media effectiveness across 13 global CPG markets.
+        My background is in quantitative modeling&nbsp;&mdash; forecasting systems for GM and ExxonMobil,
+        48 vehicle-level models consolidated into a single executive dashboard, media effectiveness
+        measured across 13 global markets. Complex work with one consistent requirement: make it
+        simple enough for anyone to act on.
       </p>
       <p>
-        That experience shaped how I work now. Every project I deploy follows the same approach: identify
-        a real gap, scope the solution, pick the right tools, and manage the build to production. I&rsquo;m
-        most effective when I can take an idea from nothing to a working system&nbsp;&mdash; and I&rsquo;ve done
-        that multiple times with
-        <a href="{{ url_for('work_riffd') }}" style="color: var(--accent);">Riffd</a> (a full-stack audio
-        analysis platform),
-        <a href="{{ url_for('work_argus') }}" style="color: var(--accent);">Argus</a> (a real-time OSINT
-        pipeline), and
-        <a href="{{ url_for('work_job_scanner') }}" style="color: var(--accent);">Job Scraper</a>
-        (an LLM-powered job automation tool).
+        I also led the overhaul of shared marketing mix models across international offices&nbsp;&mdash; models
+        that were crashing, undocumented, and causing days of back-and-forth across time zones.
+        I standardized the structure, centralized assumptions, and introduced lightweight change logs.
+        Crashes dropped to zero. Coordination became straightforward.
       </p>
       <p>
-        I scope the architecture, manage the build, and own the product decisions. I work across
-        the full stack&nbsp;&mdash; from data pipelines and model integration to frontend interfaces
-        and deployment&nbsp;&mdash; and I deploy fast.
+        That's what I do well: understand something technical well enough to build it, and explain
+        it clearly enough that anyone can act on it. The projects here&nbsp;&mdash;
+        <a href="{{ url_for('work_riffd') }}" style="color: var(--accent);">Riffd</a> and
+        <a href="{{ url_for('work_argus') }}" style="color: var(--accent);">Argus</a>&nbsp;&mdash;
+        apply the same approach to product development.
       </p>
       <p class="about-contact">
-        Get in touch at <a href="mailto:dylanglatt@gmail.com" style="color: var(--accent);">dylanglatt@gmail.com</a>
+        Get in touch at <a href="#" class="email-link" data-u="dylanglatt" data-d="gmail.com" data-show style="color: var(--accent);"></a>
         or find me on <a href="https://www.linkedin.com/in/dylanjglatt/" target="_blank" rel="noopener" style="color: var(--accent);">LinkedIn</a>.
       </p>
     </div>

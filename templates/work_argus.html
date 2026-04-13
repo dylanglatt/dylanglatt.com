@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Argus — Dylan Glatt{% endblock %}
-{% block description %}A real-time OSINT platform that ingests GDELT 2.0, filters noise with Claude Haiku, corroborates events via NASA satellite data, and surfaces armed conflict escalation before it reaches the news.{% endblock %}
+{% block description %}A Palantir-inspired real-time event intelligence platform built for independent use — AI-assisted filtering that cuts through hundreds of thousands of daily news events to surface what actually matters.{% endblock %}
 
 {% block content %}
 
@@ -23,62 +23,37 @@
 
       <h2>The Problem</h2>
       <p>
-        Open-source conflict data is abundant but nearly unusable raw. GDELT ingests hundreds of
-        thousands of events per day&nbsp;&mdash; and most of them are noise: agricultural burns, local crime,
-        diplomatic statements, and protest coverage all land in the same stream as actual armed conflict.
-        By the time genuine escalation is visible in the news, it&rsquo;s already been packaged into narrative.
-        I wanted a system that could cut to signal before any of that happened.
+        The global news stream is massive and mostly noise&nbsp;&mdash; hundreds of thousands of events
+        logged every day across every country, topic, and source. Finding what actually matters,
+        in real time, requires infrastructure that until recently only existed inside enterprise
+        and government platforms.
       </p>
 
-      <h2>What I Set Out to Build</h2>
+      <h2>What I Built</h2>
       <p>
-        A full OSINT pipeline modeled after how defense and intelligence analysts actually work&nbsp;&mdash;
-        not a dashboard with a map pasted on top, but a system with real noise filtering, satellite
-        corroboration, escalation detection, and a dense operational interface designed for pattern
-        recognition across multiple simultaneous theaters.
+        I designed and directed the build of a Palantir-inspired event intelligence platform for
+        independent use&nbsp;&mdash; same design philosophy, same data sources used at the government
+        and enterprise level, no proprietary infrastructure required.
       </p>
 
-      <h2>How It Works</h2>
+      <h2>How I Built It</h2>
       <p>
-        The pipeline starts with live GDELT 2.0 ingestion every 15 minutes: downloading and parsing
-        conflict event exports, normalizing CAMEO codes into actionable categories (battles, explosions,
-        violence against civilians, riots, strategic developments), and scoring each event by impact
-        using an inverted Goldstein scale.
+        The system pulls live global event data every 15 minutes and scores each event by severity
+        and relevance. An AI layer reads the underlying news source for anything ambiguous, making
+        a judgment call on whether it&rsquo;s signal or noise. Events that pass are cross-checked
+        against NASA satellite data for independent ground confirmation.
       </p>
       <p>
-        A two-tier noise filter follows. High-confidence kinetic events&nbsp;&mdash; armed actor types, extreme
-        Goldstein scores, multi-outlet coverage&nbsp;&mdash; auto-pass. Everything else is routed to Claude
-        Haiku, which fetches the underlying article and evaluates it against strict criteria: confirmed
-        weapons use, casualties, or territorial effect. Crime, diplomacy, protests, and opinion pieces
-        are rejected.
-      </p>
-      <p>
-        For battles and explosions, satellite corroboration is available via NASA FIRMS VIIRS thermal
-        anomaly data. Events are spatially matched against a historical conflict zone index built from
-        POLECAT&nbsp;&mdash; a CIA/DARPA-funded dataset&nbsp;&mdash; to suppress false positives from agricultural burns
-        and gas flares. Corroborated events display a &ldquo;SAT&rdquo; badge and fire radiative power readings
-        in the detail panel.
-      </p>
-      <p>
-        The frontend is a Blueprint-dark analyst workstation: a Mapbox GL map with clustered markers
-        sized by media coverage volume; a scrollable event feed sortable by impact score; a 6-hour UTC
-        time-series chart of event frequency by type; and an escalation detection system that surfaces
-        regions with &ge;30% 24-hour event increases. A Country Brief panel pulls live UN OCHA/ReliefWeb
-        humanitarian reports for any selected region. Analysts can confirm or dismiss events, with
-        feedback persisted to Vercel Blob.
-      </p>
-      <p>
-        A separate Python backtesting pipeline cross-references GDELT against POLECAT across 2023&ndash;2024,
-        measuring hotspot agreement, intensity correlation, and source divergence&nbsp;&mdash; providing
-        empirical grounding for the system&rsquo;s signal quality claims.
+        The interface is modeled on enterprise intelligence platforms&nbsp;&mdash; live map, escalation
+        alerts when activity spikes in a region, and real-time situation reports by country. I tested
+        the filtering logic against two years of historical data to refine how the system makes calls.
       </p>
 
-      <h2>The Result</h2>
+      <h2>The Outcome</h2>
       <p>
-        Argus filters a raw 100K+ event/day stream down to a clean, high-confidence conflict feed,
-        corroborated where possible by satellite imagery and validated against a decade of historical
-        conflict data. The operational interface surfaces what&rsquo;s actually escalating&nbsp;&mdash; with the
-        sourcing and corroboration to back it up&nbsp;&mdash; before it becomes a headline.
+        Argus is live at <a href="https://argusosint.vercel.app" target="_blank" rel="noopener" style="color: var(--accent);">argusosint.vercel.app</a>.
+        Hundreds of thousands of raw daily events reduced to a clean, AI-filtered,
+        independently corroborated feed&nbsp;&mdash; built entirely from public data.
       </p>
 
       <!-- Screenshot at the bottom as proof -->

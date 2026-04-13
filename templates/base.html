@@ -32,7 +32,7 @@
       <a href="{{ url_for('index') }}" class="nav-brand">Dylan Glatt</a>
       <div class="nav-links" id="nav-links">
         <a href="{{ url_for('work') }}"  class="nav-link {% if request.endpoint in ('work','work_riffd','work_argus','work_job_scanner') %}active{% endif %}">Projects</a>
-        <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
+        <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About Me</a>
       </div>
       <div class="nav-clock" id="hero-timestamp">New York · <span id="hero-clock"></span></div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -51,7 +51,7 @@
         <div class="footer-links">
           <a href="https://github.com/dylanglatt"              target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/dylanjglatt/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="mailto:dylanglatt@gmail.com">Email</a>
+          <a href="#" class="email-link" data-u="dylanglatt" data-d="gmail.com">Email</a>
         </div>
         <span class="footer-copy">&copy; 2026 Dylan Glatt</span>
       </div>

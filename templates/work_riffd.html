@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Riffd — Dylan Glatt{% endblock %}
-{% block description %}I designed and deployed a full-stack music analysis platform — search any song, hear its parts, and understand how it's built.{% endblock %}
+{% block description %}Designed and shipped a full-stack AI platform end-to-end — ML model integration, real-time audio processing pipeline, and a browser-native interface. Zero to production.{% endblock %}
 
 {% block content %}
 
@@ -23,43 +23,40 @@
 
       <h2>The Problem</h2>
       <p>
-        Musicians can&rsquo;t easily learn from songs they actually listen to. Every theory resource
-        teaches concepts in the abstract&nbsp;&mdash; scales, chords, intervals&nbsp;&mdash; but nothing
-        connects that to the real music you care about. You can&rsquo;t pull up a song and immediately
-        see what it&rsquo;s built on, or hear each instrument on its own.
-      </p>
-      <p>
-        I wanted a tool that did both: show you the theory behind any song, and let you hear each
-        part in isolation. Nothing combined those two things in one place.
+        Music theory education has a fundamental gap: the tools that teach it don&rsquo;t connect to real music,
+        and the tools that play real music don&rsquo;t teach anything. I identified a space where no product
+        existed&nbsp;&mdash; and where the technical components to build one had only recently become accessible.
       </p>
 
-      <h2>What I Set Out to Build</h2>
+      <h2>What I Built</h2>
       <p>
-        A platform where you search any song and get: the individual parts (vocals, bass, guitar, drums)
-        split out and playable on their own, plus a full breakdown of the musical theory behind how it&rsquo;s
-        constructed&nbsp;&mdash; key, chords, and structure. It needed to work in any browser with no
-        downloads, handle multiple users at once, and start showing results before processing finished.
+        I owned the full scope&nbsp;&mdash; product definition, system architecture, and technical direction&nbsp;&mdash; managing the build end-to-end.
+        The goal was to integrate multiple AI models into a single coherent system, process audio in real
+        time, and deliver a frictionless interface entirely in the browser. No downloads, no setup, with
+        results surfacing before the full pipeline completes.
       </p>
 
-      <h2>How It Works</h2>
+      <h2>How I Built It</h2>
       <p>
-        You search a song by name or paste a YouTube link. The platform separates the audio into up to
-        six individual parts&nbsp;&mdash; vocals, bass, drums, guitar, piano, and other&nbsp;&mdash; using
-        an AI model built by Meta. At the same time, it analyzes the audio to detect the key, tempo,
-        and chord structure. Results start appearing before the full separation is done.
+        I selected and integrated three AI models to handle distinct parts of the problem: Meta&rsquo;s Demucs
+        for audio separation running on cloud GPU, Spotify&rsquo;s Basic Pitch for converting audio into
+        analyzable note data, and Essentia for key and tempo detection. A language model (Claude) translates
+        the harmonic output into plain-English context. Coordinating these systems&nbsp;&mdash; managing
+        sequencing, latency, and partial result delivery&nbsp;&mdash; was the core engineering challenge.
       </p>
       <p>
-        Once processed, you get an interactive mixer in your browser&nbsp;&mdash; mute the vocals, solo
-        the bass, adjust volume on any part, and loop sections while you play along. The key analysis
-        shows what chords belong in the song&rsquo;s key, common progressions, and how it relates to
-        neighboring keys. An AI layer (Claude) adds plain-English theory context.
+        I made a deliberate decision to run all playback client-side via the Web Audio API, keeping the
+        server out of the critical path for user interaction. A concurrent job queue handles simultaneous
+        requests and streams results progressively, so the interface stays responsive well before the
+        full pipeline finishes.
       </p>
 
-      <h2>The Result</h2>
+      <h2>The Outcome</h2>
       <p>
-        Riffd is live at <a href="https://riffdlabs.com" target="_blank" rel="noopener" style="color: var(--accent);">riffdlabs.com</a>.
-        Search any song and within minutes you have the individual parts isolated, a full picture of
-        the harmony, and an interactive mixer to play around with&nbsp;&mdash; no plugins or installs required.
+        Riffd is live at <a href="https://riffdlabs.com" target="_blank" rel="noopener" style="color: var(--accent);">riffdlabs.com</a>&nbsp;&mdash;
+        a production system built and shipped, integrating three AI models across a full stack from
+        cloud GPU to browser-native interface. It scales on demand and operates at near-zero infrastructure
+        cost outside of processing time.
       </p>
 
       <!-- Screenshots at the bottom as proof -->

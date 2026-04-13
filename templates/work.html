@@ -8,7 +8,7 @@
 <div class="page-header">
   <div class="container">
     <h1 class="page-title">Projects</h1>
-    <p class="page-subtitle">Each project started with a problem I found and took from nothing to a working system. Here&rsquo;s how.</p>
+    <p class="page-subtitle">Each project represents a complete build cycle — problem identification, architecture decisions, and delivery to production.</p>
   </div>
 </div>
 
@@ -16,16 +16,15 @@
 <section class="section" style="border-top: none; padding-top: 0;">
   <div class="container">
     <div class="case-card case-card--full">
-      <p class="case-card-label">Full-stack audio platform &middot; Live at riffdlabs.com</p>
       <h2 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit;">Riffd</a></h2>
+      <p class="case-card-label">Song Analyzer &middot; Live at riffdlabs.com</p>
       <p class="case-card-problem">
-        Musicians can&rsquo;t easily learn theory from songs they actually listen to. I needed a tool
-        that didn&rsquo;t exist&nbsp;&mdash; one that connects real music to real theory.
+        No tool existed that let you hear any song broken into its individual parts — vocals, bass,
+        guitar, drums — and understand the music theory behind how it&rsquo;s built, all in one place.
       </p>
       <p class="case-card-action">
-        I designed and deployed a platform that takes any song, splits it into its individual parts
-        (vocals, bass, guitar, drums), figures out the musical theory behind how it&rsquo;s built, and gives
-        you an interactive mixer to hear each part on its own&nbsp;&mdash; all in the browser, no downloads required.
+        I designed and directed the build of a platform that does exactly that — integrating multiple
+        AI models into a single real-time system, delivered entirely in the browser. Zero to production.
       </p>
       <div class="case-card-footer">
         <a href="{{ url_for('work_riffd') }}" class="btn btn-primary">Read more &rarr;</a>
@@ -39,19 +38,16 @@
 <section class="section">
   <div class="container">
     <div class="case-card case-card--full">
-      <p class="case-card-label">OSINT intelligence platform &middot; Live at argusosint.vercel.app</p>
       <h2 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit;">Argus</a></h2>
+      <p class="case-card-label">AI Open Source Intelligence (OSINT) &middot; Live at argusosint.vercel.app</p>
       <p class="case-card-problem">
-        Open-source conflict data is high-volume and extremely noisy. Raw event feeds are full of false
-        positives&nbsp;&mdash; agricultural burns flagged as explosions, crime reports classified as armed
-        conflict, diplomatic statements mixed in with kinetic events. Useful signal is buried.
+        The global news stream is massive and mostly noise. Finding what actually matters, in real time,
+        requires infrastructure that until recently only existed inside enterprise and government platforms.
       </p>
       <p class="case-card-action">
-        I built a full OSINT pipeline: live GDELT 2.0 ingestion, a two-tier noise filter that routes
-        ambiguous events to Claude Haiku for article-level evaluation, and satellite corroboration via
-        NASA FIRMS thermal anomaly data cross-referenced against a CIA/DARPA-funded conflict zone index.
-        The frontend is a Blueprint-dark analyst workstation with a Mapbox event map, escalation detection,
-        and live UN OCHA humanitarian briefs by country.
+        I designed and directed the build of a Palantir-inspired event intelligence platform for independent
+        use — AI-assisted filtering, satellite corroboration, and an analyst-grade interface built
+        entirely from public data.
       </p>
       <div class="case-card-footer">
         <a href="{{ url_for('work_argus') }}" class="btn btn-primary">Read more &rarr;</a>
