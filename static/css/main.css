@@ -549,6 +549,11 @@ ul { list-style: none; }
   flex-shrink: 0;
   object-fit: cover;
 }
+.case-card-logo--lg {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+}
 
 
 /* ── About layout (two-column) ───────────────────────────────────────────── */

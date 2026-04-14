@@ -33,7 +33,8 @@
       <h2>What I Did</h2>
       <p>
         I needed to make that data actually usable, which meant deciding what to filter, how, and
-        in what order. I designed a layered approach: simple rules handle the obvious cases first
+        in what order. I designed a layered approach &mdash; drawing on <a href="https://palantir.github.io/" target="_blank" rel="noopener" style="color: var(--accent);">Palantir&rsquo;s open source documentation</a>
+        for the pipeline architecture &mdash; simple rules handle the obvious cases first
         (fast and free), then an AI reads the source article and scores genuinely ambiguous events
         before making a call. Sequencing it that way kept costs low and made every decision
         traceable &mdash; you can always see why something was included or rejected.
