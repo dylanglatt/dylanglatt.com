@@ -32,7 +32,10 @@
 
       <!-- Riffd -->
       <div class="case-card fade-up">
-        <h3 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit; text-decoration: none;">Riffd</a></h3>
+        <div class="case-card-header">
+          <h3 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit; text-decoration: none;">Riffd</a></h3>
+          <img src="{{ url_for('static', filename='img/riffd-logo.svg') }}" class="case-card-logo" alt="Riffd">
+        </div>
         <p class="case-card-label">LLM-Powered Song Analyzer</p>
         <p class="case-card-desc">As a musician, I couldn&rsquo;t find a single tool that could take a real song and explain the theory behind it. Not one that could separate the instruments, identify the key, and tell you what the chord progression actually is. So I built one from scratch.</p>
         <div class="case-card-footer">
@@ -43,7 +46,10 @@
 
       <!-- Argus -->
       <div class="case-card fade-up">
-        <h3 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit; text-decoration: none;">Argus</a></h3>
+        <div class="case-card-header">
+          <h3 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit; text-decoration: none;">Argus</a></h3>
+          <img src="{{ url_for('static', filename='img/argus-logo.svg') }}" class="case-card-logo" alt="Argus">
+        </div>
         <p class="case-card-label">Real-Time AI Conflict Intelligence</p>
         <p class="case-card-desc">I wanted what intelligence agencies have &mdash; live conflict data that&rsquo;s already filtered and verified. The raw feeds are public; it&rsquo;s just buried under hundreds of thousands of unverified daily events. I built the filtering and satellite verification pipeline to make it usable.</p>
         <div class="case-card-footer">
@@ -58,16 +64,42 @@
 
 <!-- ── About snippet ─────────────────────────────────────────────────────── -->
 <section class="section">
-  <div class="container--narrow">
-    <div class="section-header fade-up">
-      <span class="section-title">Background</span>
+  <div class="container">
+    <div class="about-layout fade-up">
+      <!-- Left: photo + education -->
+      <div class="about-left">
+        <img src="{{ url_for('static', filename='img/headshot.jpg') }}" class="about-headshot" alt="Dylan Glatt">
+        <div class="about-edu-block">
+          <span class="about-edu-label">Education</span>
+          <div class="about-edu">
+            <img src="{{ url_for('static', filename='img/umich.png') }}" class="about-edu-logo" alt="University of Michigan">
+            <div class="about-edu-text">
+              <span class="about-edu-school">University of Michigan</span>
+              <span class="about-edu-degree">Statistics &amp; Business</span>
+            </div>
+          </div>
+          <div class="about-edu">
+            <img src="{{ url_for('static', filename='img/queen mary.jpeg') }}" class="about-edu-logo" alt="Queen Mary University of London">
+            <div class="about-edu-text">
+              <span class="about-edu-school">Queen Mary, London</span>
+              <span class="about-edu-degree">Study Abroad</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Right: bio text -->
+      <div class="about-right">
+        <p class="about-text" style="font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.72; margin-bottom: var(--sp-6);">
+          I find problems that don&rsquo;t have clean solutions and build them &mdash; from concept
+          to deployed product. My background is in quantitative modeling and data analysis: demand
+          forecasting for GM, media effectiveness across 13 global markets for ExxonMobil, and
+          process redesigns that eliminated days of cross-functional friction. The work was always
+          cross-functional by default. The requirement was always the same: make it clear enough
+          that anyone could act on it.
+        </p>
+        <a href="{{ url_for('about') }}" class="btn btn-secondary">More about me &rarr;</a>
+      </div>
     </div>
-    <p class="about-text fade-up" style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 560px; line-height: 1.72; margin-bottom: var(--sp-6);">
-      My background is in data analysis and quantitative modeling &mdash; building forecasting
-      systems for GM and ExxonMobil. The work was cross-functional and complex. The requirement
-      was always the same: make it clear enough for anyone to act on.
-    </p>
-    <a href="{{ url_for('about') }}" class="btn btn-secondary fade-up">More about me &rarr;</a>
   </div>
 </section>
 
