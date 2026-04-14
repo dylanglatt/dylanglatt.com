@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Riffd — Dylan Glatt{% endblock %}
-{% block description %}Zero-to-one applied AI build: a Python-based song analysis tool with three ML models, five API integrations, and automated processing — concept to deployment, solo.{% endblock %}
+{% block description %}Stem separation, chord detection, and music theory analysis for any song — three applied AI models, progressive result streaming, and client-side playback via the Web Audio API.{% endblock %}
 
 {% block content %}
 
@@ -23,41 +23,27 @@
 
       <h2>The Problem</h2>
       <p>
-        If you want to understand how a song works &mdash; what key it&rsquo;s in, what chords are being played,
-        how the bass line moves under the melody &mdash; you need a trained ear and a theory background.
-        Existing tools either teach theory in the abstract or just play music. Nothing took a real song
-        and broke it down for you.
+        Music apps let you listen. Theory apps teach you concepts on a whiteboard. Neither one
+        takes a song you already know and tells you how it actually works. That was the gap.
       </p>
 
-      <h2>What I Built</h2>
+      <h2>What I Did</h2>
       <p>
-        A tool where you pick any song and get it taken apart. Riffd separates the track into individual
-        instruments (vocals, bass, drums, guitar, piano, other), detects the key and tempo, identifies
-        the chords, and explains the theory behind the progression &mdash; all in the browser, no
-        downloads, no setup.
-      </p>
-
-      <h2>How It Works</h2>
-      <p>
-        Three applied AI models handle the heavy lifting. Demucs (Meta) runs on a cloud GPU and splits
-        the audio into isolated stems. Basic Pitch (Spotify) converts those stems into note events so I
-        can extract chords. Essentia detects the key and tempo from the raw signal. An LLM takes all of
-        that output and writes a plain-English explanation of the theory.
+        I designed a pipeline that separates any song into its individual parts, identifies the key
+        and chords, and generates a plain-English explanation of the theory behind it. The main
+        coordination challenge was that the three AI models doing the analysis all finish at
+        different times. I designed the system to stream results as each layer completes &mdash;
+        instruments first, then chord analysis, then the theory breakdown &mdash; rather than
+        making users wait for everything at once.
       </p>
       <p>
-        The hard part was orchestration. Each model has different latency, and users shouldn&rsquo;t wait for
-        all of them to finish before seeing anything. I built an automated processing pipeline that streams
-        results progressively &mdash; stems arrive first, then harmonic analysis, then the theory write-up.
-        All playback runs client-side via the Web Audio API, so the server is never in the loop after
-        processing. The Python backend coordinates five API integrations (Spotify, Claude, Genius, Last.fm,
-        and YouTube) alongside the ML models.
+        I also brought in five external services to pull song metadata, lyrics, and context into
+        the output. Playback runs entirely in the browser so the server is out of the loop once
+        analysis is done.
       </p>
-
-      <h2>The Result</h2>
       <p>
-        Live at <a href="https://riffdlabs.com" target="_blank" rel="noopener" style="color: var(--accent);">riffdlabs.com</a>.
-        A zero-to-one build: I scoped the product, designed the architecture, built every layer of the
-        stack, and handled deployment.
+        Scoped, designed, and deployed entirely solo. Live at
+        <a href="https://riffdlabs.com" target="_blank" rel="noopener" style="color: var(--accent);">riffdlabs.com</a>.
       </p>
 
       <!-- Screenshots at the bottom as proof -->
@@ -72,28 +58,28 @@
       <h2>Stack</h2>
       <div class="tech-stack">
         <div class="tech-item">
-          <span class="tech-name">Demucs</span>
-          <span class="tech-desc">Meta&rsquo;s AI model for audio separation &mdash; splits a song into up to 6 stems on cloud GPU with a second melodic pass</span>
+          <span class="tech-name">Demucs (Meta)</span>
+          <span class="tech-desc">Audio source separation on cloud GPU &mdash; isolates vocals, bass, drums, guitar, piano, and other; second melodic pass for harmonic clarity</span>
         </div>
         <div class="tech-item">
-          <span class="tech-name">Basic Pitch</span>
-          <span class="tech-desc">Spotify&rsquo;s pitch detection model &mdash; converts each separated part into note events for chord analysis</span>
+          <span class="tech-name">Basic Pitch (Spotify)</span>
+          <span class="tech-desc">Converts separated stems into MIDI-equivalent note events &mdash; the foundation for per-instrument chord extraction</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Essentia</span>
-          <span class="tech-desc">Key and tempo detection directly from the audio signal</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-name">Web Audio API</span>
-          <span class="tech-desc">Browser-based mixing engine &mdash; all playback, muting, and pitch control runs client-side with no server roundtrips</span>
+          <span class="tech-desc">Key and tempo detection from the raw audio signal, independent of stem separation</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Claude API</span>
-          <span class="tech-desc">Generates plain-English theory context and chord progression explanations</span>
+          <span class="tech-desc">Synthesizes key, chords, and progression data into a plain-English theory explanation specific to the song</span>
+        </div>
+        <div class="tech-item">
+          <span class="tech-name">Web Audio API</span>
+          <span class="tech-desc">Client-side mixing engine &mdash; all stem playback, muting, soloing, and volume control; server is out of the loop after processing</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Flask + Vanilla JS</span>
-          <span class="tech-desc">Lightweight Python backend, zero-dependency frontend. Concurrent job queue, deployed on Render</span>
+          <span class="tech-desc">Lightweight Python backend with concurrent job queue and progressive result streaming; zero-dependency frontend; deployed on Render</span>
         </div>
       </div>
     </div>
