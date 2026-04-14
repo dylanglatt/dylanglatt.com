@@ -15,7 +15,10 @@
   <div class="container--narrow">
 
     <div class="about-intro">
-      <img src="{{ url_for('static', filename='img/headshot.jpg') }}" alt="Dylan Glatt" class="about-headshot">
+      <picture>
+        <source srcset="{{ url_for('static', filename='img/headshot.webp') }}" type="image/webp">
+        <img src="{{ url_for('static', filename='img/headshot_opt.jpg') }}" alt="Dylan Glatt" class="about-headshot">
+      </picture>
       <div class="about-intro-text">
         <p class="about-name">Dylan Glatt</p>
         <p class="about-location">New York, NY</p>

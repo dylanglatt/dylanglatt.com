@@ -68,7 +68,10 @@
     <div class="about-layout fade-up">
       <!-- Left: photo + education -->
       <div class="about-left">
-        <img src="{{ url_for('static', filename='img/headshot.jpg') }}" class="about-headshot" alt="Dylan Glatt">
+        <picture>
+          <source srcset="{{ url_for('static', filename='img/headshot.webp') }}" type="image/webp">
+          <img src="{{ url_for('static', filename='img/headshot_opt.jpg') }}" class="about-headshot" alt="Dylan Glatt">
+        </picture>
         <div class="about-edu-block">
           <span class="about-edu-label">Education</span>
           <div class="about-edu">
