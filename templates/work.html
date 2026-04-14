@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block title %}Projects — Dylan Glatt{% endblock %}
-{% block description %}Projects: how I identify problems, scope solutions, and deploy working systems.{% endblock %}
+{% block description %}Zero-to-one builds: applied AI, Python, data analysis, API integrations, and full-stack deployment. Problem to production system.{% endblock %}
 
 {% block content %}
 
 <div class="page-header">
   <div class="container">
-    <h1 class="page-title">Projects</h1>
-    <p class="page-subtitle">Each project represents a complete build cycle — problem identification, architecture decisions, and delivery to production.</p>
+    <h1 class="page-title">Work</h1>
+    <p class="page-subtitle">Each of these started with a problem I wanted to solve. I scoped it, built it, and shipped it. The products are live &mdash; the process is the point.</p>
   </div>
 </div>
 
@@ -17,14 +17,16 @@
   <div class="container">
     <div class="case-card case-card--full">
       <h2 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit;">Riffd</a></h2>
-      <p class="case-card-label">Song Analyzer &middot; Live at riffdlabs.com</p>
+      <p class="case-card-label">Song Breakdown Engine &middot; Live at riffdlabs.com</p>
       <p class="case-card-problem">
-        No tool existed that let you hear any song broken into its individual parts — vocals, bass,
-        guitar, drums — and understand the music theory behind how it&rsquo;s built, all in one place.
+        If you wanted to understand how a song works &mdash; what key it&rsquo;s in, what chords are playing, how the
+        bass line moves independently from the drums &mdash; you needed a trained ear and theory background.
+        No tool did that for you.
       </p>
       <p class="case-card-action">
-        I designed and directed the build of a platform that does exactly that — integrating multiple
-        AI models into a single real-time system, delivered entirely in the browser. Zero to production.
+        I built one. Pick any track: it separates every instrument, detects the key, tempo, and chords,
+        and explains the theory in plain English. Three AI models handle the audio processing; everything
+        runs in the browser.
       </p>
       <div class="case-card-footer">
         <a href="{{ url_for('work_riffd') }}" class="btn btn-primary">Read more &rarr;</a>
@@ -39,15 +41,16 @@
   <div class="container">
     <div class="case-card case-card--full">
       <h2 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit;">Argus</a></h2>
-      <p class="case-card-label">AI Open Source Intelligence (OSINT) &middot; Live at argusosint.vercel.app</p>
+      <p class="case-card-label">Conflict Event Monitor &middot; Live at argusosint.vercel.app</p>
       <p class="case-card-problem">
-        The global news stream is massive and mostly noise. Finding what actually matters, in real time,
-        requires infrastructure that until recently only existed inside enterprise and government platforms.
+        Platforms like Palantir process massive volumes of global event data in real time to surface
+        what matters. The underlying data is public &mdash; hundreds of thousands of events logged daily.
+        But it&rsquo;s overwhelmingly noisy, and filtering it into something usable requires real infrastructure.
       </p>
       <p class="case-card-action">
-        I designed and directed the build of a Palantir-inspired event intelligence platform for independent
-        use — AI-assisted filtering, satellite corroboration, and an analyst-grade interface built
-        entirely from public data.
+        I built that infrastructure from scratch. A five-stage pipeline filters events using rules and
+        AI classification, then cross-references what survives against satellite thermal imagery for
+        independent confirmation. The output is a live map and feed of verified conflict events.
       </p>
       <div class="case-card-footer">
         <a href="{{ url_for('work_argus') }}" class="btn btn-primary">Read more &rarr;</a>

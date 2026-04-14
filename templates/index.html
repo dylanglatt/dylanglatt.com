@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Dylan Glatt{% endblock %}
-{% block description %}Dylan Glatt — I design and deploy data products end-to-end. Quantitative modeling, AI-assisted development, and full-stack systems.{% endblock %}
+{% block description %}Dylan Glatt — zero-to-one builder. Applied AI, Python, data analysis, API integrations, and full-stack deployment. Background in cross-functional analytics for GM and ExxonMobil.{% endblock %}
 
 {% block content %}
 
@@ -10,6 +10,7 @@
   <canvas id="hero-canvas" class="hero-canvas"></canvas>
   <div class="container">
     <h1 class="hero-name">Dylan Glatt</h1>
+    <p class="hero-tagline">I identify the problem, build the solution, and explain both clearly &mdash; to any audience.</p>
   </div>
 </section>
 <script src="{{ url_for('static', filename='js/hero-city.js') }}"></script>
@@ -24,7 +25,7 @@
 <section class="section">
   <div class="container">
     <div class="section-header fade-up">
-      <span class="section-title">Projects</span>
+      <span class="section-title">Work</span>
       <a href="{{ url_for('work') }}" class="section-cta">View all &rarr;</a>
     </div>
 
@@ -33,10 +34,10 @@
       <!-- Riffd -->
       <div class="case-card fade-up">
         <h3 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit; text-decoration: none;">Riffd</a></h3>
-        <p class="case-card-label">Song Analyzer &middot; Live</p>
-        <p class="case-card-desc">No tool existed that connected real music to music theory in one place. Designed and shipped a full-stack AI platform — ML model integration, real-time audio processing, and a browser-native interface — from zero to production.</p>
+        <p class="case-card-label">Song Breakdown Engine &middot; Live</p>
+        <p class="case-card-desc">No tool could take a real song and explain the music theory behind it. I built one from scratch &mdash; it separates every instrument, finds the key and chords, and explains the music theory behind it.</p>
         <div class="case-card-footer">
-          <a href="{{ url_for('work_riffd') }}" class="case-card-cta">Read more &rarr;</a>
+          <a href="{{ url_for('work_riffd') }}" class="case-card-cta">How I built it &rarr;</a>
           <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-xs); padding: var(--sp-2) var(--sp-4);">Live site &nearr;</a>
         </div>
       </div>
@@ -44,10 +45,10 @@
       <!-- Argus -->
       <div class="case-card fade-up">
         <h3 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit; text-decoration: none;">Argus</a></h3>
-        <p class="case-card-label">AI Open Source Intelligence (OSINT) &middot; Live</p>
-        <p class="case-card-desc">Palantir-inspired event intelligence platform built for independent use. AI-assisted filtering that cuts through hundreds of thousands of daily news events to surface what actually matters.</p>
+        <p class="case-card-label">Conflict Event Monitor &middot; Live</p>
+        <p class="case-card-desc">Hundreds of thousands of global events logged daily, mostly noise. Inspired by Palantir, I built the filtering and satellite verification infrastructure from scratch using public data.</p>
         <div class="case-card-footer">
-          <a href="{{ url_for('work_argus') }}" class="case-card-cta">Read more &rarr;</a>
+          <a href="{{ url_for('work_argus') }}" class="case-card-cta">How I built it &rarr;</a>
           <a href="https://argusosint.vercel.app" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-xs); padding: var(--sp-2) var(--sp-4);">Live site &nearr;</a>
         </div>
       </div>
@@ -63,9 +64,9 @@
       <span class="section-title">Background</span>
     </div>
     <p class="about-text fade-up" style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 560px; line-height: 1.72; margin-bottom: var(--sp-6);">
-      Quantitative modeling background — enterprise forecasting for GM and ExxonMobil, media
-      effectiveness measured across 13 global markets. The job was always the same: find the signal,
-      and make it simple enough for anyone to act on.
+      My background is in data analysis and quantitative modeling &mdash; building forecasting
+      systems for GM and ExxonMobil. The work was cross-functional and complex. The requirement
+      was always the same: make it clear enough for anyone to act on.
     </p>
     <a href="{{ url_for('about') }}" class="btn btn-secondary fade-up">More about me &rarr;</a>
   </div>

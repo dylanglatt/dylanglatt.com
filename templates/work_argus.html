@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Argus — Dylan Glatt{% endblock %}
-{% block description %}A Palantir-inspired real-time event intelligence platform built for independent use — AI-assisted filtering that cuts through hundreds of thousands of daily news events to surface what actually matters.{% endblock %}
+{% block description %}Inspired by Palantir, I built a real-time conflict monitor from public data — filtering hundreds of thousands of daily events down to verified, satellite-confirmed signals.{% endblock %}
 
 {% block content %}
 
@@ -18,42 +18,56 @@
       <a href="https://github.com/dylanglatt/argus" target="_blank" rel="noopener" class="product-external">GitHub &nearr;</a>
     </div>
 
-    <!-- STAR Body -->
+    <!-- Case Study Body -->
     <div class="product-body">
 
       <h2>The Problem</h2>
       <p>
-        The global news stream is massive and mostly noise&nbsp;&mdash; hundreds of thousands of events
-        logged every day across every country, topic, and source. Finding what actually matters,
-        in real time, requires infrastructure that until recently only existed inside enterprise
-        and government platforms.
+        There are public databases that log hundreds of thousands of global events every day &mdash;
+        protests, military actions, political violence, everything. The data is free and open. But
+        the vast majority is noise: duplicate reports, bad extractions, non-conflict events mislabeled
+        as conflict. Platforms like Palantir solve this at scale for governments and institutions.
+        I wanted to see how far I could get building the same kind of thing from scratch, using only
+        public data and API integrations.
       </p>
 
       <h2>What I Built</h2>
       <p>
-        I designed and directed the build of a Palantir-inspired event intelligence platform for
-        independent use&nbsp;&mdash; same design philosophy, same data sources used at the government
-        and enterprise level, no proprietary infrastructure required.
+        A real-time conflict event monitor. Raw event data comes in every 15 minutes, gets run through
+        a five-stage filtering pipeline, and what comes out is a clean feed of verified events on a live
+        map. You can see what&rsquo;s happening, where, how severe it is, and whether satellite data
+        backs it up.
       </p>
 
-      <h2>How I Built It</h2>
+      <h2>How It Works</h2>
       <p>
-        The system pulls live global event data every 15 minutes and scores each event by severity
-        and relevance. An AI layer reads the underlying news source for anything ambiguous, making
-        a judgment call on whether it&rsquo;s signal or noise. Events that pass are cross-checked
-        against NASA satellite data for independent ground confirmation.
+        The first stage is rule-based: filter by event type, check if known military or rebel groups
+        are involved, require multiple independent sources, and block unreliable domains. That alone
+        eliminates roughly 80% of the noise before anything expensive runs.
       </p>
       <p>
-        The interface is modeled on enterprise intelligence platforms&nbsp;&mdash; live map, escalation
-        alerts when activity spikes in a region, and real-time situation reports by country. I tested
-        the filtering logic against two years of historical data to refine how the system makes calls.
+        Events that are clearly significant pass through automatically. Ambiguous ones go to an AI
+        classifier that reads the underlying news article and scores the event on five dimensions:
+        credibility, severity, specificity, novelty, and conflict relevance. This keeps AI costs low &mdash;
+        it only evaluates the cases that rules can&rsquo;t confidently decide.
+      </p>
+      <p>
+        Events that survive are then cross-referenced against NASA satellite thermal imagery. If a reported
+        explosion or battle lines up with a heat signature at that location, it gets flagged as
+        independently confirmed &mdash; verification that doesn&rsquo;t depend on media reporting at all.
+      </p>
+      <p>
+        Before going live, I validated the pipeline through data analysis on two years of historical
+        conflict records &mdash; making sure the system was catching real events, not just surfacing
+        noise with high confidence.
       </p>
 
-      <h2>The Outcome</h2>
+      <h2>The Result</h2>
       <p>
-        Argus is live at <a href="https://argusosint.vercel.app" target="_blank" rel="noopener" style="color: var(--accent);">argusosint.vercel.app</a>.
-        Hundreds of thousands of raw daily events reduced to a clean, AI-filtered,
-        independently corroborated feed&nbsp;&mdash; built entirely from public data.
+        Live at <a href="https://argusosint.vercel.app" target="_blank" rel="noopener" style="color: var(--accent);">argusosint.vercel.app</a>.
+        Built from scratch: I designed the data pipeline, wrote the Python automation for ingestion
+        and filtering, integrated the satellite layer, built the frontend, and handled deployment &mdash;
+        all from public data, on my own.
       </p>
 
       <!-- Screenshot at the bottom as proof -->
@@ -65,23 +79,23 @@
       <div class="tech-stack">
         <div class="tech-item">
           <span class="tech-name">GDELT 2.0</span>
-          <span class="tech-desc">Open public event database updated every 15 minutes &mdash; hundreds of thousands of events/day across 100+ countries, sourced from global media</span>
+          <span class="tech-desc">Public event database, updated every 15 minutes &mdash; logs hundreds of thousands of events per day across 100+ countries from global news sources</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">POLECAT</span>
-          <span class="tech-desc">CIA/DARPA-funded political event dataset &mdash; used to build the historical conflict zone index for satellite corroboration and false positive suppression</span>
+          <span class="tech-desc">Government-funded historical conflict dataset &mdash; two years of validated records used to backtest the filtering pipeline before launch</span>
         </div>
         <div class="tech-item">
-          <span class="tech-name">NASA FIRMS VIIRS</span>
-          <span class="tech-desc">Near-real-time satellite thermal anomaly data &mdash; spatially matched to battle and explosion events for independent corroboration</span>
+          <span class="tech-name">NASA FIRMS</span>
+          <span class="tech-desc">Satellite thermal imagery, updated near real-time &mdash; matched to reported battles and explosions by location for independent confirmation</span>
         </div>
         <div class="tech-item">
-          <span class="tech-name">UN OCHA / ReliefWeb</span>
-          <span class="tech-desc">Live humanitarian situation reports pulled per country &mdash; surfaced in the Country Brief panel for selected regions</span>
+          <span class="tech-name">UN ReliefWeb</span>
+          <span class="tech-desc">Humanitarian situation reports by country &mdash; pulled live and surfaced in the country brief panel</span>
         </div>
         <div class="tech-item">
-          <span class="tech-name">CAMEO + Goldstein Scale</span>
-          <span class="tech-desc">Standardized event classification and severity scoring &mdash; CAMEO codes normalized into actionable categories, Goldstein inverted for impact ranking</span>
+          <span class="tech-name">CAMEO / Goldstein</span>
+          <span class="tech-desc">Standard classification systems for event types and severity &mdash; used to categorize and rank events before AI filtering</span>
         </div>
       </div>
 
@@ -93,15 +107,15 @@
         </div>
         <div class="tech-item">
           <span class="tech-name">Express.js</span>
-          <span class="tech-desc">API layer serving ingested events, corroboration data, and analyst feedback endpoints</span>
+          <span class="tech-desc">API layer serving filtered events, satellite data, and user feedback</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Claude Haiku (Anthropic API)</span>
-          <span class="tech-desc">Second-tier noise filter &mdash; evaluates fetched article excerpts against strict kinetic event criteria, rejecting crime, diplomacy, and non-conflict content</span>
+          <span class="tech-desc">AI noise filter &mdash; reads news articles for ambiguous events and decides whether they represent real conflict or should be discarded</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Python data pipeline</span>
-          <span class="tech-desc">Scheduled GDELT ingestion, normalization, satellite matching, and 2023&ndash;2024 backtesting against POLECAT</span>
+          <span class="tech-desc">Automated event ingestion, normalization, satellite matching, and historical data analysis</span>
         </div>
         <div class="tech-item">
           <span class="tech-name">Vercel + Vercel Blob</span>

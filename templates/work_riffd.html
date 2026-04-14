@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Riffd — Dylan Glatt{% endblock %}
-{% block description %}Designed and shipped a full-stack AI platform end-to-end — ML model integration, real-time audio processing pipeline, and a browser-native interface. Zero to production.{% endblock %}
+{% block description %}Zero-to-one applied AI build: a Python-based song analysis tool with three ML models, five API integrations, and automated processing — concept to deployment, solo.{% endblock %}
 
 {% block content %}
 
@@ -18,45 +18,46 @@
       <a href="https://github.com/dylanglatt/riffd" target="_blank" rel="noopener" class="product-external">GitHub &nearr;</a>
     </div>
 
-    <!-- STAR Body -->
+    <!-- Case Study Body -->
     <div class="product-body">
 
       <h2>The Problem</h2>
       <p>
-        Music theory education has a fundamental gap: the tools that teach it don&rsquo;t connect to real music,
-        and the tools that play real music don&rsquo;t teach anything. I identified a space where no product
-        existed&nbsp;&mdash; and where the technical components to build one had only recently become accessible.
+        If you want to understand how a song works &mdash; what key it&rsquo;s in, what chords are being played,
+        how the bass line moves under the melody &mdash; you need a trained ear and a theory background.
+        Existing tools either teach theory in the abstract or just play music. Nothing took a real song
+        and broke it down for you.
       </p>
 
       <h2>What I Built</h2>
       <p>
-        I owned the full scope&nbsp;&mdash; product definition, system architecture, and technical direction&nbsp;&mdash; managing the build end-to-end.
-        The goal was to integrate multiple AI models into a single coherent system, process audio in real
-        time, and deliver a frictionless interface entirely in the browser. No downloads, no setup, with
-        results surfacing before the full pipeline completes.
+        A tool where you pick any song and get it taken apart. Riffd separates the track into individual
+        instruments (vocals, bass, drums, guitar, piano, other), detects the key and tempo, identifies
+        the chords, and explains the theory behind the progression &mdash; all in the browser, no
+        downloads, no setup.
       </p>
 
-      <h2>How I Built It</h2>
+      <h2>How It Works</h2>
       <p>
-        I selected and integrated three AI models to handle distinct parts of the problem: Meta&rsquo;s Demucs
-        for audio separation running on cloud GPU, Spotify&rsquo;s Basic Pitch for converting audio into
-        analyzable note data, and Essentia for key and tempo detection. A language model (Claude) translates
-        the harmonic output into plain-English context. Coordinating these systems&nbsp;&mdash; managing
-        sequencing, latency, and partial result delivery&nbsp;&mdash; was the core engineering challenge.
+        Three applied AI models handle the heavy lifting. Demucs (Meta) runs on a cloud GPU and splits
+        the audio into isolated stems. Basic Pitch (Spotify) converts those stems into note events so I
+        can extract chords. Essentia detects the key and tempo from the raw signal. An LLM takes all of
+        that output and writes a plain-English explanation of the theory.
       </p>
       <p>
-        I made a deliberate decision to run all playback client-side via the Web Audio API, keeping the
-        server out of the critical path for user interaction. A concurrent job queue handles simultaneous
-        requests and streams results progressively, so the interface stays responsive well before the
-        full pipeline finishes.
+        The hard part was orchestration. Each model has different latency, and users shouldn&rsquo;t wait for
+        all of them to finish before seeing anything. I built an automated processing pipeline that streams
+        results progressively &mdash; stems arrive first, then harmonic analysis, then the theory write-up.
+        All playback runs client-side via the Web Audio API, so the server is never in the loop after
+        processing. The Python backend coordinates five API integrations (Spotify, Claude, Genius, Last.fm,
+        and YouTube) alongside the ML models.
       </p>
 
-      <h2>The Outcome</h2>
+      <h2>The Result</h2>
       <p>
-        Riffd is live at <a href="https://riffdlabs.com" target="_blank" rel="noopener" style="color: var(--accent);">riffdlabs.com</a>&nbsp;&mdash;
-        a production system built and shipped, integrating three AI models across a full stack from
-        cloud GPU to browser-native interface. It scales on demand and operates at near-zero infrastructure
-        cost outside of processing time.
+        Live at <a href="https://riffdlabs.com" target="_blank" rel="noopener" style="color: var(--accent);">riffdlabs.com</a>.
+        A zero-to-one build: I scoped the product, designed the architecture, built every layer of the
+        stack, and handled deployment &mdash; on my own, from nothing.
       </p>
 
       <!-- Screenshots at the bottom as proof -->
