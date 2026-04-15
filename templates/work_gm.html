@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}GM: 48-Model Delivery — Dylan Glatt{% endblock %}
+{% block description %}How a small US team managed delivery across 48 simultaneous marketing mix models for GM — building the QA and coordination layer between offshore engineering and the client.{% endblock %}
+
+{% block content %}
+
+<div style="padding: var(--sp-12) 0 0;">
+  <div class="container--narrow">
+
+    <!-- Back -->
+    <a href="{{ url_for('work') }}" class="product-back">&larr; Work</a>
+
+    <!-- Header -->
+    <h1 class="page-title">GM: 48-Model Delivery</h1>
+    <div class="product-meta">
+      <span class="product-external" style="cursor: default;">Ipsos MMA</span>
+    </div>
+
+    <!-- Body -->
+    <div class="product-body">
+
+      <h2>The Problem</h2>
+      <p>
+        General Motors has 48 nameplates, each requiring its own marketing mix model built and maintained
+        separately. Results had to be delivered on four different cadences simultaneously: weekly,
+        monthly, quarterly, and annually. The scale was unlike any other engagement &mdash; and
+        there was no existing process that could handle it.
+      </p>
+      <p>
+        The delivery structure added another layer of complexity. Engineering was done by a team
+        offshore. Client-facing work sat with a small US team. I was part of that US team &mdash;
+        which meant sitting in the middle of both relationships at once, responsible for what came
+        in from the offshore team and what went out to GM.
+      </p>
+
+      <h2>What I Did</h2>
+      <p>
+        My role spanned both ends of the delivery chain. On the engineering side, I worked
+        directly with the offshore engineering team on data collection and model validation &mdash; making sure
+        inputs were clean, outputs were correct, and nothing slipped through on any of the 48
+        models across any given delivery cycle. On the client side, I was part of translating
+        that work into results GM could read and act on.
+      </p>
+      <p>
+        The volume made ad hoc coordination impossible. To make it work, I helped build the QA
+        processes that gave the US team visibility into what the offshore engineering team was producing &mdash;
+        structured validation checks, clear handoff points, and consistent standards across
+        models so issues could be caught early rather than surfacing at delivery.
+      </p>
+      <p>
+        With four different timeframes running in parallel, the question was never just whether a
+        model was correct &mdash; it was whether the right model was ready at the right time.
+        The processes we built made that trackable and repeatable instead of reactive.
+      </p>
+
+      <h2>The Result</h2>
+      <p>
+        A small US team could reliably monitor and deliver results across all 48 models on
+        every timeframe &mdash; at a scale and operational complexity the firm hadn&rsquo;t handled
+        before. The QA layer meant issues were caught in validation, not in client meetings.
+      </p>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="product-footer">
+      <a href="{{ url_for('work') }}" class="btn btn-secondary">&larr; Work</a>
+      <a href="{{ url_for('about') }}" class="btn btn-secondary">About me &rarr;</a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -41,6 +41,18 @@ def work_argus():
     return render_template('work_argus.html')
 
 
+@app.route('/work/ipsos')
+def work_ipsos():
+    log_event('pageview', {'page': 'work_ipsos', 'ip': _client_ip()})
+    return render_template('work_ipsos.html')
+
+
+@app.route('/work/gm')
+def work_gm():
+    log_event('pageview', {'page': 'work_gm', 'ip': _client_ip()})
+    return render_template('work_gm.html')
+
+
 @app.route('/work/job-scraper')
 def work_job_scanner():
     log_event('pageview', {'page': 'work_job_scanner', 'ip': _client_ip()})
@@ -74,7 +86,7 @@ def robots():
 
 @app.route('/sitemap.xml')
 def sitemap():
-    pages = ['/', '/work', '/work/riffd', '/work/argus', '/about']
+    pages = ['/', '/work', '/work/riffd', '/work/argus', '/work/ipsos', '/work/gm', '/about']
     urls = ''.join(
         f'  <url><loc>https://dylanglatt.com{p}</loc></url>\n'
         for p in pages

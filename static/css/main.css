@@ -435,8 +435,6 @@ ul { list-style: none; }
   gap: var(--sp-5);
 }
 
-/* Tablet: keep 2-up (matches default) — collapse to 1 on narrow */
-
 /* Phone: single column */
 @media (max-width: 600px) {
   .case-studies {
@@ -553,6 +551,40 @@ ul { list-style: none; }
   width: 64px;
   height: 64px;
   border-radius: 12px;
+}
+
+
+/* ── Work grid (experience + projects split) ─────────────────────────────── */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-5);
+  align-items: stretch;
+}
+
+.work-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.work-col .case-card {
+  flex: 1;
+}
+
+.work-col-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+  padding-bottom: var(--sp-1);
+}
+
+@media (max-width: 700px) {
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 

@@ -1,59 +1,78 @@
 {% extends "base.html" %}
 
-{% block title %}Projects — Dylan Glatt{% endblock %}
-{% block description %}Zero-to-one builds: applied AI, Python, data analysis, API integrations, and full-stack deployment. Problem to production system.{% endblock %}
+{% block title %}Work — Dylan Glatt{% endblock %}
+{% block description %}Professional and independent work — marketing analytics at scale, applied AI, data pipelines, and full-stack deployment.{% endblock %}
 
 {% block content %}
 
 <div class="page-header">
   <div class="container">
     <h1 class="page-title">Work</h1>
-    <p class="page-subtitle">Each of these started with a problem I wanted to solve. I scoped it, built it, and shipped it. The products are live &mdash; the process is the point.</p>
+    <p class="page-subtitle">Professional engagements and independent builds. Each one started with a real problem.</p>
   </div>
 </div>
 
-<!-- ── Riffd ─────────────────────────────────────────────────────────────── -->
+<!-- ── Work grid ──────────────────────────────────────────────────────────── -->
 <section class="section" style="border-top: none; padding-top: 0;">
   <div class="container">
-    <div class="case-card case-card--full">
-      <div class="case-card-header">
-        <h2 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit;">Riffd</a></h2>
-        <img src="{{ url_for('static', filename='img/riffd-logo.svg') }}" class="case-card-logo case-card-logo--lg" alt="Riffd">
-      </div>
-      <p class="case-card-label">LLM-Powered Song Analyzer</p>
-      <p class="case-card-problem">
-        A single tool that separates the instruments, identifies the key, and tells you what the chord
-        progression actually is. As a musician, I found nothing that could take a real song and explain
-        the theory behind it &mdash; so I built one from scratch, directing Claude as the implementation
-        layer, and deployed it with Flask.
-      </p>
-      <div class="case-card-footer">
-        <a href="{{ url_for('work_riffd') }}" class="btn btn-primary">Read more &rarr;</a>
-        <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="btn btn-secondary">riffdlabs.com &nearr;</a>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="work-grid">
 
-<!-- ── Argus ──────────────────────────────────────────────────────────────── -->
-<section class="section">
-  <div class="container">
-    <div class="case-card case-card--full">
-      <div class="case-card-header">
-        <h2 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit;">Argus</a></h2>
-        <img src="{{ url_for('static', filename='img/argus-logo.svg') }}" class="case-card-logo case-card-logo--lg" alt="Argus">
+      <!-- Left: Professional -->
+      <div class="work-col">
+        <span class="work-col-label">Professional</span>
+        <div class="case-card">
+          <div class="case-card-header">
+            <h2 class="case-card-title"><a href="{{ url_for('work_ipsos') }}" style="color: inherit; text-decoration: none;">Marketing Mix Model Version Control</a></h2>
+            <img src="{{ url_for('static', filename='img/mma-logo.png') }}" class="case-card-logo" alt="Ipsos MMA" style="width: auto; height: 28px; max-width: 90px; object-fit: contain; border-radius: 0;">
+          </div>
+          <p class="case-card-label">Ipsos MMA</p>
+          <p class="case-card-desc">Marketing mix models shared across international offices were constantly crashing &mdash; no version control, hardcoded formulas, inconsistent documentation. I created structured Excel templates that centralized assumptions and moved collaboration to dedicated Microsoft Teams channels. Analytics model crashes were eliminated.</p>
+          <div class="case-card-footer">
+            <a href="{{ url_for('work_ipsos') }}" class="case-card-cta">Read more &rarr;</a>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-header">
+            <h2 class="case-card-title"><a href="{{ url_for('work_gm') }}" style="color: inherit; text-decoration: none;">GM: 48-Model Delivery</a></h2>
+            <img src="{{ url_for('static', filename='img/mma-logo.png') }}" class="case-card-logo" alt="Ipsos MMA" style="width: auto; height: 28px; max-width: 90px; object-fit: contain; border-radius: 0;">
+          </div>
+          <p class="case-card-label">Ipsos MMA</p>
+          <p class="case-card-desc">General Motors has 48 nameplates &mdash; each requiring its own marketing mix model. The engagement was the largest the team had handled. As part of the US delivery team, I organized the data collection, validation, and QA processes that made delivery effective across all 48 marketing mix models.</p>
+          <div class="case-card-footer">
+            <a href="{{ url_for('work_gm') }}" class="case-card-cta">Read more &rarr;</a>
+          </div>
+        </div>
       </div>
-      <p class="case-card-label">Real-Time AI Conflict Intelligence — For Civilian Use</p>
-      <p class="case-card-problem">
-        I wanted what intelligence agencies have &mdash; live conflict data, filtered and verified.
-        The raw feeds are public; it&rsquo;s just buried under hundreds of thousands of unverified
-        daily events. I built the filtering and satellite verification pipeline from scratch using
-        public data &mdash; pulling directly from <a href="https://palantir.github.io/" target="_blank" rel="noopener" style="color: var(--accent);">Palantir&rsquo;s open source documentation</a>.
-      </p>
-      <div class="case-card-footer">
-        <a href="{{ url_for('work_argus') }}" class="btn btn-primary">Read more &rarr;</a>
-        <a href="https://argusosint.vercel.app" target="_blank" rel="noopener" class="btn btn-secondary">argusosint.vercel.app &nearr;</a>
+
+      <!-- Right: Built -->
+      <div class="work-col">
+        <span class="work-col-label">Built</span>
+        <div class="case-card">
+          <div class="case-card-header">
+            <h2 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit; text-decoration: none;">Riffd</a></h2>
+            <img src="{{ url_for('static', filename='img/riffd-logo.svg') }}" class="case-card-logo" alt="Riffd">
+          </div>
+          <p class="case-card-label">LLM-Powered Song Analyzer</p>
+          <p class="case-card-desc">A single tool that separates the instruments, identifies the key, and tells you what the chord progression actually is. As a musician, I found nothing that could take a real song and explain the theory behind it &mdash; so I built one from scratch, directing Claude as the implementation layer, and deployed it with Flask.</p>
+          <div class="case-card-footer">
+            <a href="{{ url_for('work_riffd') }}" class="case-card-cta">How I built it &rarr;</a>
+            <a href="https://riffdlabs.com" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-xs); padding: var(--sp-2) var(--sp-4);">Live site &nearr;</a>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-header">
+            <h2 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit; text-decoration: none;">Argus</a></h2>
+            <img src="{{ url_for('static', filename='img/argus-logo.svg') }}" class="case-card-logo" alt="Argus">
+          </div>
+          <p class="case-card-label">Real-Time AI Conflict Intelligence — For Civilian Use</p>
+          <p class="case-card-desc">I wanted what intelligence agencies have &mdash; live conflict data, filtered and verified. The raw feeds are public; it&rsquo;s just buried under hundreds of thousands of unverified daily events. I built the filtering and satellite verification pipeline from scratch using public data &mdash; pulling directly from <a href="https://palantir.github.io/" target="_blank" rel="noopener" style="color: var(--accent);">Palantir&rsquo;s open source documentation</a>.</p>
+          <div class="case-card-footer">
+            <a href="{{ url_for('work_argus') }}" class="case-card-cta">How I built it &rarr;</a>
+            <a href="https://argusosint.vercel.app" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-xs); padding: var(--sp-2) var(--sp-4);">Live site &nearr;</a>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>

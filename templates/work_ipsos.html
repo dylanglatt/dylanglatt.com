@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Marketing Mix Model Version Control — Dylan Glatt{% endblock %}
+{% block description %}How I standardized shared marketing mix models across international offices — eliminating crashes, hardcoded formulas, and days of cross-timezone friction.{% endblock %}
+
+{% block content %}
+
+<div style="padding: var(--sp-12) 0 0;">
+  <div class="container--narrow">
+
+    <!-- Back -->
+    <a href="{{ url_for('work') }}" class="product-back">&larr; Work</a>
+
+    <!-- Header -->
+    <h1 class="page-title">Marketing Mix Model Version Control</h1>
+    <div class="product-meta">
+      <span class="product-external" style="cursor: default;">Ipsos MMA &middot; 2025&ndash;2026</span>
+    </div>
+
+    <!-- Body -->
+    <div class="product-body">
+
+      <h2>The Problem</h2>
+      <p>
+        The marketing mix models I worked with at Ipsos were large, complex Excel files shared
+        across analysts in multiple international offices. There was no version control, no change
+        documentation, and no consistent structure. Formulas were hardcoded throughout. Models were
+        linked to external files that had moved or been renamed. When someone in one time zone made
+        a change, there was no record of what changed, why, or what it might break.
+      </p>
+      <p>
+        The result: models crashed constantly. Diagnosing a crash meant manually tracing through
+        hundreds of cells with no documentation to lean on. Coordinating a fix across time zones
+        took days. The same problems recurred because there was no structure preventing them.
+      </p>
+
+      <h2>What I Did</h2>
+      <p>
+        I treated it as a systems problem, not a one-off fix. The goal was a model structure that
+        anyone could follow, update safely, and hand off without creating new problems.
+      </p>
+      <p>
+        I built a consistent template with a clear separation between inputs, calculations, and
+        outputs. Anyone opening the model could immediately see where data came in, where the
+        logic lived, and where results were read out &mdash; no hunting through the file to
+        understand what was connected to what.
+      </p>
+      <p>
+        I centralized all shared assumptions into a single reference area. Previously, the same
+        assumption might be hardcoded in a dozen different places &mdash; meaning a single update
+        required finding and changing every instance, with no guarantee you&rsquo;d caught them all.
+        Centralizing it meant one change updated everything, and the risk of inconsistency went away.
+      </p>
+      <p>
+        I removed links to external files and made each model self-contained. Those links were
+        the primary source of crashes &mdash; a file moved, a sheet got renamed, and the model
+        broke silently. Removing them made the models stable by default.
+      </p>
+      <p>
+        I introduced lightweight change logs and consistent naming conventions, then centralized
+        collaboration in dedicated Microsoft Teams channels &mdash; one per model &mdash; so every
+        change, question, and handoff was visible and stayed attached to the work it referenced.
+        The overhead was minimal; the improvement to coordination was immediate.
+      </p>
+
+      <h2>The Result</h2>
+      <p>
+        Crash frequency dropped sharply. The back-and-forth across time zones that had been eating
+        days went away &mdash; because the models were self-explanatory and changes were documented,
+        analysts could pick up where someone else left off without a handoff call. Output quality
+        improved because the underlying structure was reliable, and updates could be made with
+        confidence instead of caution.
+      </p>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="product-footer">
+      <a href="{{ url_for('work') }}" class="btn btn-secondary">&larr; Work</a>
+      <a href="{{ url_for('about') }}" class="btn btn-secondary">About me &rarr;</a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
