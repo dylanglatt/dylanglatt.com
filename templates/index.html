@@ -10,6 +10,7 @@
   <canvas id="hero-canvas" class="hero-canvas"></canvas>
   <div class="container">
     <h1 class="hero-name">Dylan Glatt</h1>
+    <p class="hero-tagline">Data &middot; Products</p>
   </div>
 </section>
 <script src="{{ url_for('static', filename='js/hero-city.js') }}"></script>
@@ -23,11 +24,6 @@
 <!-- ── Case studies ──────────────────────────────────────────────────────── -->
 <section class="section">
   <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-title">Work</span>
-      <a href="{{ url_for('work') }}" class="section-cta">View all &rarr;</a>
-    </div>
-
     <div class="work-grid">
 
       <!-- Left: Work Experience -->
@@ -50,7 +46,7 @@
             <img src="{{ url_for('static', filename='img/mma-logo.png') }}" class="case-card-logo" alt="Ipsos MMA" style="width: auto; height: 28px; max-width: 90px; object-fit: contain; border-radius: 0;">
           </div>
           <p class="case-card-label">Ipsos MMA</p>
-          <p class="case-card-desc">General Motors has 48 nameplates &mdash; each requiring its own marketing mix model. The engagement was the largest the team had handled. As part of the US delivery team, I organized the data collection, validation, and QA processes that made delivery effective across all 48 marketing mix models.</p>
+          <p class="case-card-desc">General Motors has 48 nameplates &mdash; each requiring its own marketing mix model. The engagement was the largest our team had handled. As part of the US delivery team, I organized the data collection, validation, and QA processes that made delivery effective across all 48 marketing mix models.</p>
           <div class="case-card-footer">
             <a href="{{ url_for('work_gm') }}" class="case-card-cta">More on this &rarr;</a>
           </div>
@@ -59,7 +55,7 @@
 
       <!-- Right: Projects -->
       <div class="work-col fade-up" data-delay="1">
-        <span class="work-col-label">Built</span>
+        <span class="work-col-label">Projects</span>
         <div class="case-card">
           <div class="case-card-header">
             <h3 class="case-card-title"><a href="{{ url_for('work_riffd') }}" style="color: inherit; text-decoration: none;">Riffd</a></h3>
@@ -77,8 +73,8 @@
             <h3 class="case-card-title"><a href="{{ url_for('work_argus') }}" style="color: inherit; text-decoration: none;">Argus</a></h3>
             <img src="{{ url_for('static', filename='img/argus-logo.svg') }}" class="case-card-logo" alt="Argus">
           </div>
-          <p class="case-card-label">Real-Time AI Conflict Intelligence — For Civilian Use</p>
-          <p class="case-card-desc">I wanted what intelligence agencies have &mdash; live conflict data, filtered and verified. The raw feeds are public; it&rsquo;s just buried under hundreds of thousands of unverified daily events. I built the filtering and satellite verification pipeline from scratch using public data — pulling directly from <a href="https://palantir.github.io/" target="_blank" rel="noopener" style="color: var(--accent);">Palantir&rsquo;s open source documentation</a>.</p>
+          <p class="case-card-label">Real-Time Event Intelligence</p>
+          <p class="case-card-desc">The data intelligence agencies use is publicly available &mdash; events, filtered and verified, stripped of noise. It&rsquo;s just buried under hundreds of thousands of unverified daily reports. I built the filtering and verification pipeline from scratch using public sources and the Palantir open source framework.</p>
           <div class="case-card-footer">
             <a href="{{ url_for('work_argus') }}" class="case-card-cta">How I built it &rarr;</a>
             <a href="https://argusosint.vercel.app" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: var(--text-xs); padding: var(--sp-2) var(--sp-4);">Live site &nearr;</a>

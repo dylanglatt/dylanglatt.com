@@ -32,7 +32,6 @@
       <div></div>
       <div class="nav-links" id="nav-links">
         <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Home</a>
-        <a href="{{ url_for('work') }}"  class="nav-link {% if request.endpoint in ('work','work_riffd','work_argus','work_job_scanner') %}active{% endif %}">Portfolio</a>
         <a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About Me</a>
       </div>
       <div class="nav-clock" id="hero-timestamp">New York · <span id="hero-clock"></span></div>
